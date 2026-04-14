@@ -67,7 +67,8 @@ npm run build
 
 Current state:
 - The repository now includes a runnable Next.js App Router scaffold.
-- Locale-aware routes, checklist flow, and content loaders are still tracked as separate backlog tasks.
+- Locale-aware routes and the first deterministic checklist flow are now wired.
+- Content loaders for informational pages and print-mode polish are still tracked as separate backlog tasks.
 
 ## Non-negotiables
 

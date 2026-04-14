@@ -16,25 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-004 — Build checklist question flow
-Status: Ready
-Priority: P1
-Depends on: TASK-001, TASK-002, TASK-003
-
-Objective:
-Implement the first deterministic multi-step checklist flow for Ciudad Juárez family-based prep.
-
-Deliverables:
-- checklist page scaffold
-- question renderer
-- answer state handling
-- progress indicator
-
-Acceptance Criteria:
-- user can move through the seeded questions
-- flow is structured for conditional branching
-- implementation remains locale-ready
-
 ### TASK-006 — Add print-view checklist scaffold
 Status: Ready
 Priority: P2
@@ -104,6 +85,14 @@ Depends on: TASK-003
 
 Summary:
 Added grouped checklist result assembly over the seeded rules, including stable section types, conservative confidence labels, and document metadata joins for rule outputs.
+
+### TASK-004 — Build checklist question flow
+Status: Done
+Priority: P1
+Depends on: TASK-001, TASK-002, TASK-003
+
+Summary:
+Added localized checklist start, questions, and results routes with a deterministic multi-step question renderer, URL-backed answer state, and a progress indicator structured for future branching.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -29,6 +29,46 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:37 UTC — TASK-004
+
+Summary:
+- Added the first localized checklist flow across `/[lang]/checklist/start`, `/[lang]/checklist/questions`, and `/[lang]/checklist/results`.
+- Added a client-side question renderer with deterministic URL-backed answer state, next/back navigation, and a progress indicator.
+- Wired the results route to the existing checklist assembler so the flow now ends in grouped checklist output instead of a dead end.
+
+Files changed:
+- README.md
+- src/app/globals.css
+- src/app/[lang]/checklist/start/page.tsx
+- src/app/[lang]/checklist/questions/page.tsx
+- src/app/[lang]/checklist/results/page.tsx
+- src/components/checklist-flow.tsx
+- src/components/checklist-results.tsx
+- src/lib/checklist/answers.ts
+- src/lib/checklist/flow.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Stored checklist answers in URL query params instead of local storage so the flow remains deterministic, shareable, and easy to inspect during early development.
+- Added a minimal `getNextQuestionIndex` boundary now so future conditional branching can evolve behind a stable helper rather than rewriting the route flow.
+- Used the already-built result assembler on the results route to keep question flow and result generation aligned on one output contract.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en` and `/es` checklist start, questions, and results routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-006
+
+---
+
 ### 2026-04-14 19:26 UTC — TASK-005
 
 Summary:
