@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import type { FeedbackSummary } from '@/lib/admin/loadFeedbackSummary';
 import type { StoredFeedbackSubmission } from '@/lib/feedback/storage';
 import type { ReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 
 export function AdminReviewsPage({
+  feedbackSummary,
   summary,
   feedbackItems,
 }: {
+  feedbackSummary: FeedbackSummary;
   summary: ReviewQueueSummary;
   feedbackItems: StoredFeedbackSubmission[];
 }) {
@@ -106,6 +109,34 @@ export function AdminReviewsPage({
             for maintainer review. No moderation or publish tooling exists yet.
           </p>
         </article>
+
+        <div className="guide-sections">
+          <article className="hero__card">
+            <h2>Feedback summary</h2>
+            <ul className="results-list">
+              <li>
+                <strong>Total reports:</strong> {feedbackSummary.total}
+              </li>
+              <li>
+                <strong>By type:</strong>{' '}
+                {feedbackSummary.typeCounts.length > 0
+                  ? feedbackSummary.typeCounts
+                      .map((entry) => `${entry.report_type}: ${entry.count}`)
+                      .join(', ')
+                  : 'none'}
+              </li>
+              <li>
+                <strong>Most reported routes:</strong>{' '}
+                {feedbackSummary.routeCounts.length > 0
+                  ? feedbackSummary.routeCounts
+                      .slice(0, 3)
+                      .map((entry) => `${entry.page_slug}: ${entry.count}`)
+                      .join(', ')
+                  : 'none'}
+              </li>
+            </ul>
+          </article>
+        </div>
 
         <div className="guide-sections">
           {feedbackItems.length === 0 ? (

@@ -6,6 +6,7 @@ import { AdminSourcesPage } from '@/components/admin-sources-page';
 import { loadContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
+import { loadFeedbackSummary } from '@/lib/admin/loadFeedbackSummary';
 import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
 import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
@@ -62,10 +63,13 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'reviews') {
+    const feedbackItems = await loadStoredFeedbackSubmissions();
+
     return (
       <AdminReviewsPage
+        feedbackSummary={loadFeedbackSummary(feedbackItems)}
         summary={loadReviewQueueSummary()}
-        feedbackItems={await loadStoredFeedbackSubmissions()}
+        feedbackItems={feedbackItems}
       />
     );
   }

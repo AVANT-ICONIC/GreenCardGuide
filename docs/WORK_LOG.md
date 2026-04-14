@@ -29,6 +29,41 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:49 UTC — TASK-042
+
+Summary:
+- Added a deterministic feedback-summary helper for total report counts, counts by report type, and most-reported routes.
+- Updated `/admin/reviews` to show that summary before the detailed inbox list so maintainers can scan the local feedback posture faster.
+- Kept the new summary explicitly operational and local, without implying moderation, assignment, or triage tooling.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-reviews-page.tsx
+- src/lib/admin/loadFeedbackSummary.ts
+
+Decisions:
+- Derived the summary directly from the stored feedback submissions loaded for `/admin/reviews` so the page does not duplicate inbox aggregation logic.
+- Limited the summary to totals, type counts, and top routes to keep the surface lightweight and truthful about the current maintenance workflow.
+- Reused the existing direct route smoke approach for validation instead of introducing another separate runtime check in this cycle.
+
+Validation:
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Ran a direct route smoke check against `/admin/reviews`.
+- Confirmed the rendered route included `Feedback summary`, `By type`, and `Most reported routes` with the current stored inbox data.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-043
+
+---
+
 ### 2026-04-14 21:47 UTC — TASK-041
 
 Summary:

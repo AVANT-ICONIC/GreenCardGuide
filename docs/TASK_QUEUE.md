@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-042 — Surface feedback summary counts in admin reviews
-Status: Ready
-Priority: P2
-Depends on: TASK-037
-Objective:
-- Make the admin reviews inbox easier to scan by summarizing stored feedback counts by type and route.
-Deliverables:
-- a deterministic feedback-summary helper derived from stored submissions
-- `/admin/reviews` updates that show counts by report type and most-reported routes ahead of the inbox list
-- truthful copy that keeps the feature framed as local maintainer input, not moderation tooling
-Acceptance Criteria:
-- maintainers can see whether feedback skews toward confusion, missing content, or route bugs without reading every entry
-- the summary is derived from the stored inbox data instead of hardcoded labels
-- the page does not imply triage, assignment, or moderation workflows already exist
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- direct route check of `/admin/reviews`
-Notes:
-- Keep the summary lightweight and operational. Do not add filtering or workflow state in this cycle.
-
 ### TASK-043 — Add deterministic source dashboard validation coverage
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Keep the assertions tied to deterministic seed structures, not speculative future editor features.
 
+### TASK-045 — Add feedback summary validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-042
+Objective:
+- Add a repeatable validation check for the new feedback summary counts and route aggregation logic.
+Deliverables:
+- a lightweight validation script that exercises feedback summary totals, per-type counts, and most-reported route ordering
+- assertions covering the current stored-shape contract and aggregation output using fixture submissions
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- feedback summary regressions can be caught without manually opening `/admin/reviews`
+- the validation stays isolated from the real ignored inbox file
+- the check remains truthful about the current local-maintainer-only posture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new feedback summary validation command
+Notes:
+- Reuse the shared feedback summary helper instead of duplicating counting logic in the script.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-042 — Surface feedback summary counts in admin reviews
+Status: Done
+Priority: P2
+Depends on: TASK-037
+Objective:
+- Make the admin reviews inbox easier to scan by summarizing stored feedback counts by type and route.
+Deliverables:
+- a deterministic feedback-summary helper derived from stored submissions
+- `/admin/reviews` updates that show counts by report type and most-reported routes ahead of the inbox list
+- truthful copy that keeps the feature framed as local maintainer input, not moderation tooling
+Acceptance Criteria:
+- maintainers can see whether feedback skews toward confusion, missing content, or route bugs without reading every entry
+- the summary is derived from the stored inbox data instead of hardcoded labels
+- the page does not imply triage, assignment, or moderation workflows already exist
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct route check of `/admin/reviews`
+Notes:
+- Completed 2026-04-14. The reviews page now shows lightweight feedback totals, type counts, and top reported routes ahead of the inbox detail list.
 
 ### TASK-041 — Add admin operations route smoke validation
 Status: Done

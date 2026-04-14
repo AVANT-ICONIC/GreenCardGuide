@@ -97,6 +97,7 @@ Current state:
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
+- `/admin/reviews` now summarizes stored feedback by report type and most-reported routes before the detailed inbox list.
 - `/admin/sources` now shows direct source-to-surface coverage counts and routes alongside the separate change-watchlist tasks.
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
 - The checklist now surfaces a deterministic risk flag when the applicant does not have a current passport ready.
