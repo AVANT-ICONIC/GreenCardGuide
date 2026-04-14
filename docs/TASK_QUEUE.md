@@ -185,7 +185,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:rule-integrity` now checks seeded rule document references, matched-rule output sections, and the current conservative verify-with-official posture through the shared checklist assembly path.
 
 ### TASK-050 — Add documents overview validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-038
 Objective:
@@ -204,7 +204,7 @@ Validation:
 - `npm run build`
 - the new documents overview validation command
 Notes:
-- Keep assertions focused on deterministic seeded structure, source mapping, and bilingual scaffolding rather than expanding document requirements.
+- Completed 2026-04-14. `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping through the shared loader.
 
 ### TASK-051 — Add guide loader validation coverage
 Status: Ready
@@ -227,6 +227,28 @@ Validation:
 - the new guide validation command
 Notes:
 - Keep the assertions tied to the current route set, section structure, and source mapping instead of future editorial copy changes.
+
+### TASK-052 — Add FAQ and glossary loader validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the bilingual FAQ and glossary loaders, their stable keys, and their mapped source posture.
+Deliverables:
+- a lightweight validation script that exercises FAQ item keys, glossary term keys, review metadata, and source references in both locales
+- assertions covering the current placeholder trust posture and bilingual structural alignment for both surfaces
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- FAQ and glossary loader regressions can be caught without manually opening `/[lang]/faq` or `/[lang]/glossary`
+- the validation remains aligned with the current placeholder content model and mapped source registry
+- the check reuses the shared FAQ and glossary loaders instead of duplicating page assembly logic
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new FAQ/glossary validation command
+Notes:
+- Keep the assertions anchored to stable keys, review metadata, and source mappings rather than future editorial wording.
 
 ## Blocked
 

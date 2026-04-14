@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:08 UTC — TASK-050
+
+Summary:
+- Added a dedicated `npm run validate:documents` smoke check for the bilingual documents overview loader.
+- Locked in the current documents overview baseline across both locales: four seeded categories, nine document slugs, shared review metadata, and the existing two-source trust posture.
+- Refilled the queue with `TASK-052` for FAQ and glossary loader validation before implementation because the ready queue had dropped below the minimum threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateDocumentsOverview.ts
+
+Decisions:
+- Reused `loadDocumentsOverview()` directly so the validator exercises the live documents overview assembly path instead of duplicating category grouping logic.
+- Asserted exact section order, localized category titles, and document slug ordering so seeded structural regressions are caught before they reach `/[lang]/documents`.
+- Treated the parallel `typecheck` and `build` `.next/types` race as an environment validation quirk and reran `npm run typecheck` after `npm run build` completed to finish the strongest checks cleanly.
+
+Validation:
+- Ran `npm run validate:documents`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck` after build completion.
+- Confirmed the validation output included the expected bilingual categories, review date, and document slug list.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-051
+
+---
+
 ### 2026-04-14 22:05 UTC — TASK-049
 
 Summary:

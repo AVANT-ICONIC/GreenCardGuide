@@ -64,6 +64,7 @@ npm run validate:admin
 npm run validate:checklist
 npm run validate:content-diff
 npm run validate:content-inventory
+npm run validate:documents
 npm run validate:feedback
 npm run validate:feedback-summary
 npm run validate:publish
@@ -104,6 +105,7 @@ Current state:
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
 - `npm run validate:content-diff` now checks content diff counts, per-surface alignment posture, and key `/admin/content` diff markers.
 - `npm run validate:content-inventory` now checks tracked-surface counts, bilingual inventory metadata, and key `/admin/content` inventory markers.
+- `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping.
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
