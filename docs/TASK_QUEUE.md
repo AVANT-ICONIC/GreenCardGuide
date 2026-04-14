@@ -562,7 +562,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:admin-home-markers` now checks the `/admin` component markers, navigation-only posture, shared section-registry order, and section-link framing without duplicating the broader admin route validation.
 
 ### TASK-067 — Derive admin route params from the shared section registry
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -582,6 +582,7 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on registry alignment and duplication removal, not new admin surface area.
+- Completed 2026-04-14. The admin subsection route now derives static params from the shared admin section registry instead of carrying a separate hardcoded slug list.
 
 ### TASK-068 — Add admin section registry validation coverage
 Status: Ready
@@ -626,6 +627,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on build-environment stability and repo cleanliness, not new hosting or deployment features.
+
+### TASK-071 — Remove unreachable generic admin subsection fallback
+Status: Ready
+Priority: P2
+Depends on: TASK-067
+Objective:
+- Remove the dead generic admin subsection fallback so `/admin/[section]` only serves the documented maintenance surfaces and 404s everything else.
+Deliverables:
+- route cleanup that removes the unreachable `AdminSectionPage` fallback branch from `src/app/admin/[section]/page.tsx`
+- component cleanup if `src/components/admin-section-page.tsx` is no longer used anywhere after the route change
+- docs updates if the cleanup materially changes the documented admin architecture
+Acceptance Criteria:
+- the route still serves `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`
+- unsupported admin subsection values still go through `notFound()` instead of falling through to a generic placeholder
+- no unused generic subsection component remains in the active admin route path
+Validation:
+- `npm run validate:admin`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on unreachable-route cleanup, not new admin surface creation.
 
 ## Blocked
 

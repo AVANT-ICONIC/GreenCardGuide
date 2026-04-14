@@ -11,15 +11,16 @@ import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaff
 import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
 import { loadSourceCoverageSummary } from '@/lib/admin/loadSourceCoverageSummary';
-import { isAdminSectionSlug } from '@/lib/admin/sections';
+import {
+  getAdminSectionStaticParams,
+  isAdminSectionSlug,
+} from '@/lib/admin/sections';
 import { loadRulesAuditSummary } from '@/lib/admin/loadRulesAuditSummary';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
 import { loadStoredFeedbackSubmissions } from '@/lib/feedback/storage';
 
 export function generateStaticParams() {
-  return ['content', 'sources', 'rules', 'reviews'].map((section) => ({
-    section,
-  }));
+  return getAdminSectionStaticParams();
 }
 
 export default async function AdminSubsectionPage({

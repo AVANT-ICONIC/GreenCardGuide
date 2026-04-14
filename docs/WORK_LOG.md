@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:50 UTC — TASK-067
+
+Summary:
+- Derived admin subsection static params from the shared admin section registry instead of maintaining a separate hardcoded slug list in the route.
+- Kept the current four admin subsection routes unchanged while tightening the shared registry path that powers both navigation and route generation.
+- Refilled the queue with one adjacent route-cleanup task because the repo dropped below three actionable `Ready` tasks after this cycle.
+
+Files changed:
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/lib/admin/sections.ts
+
+Decisions:
+- Exported `adminSectionSlugs` and `getAdminSectionStaticParams()` from the shared admin registry so route generation and slug validation now depend on one source of truth.
+- Narrowed the change to registry alignment only and left the existing per-section render branches intact, because dead fallback cleanup is a separate follow-on task.
+- Treated the repeated build-generated lockfile and Cloudflare scaffold churn as the already-queued environment task rather than expanding this route-alignment cycle into deployment config work.
+
+Validation:
+- Ran `npm run validate:admin`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build` once, hit the existing `.next/types` instability, then reran `npm run build` successfully.
+- Confirmed the admin operations validation still saw the current route files, content surfaces, source coverage counts, review queue counts, and rules audit counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-068
+
+---
+
 ### 2026-04-14 22:48 UTC — TASK-066
 
 Summary:

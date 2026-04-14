@@ -31,6 +31,14 @@ export const adminSections = [
 
 export type AdminSectionSlug = (typeof adminSections)[number]['slug'];
 
+export const adminSectionSlugs: AdminSectionSlug[] = adminSections.map(
+  (section) => section.slug,
+);
+
+export function getAdminSectionStaticParams(): { section: AdminSectionSlug }[] {
+  return adminSectionSlugs.map((section) => ({ section }));
+}
+
 export function isAdminSectionSlug(value: string): value is AdminSectionSlug {
-  return adminSections.some((section) => section.slug === value);
+  return adminSectionSlugs.includes(value as AdminSectionSlug);
 }
