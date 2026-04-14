@@ -16,13 +16,13 @@ Priority values:
 
 ## Ready
 
-### TASK-033 — Validate unsupported checklist answer values
+### TASK-034 — Add checklist behavior smoke validation script
 Status: Ready
-Priority: P1
-Depends on: TASK-004, TASK-032
+Priority: P2
+Depends on: TASK-032, TASK-033
 
 Summary:
-Harden checklist answer parsing so unsupported select values and malformed booleans do not persist through the deterministic flow or appear in results URLs as if they were valid case facts.
+Add a deterministic validation script that exercises checklist parsing, resume logic, completion guards, and seeded result assembly so future route and rules changes can be checked without manual one-off shell commands.
 
 ## Blocked
 
@@ -269,6 +269,14 @@ Depends on: TASK-004
 
 Summary:
 Updated the checklist flow to resume at the first unanswered step and redirected incomplete results or print requests back into the guided question flow so partial answer sets no longer look like finished checklist output.
+
+### TASK-033 — Validate unsupported checklist answer values
+Status: Done
+Priority: P1
+Depends on: TASK-004, TASK-032
+
+Summary:
+Hardened checklist answer parsing and question-route URL canonicalization so unsupported select values and malformed booleans no longer persist through the deterministic flow or appear in checklist URLs as if they were valid case facts.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -1,6 +1,10 @@
 import { notFound, redirect } from 'next/navigation';
 import { ChecklistResults } from '@/components/checklist-results';
-import { parseChecklistAnswers, serializeChecklistAnswers } from '@/lib/checklist/answers';
+import {
+  hasCanonicalChecklistSearchParams,
+  parseChecklistAnswers,
+  serializeChecklistAnswers,
+} from '@/lib/checklist/answers';
 import { hasCompleteChecklistAnswers } from '@/lib/checklist/progress';
 import { isSupportedLanguage } from '@/lib/content/locale';
 import { loadChecklistQuestions } from '@/lib/seed/loadSeedData';
@@ -22,9 +26,16 @@ export default async function ChecklistResultsPage({
   const questions = loadChecklistQuestions();
   const answers = parseChecklistAnswers(resolvedSearchParams, questions);
   const serializedAnswers = serializeChecklistAnswers(answers).toString();
+  const canonicalResultsHref = serializedAnswers
+    ? `/${lang}/checklist/results?${serializedAnswers}`
+    : `/${lang}/checklist/results`;
 
   if (!hasCompleteChecklistAnswers(questions, answers)) {
     redirect(`/${lang}/checklist/questions?${serializedAnswers}`);
+  }
+
+  if (!hasCanonicalChecklistSearchParams(resolvedSearchParams, questions)) {
+    redirect(canonicalResultsHref);
   }
 
   const result = assembleChecklistResults(answers);

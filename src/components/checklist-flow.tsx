@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   getNextQuestionIndex,
   getPreviousQuestionIndex,
 } from '@/lib/checklist/flow';
 import {
+  hasCanonicalChecklistSearchParams,
   parseChecklistAnswers,
   serializeChecklistAnswers,
 } from '@/lib/checklist/answers';
@@ -87,6 +88,14 @@ export function ChecklistFlow({
     () => parseChecklistAnswers(initialSearchParams, questions),
     [initialSearchParams, questions],
   );
+  const canonicalSearch = useMemo(
+    () => serializeChecklistAnswers(initialAnswers).toString(),
+    [initialAnswers],
+  );
+  const hasCanonicalSearchParams = useMemo(
+    () => hasCanonicalChecklistSearchParams(initialSearchParams, questions),
+    [initialSearchParams, questions],
+  );
   const [currentIndex, setCurrentIndex] = useState(() =>
     getResumeQuestionIndex(questions, initialAnswers),
   );
@@ -99,6 +108,18 @@ export function ChecklistFlow({
     currentQuestion.input_type === 'boolean'
       ? ['true', 'false']
       : currentQuestion.options ?? [];
+
+  useEffect(() => {
+    if (hasCanonicalSearchParams) {
+      return;
+    }
+
+    const href = canonicalSearch
+      ? `/${language}/checklist/questions?${canonicalSearch}`
+      : `/${language}/checklist/questions`;
+
+    router.replace(href, { scroll: false });
+  }, [canonicalSearch, hasCanonicalSearchParams, language, router]);
 
   function persistAnswers(nextAnswers: typeof answers) {
     const params = serializeChecklistAnswers(nextAnswers);

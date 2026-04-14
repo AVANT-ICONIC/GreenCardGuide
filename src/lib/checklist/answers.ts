@@ -12,6 +12,46 @@ function parseBoolean(value: string | null): boolean | undefined {
   return undefined;
 }
 
+function parseSelectValue(
+  question: ChecklistQuestion,
+  value: string,
+): string | undefined {
+  if (!question.options?.includes(value)) {
+    return undefined;
+  }
+
+  return value;
+}
+
+function getSingleSearchParamValue(
+  value: string | string[] | undefined,
+): string | undefined {
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (Array.isArray(value) && value.length === 1 && typeof value[0] === 'string') {
+    return value[0];
+  }
+
+  return undefined;
+}
+
+function parseQuestionAnswer(
+  question: ChecklistQuestion,
+  value: string | undefined,
+): string | boolean | undefined {
+  if (typeof value !== 'string') {
+    return undefined;
+  }
+
+  if (question.input_type === 'boolean') {
+    return parseBoolean(value);
+  }
+
+  return parseSelectValue(question, value);
+}
+
 export function parseChecklistAnswers(
   searchParams: Record<string, string | string[] | undefined>,
   questions: ChecklistQuestion[],
@@ -20,22 +60,14 @@ export function parseChecklistAnswers(
   const mutableAnswers = answers as Record<string, string | boolean | undefined>;
 
   for (const question of questions) {
-    const rawValue = searchParams[question.key];
-    const value = Array.isArray(rawValue) ? rawValue[0] : rawValue;
+    const parsedValue = parseQuestionAnswer(
+      question,
+      getSingleSearchParamValue(searchParams[question.key]),
+    );
 
-    if (typeof value !== 'string') {
-      continue;
+    if (parsedValue !== undefined) {
+      mutableAnswers[question.key] = parsedValue;
     }
-
-    if (question.input_type === 'boolean') {
-      const parsedBoolean = parseBoolean(value);
-      if (parsedBoolean !== undefined) {
-        mutableAnswers[question.key] = parsedBoolean;
-      }
-      continue;
-    }
-
-    mutableAnswers[question.key] = value;
   }
 
   return answers;
@@ -58,4 +90,27 @@ export function serializeChecklistAnswers(
   }
 
   return params;
+}
+
+export function hasCanonicalChecklistSearchParams(
+  searchParams: Record<string, string | string[] | undefined>,
+  questions: ChecklistQuestion[],
+): boolean {
+  for (const question of questions) {
+    const rawValue = searchParams[question.key];
+    const singleValue = getSingleSearchParamValue(rawValue);
+    const parsedValue = parseQuestionAnswer(question, singleValue);
+    const canonicalValue =
+      typeof parsedValue === 'boolean' ? String(parsedValue) : parsedValue;
+
+    if (Array.isArray(rawValue) && rawValue.length !== 1) {
+      return false;
+    }
+
+    if (singleValue !== canonicalValue) {
+      return false;
+    }
+  }
+
+  return true;
 }

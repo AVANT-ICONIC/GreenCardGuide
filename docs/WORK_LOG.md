@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:11 UTC — TASK-033
+
+Summary:
+- Hardened checklist answer parsing so unsupported select values are dropped instead of being treated as valid case facts.
+- Preserved the existing strict boolean parsing so malformed boolean values are also removed from persisted flow state.
+- Canonicalized checklist route URL state so sanitized answers replace invalid query strings instead of leaving stale unsupported values in the browser location.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/checklist/print/page.tsx
+- src/app/[lang]/checklist/results/page.tsx
+- src/components/checklist-flow.tsx
+- src/lib/checklist/answers.ts
+
+Decisions:
+- Kept validation inside the existing parser rather than adding a second sanitization pass so every route and flow entrypoint continues to share one deterministic answer-normalization step.
+- Reused the seeded `question.options` definitions as the source of truth for allowed select values, avoiding duplicate enum lists in code.
+- Canonicalized the checklist questions, results, and print URLs so each route reflects sanitized answer state instead of silently retaining invalid or duplicated query values.
+- Left malformed values silent and self-healing instead of surfacing a UI error, because the current product surface is URL-backed and the safest current behavior is to drop unsupported state and resume the guided flow.
+
+Validation:
+- Ran a direct parser smoke check and confirmed unsupported select values and malformed booleans are removed while valid seeded answers still serialize correctly.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for the current routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-034
+
+---
+
 ### 2026-04-14 21:09 UTC — TASK-032
 
 Summary:
