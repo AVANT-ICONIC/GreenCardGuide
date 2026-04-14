@@ -29,6 +29,45 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:41 UTC — TASK-007
+
+Summary:
+- Added a typed bilingual guide-content registry and loader helpers for informational product pages.
+- Added routed guide stubs for the key public guide pages under `/[lang]/guides/[slug]`.
+- Marked placeholder content and review metadata explicitly so future verified editorial content can replace scaffolding without changing the route contract.
+
+Files changed:
+- README.md
+- src/app/[lang]/guides/[slug]/page.tsx
+- src/app/globals.css
+- src/components/guide-page.tsx
+- src/content/guides.ts
+- src/lib/content/README.md
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/types.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Used a typed in-repo content registry instead of ad hoc page constants so localized guide routes can scale behind a stable loader interface.
+- Made review status and confidence label first-class content fields, with all current guide stubs marked as placeholder and `verify_with_official`.
+- Implemented the four key guide slugs from the information architecture first to validate the route pattern before expanding into FAQ, glossary, or source-backed editorial content.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated the bilingual guide routes, including `/en/guides/what-to-bring` and `/es/guides/common-mistakes`.
+
+Blockers:
+- No code blocker, but the current queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 19:39 UTC — TASK-006
 
 Summary:

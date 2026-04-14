@@ -16,21 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-007 — Add content-loading scaffold for product pages
-Status: Ready
-Priority: P2
-Depends on: TASK-001, TASK-002
-
-Objective:
-Create a simple content-loading pattern for bilingual informational pages.
-
-Deliverables:
-- content folder conventions or loader utilities
-- page stubs for key product sections
-
-Acceptance Criteria:
-- informational pages can be populated through a repeatable content mechanism
-- placeholder vs verified content can later be distinguished cleanly
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -85,6 +71,14 @@ Depends on: TASK-004, TASK-005
 
 Summary:
 Added a dedicated `/[lang]/checklist/print` route with compact grouped checklist output, print-focused controls, and print media styles for night-before packing review.
+
+### TASK-007 — Add content-loading scaffold for product pages
+Status: Done
+Priority: P2
+Depends on: TASK-001, TASK-002
+
+Summary:
+Added a typed bilingual guide-content loader, placeholder-vs-verified review metadata, and routed guide stubs for the key public guide pages under `/[lang]/guides/[slug]`.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
