@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:07 UTC — TASK-073
+
+Summary:
+- Added a dedicated `npm run validate:cloudflare` smoke check for the intentional Cloudflare Workers integration.
+- Locked in the current Workers posture across package scripts, OpenNext/Wrangler config, deployment workflow markers, and README deployment framing.
+- Refilled the queue with a generated-artifact ignore validation follow-on so the repo kept at least three actionable `Ready` tasks after this cycle.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateCloudflareIntegration.ts
+
+Decisions:
+- Treated the checked-in Cloudflare files as intentional platform state and validated their structural contract instead of trying to infer or test remote account behavior.
+- Scoped the validator to deterministic repo markers such as scripts, worker entrypoint, asset binding, workflow secret names, and documented commands so it stays stable in local CI.
+- Left generated artifact hygiene as a separate follow-on task because this cycle is about integration structure coverage, not `.gitignore` or ESLint ignore posture.
+
+Validation:
+- Ran `npm run validate:cloudflare`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the Cloudflare validation output reported the expected preview/deploy scripts, OpenNext worker entrypoint, asset binding, and workflow secret names.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-074
+
+---
+
 ### 2026-04-14 23:01 UTC — TASK-071
 
 Summary:

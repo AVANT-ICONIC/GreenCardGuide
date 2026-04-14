@@ -676,7 +676,7 @@ Notes:
 - Keep the scope on stable registry identity, not visual or copy changes.
 
 ### TASK-073 — Add Cloudflare integration validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-070
 Objective:
@@ -696,6 +696,7 @@ Validation:
 - the new Cloudflare integration validation command
 Notes:
 - Keep the scope on checked-in integration structure, not remote Cloudflare account state.
+- Completed 2026-04-14. `npm run validate:cloudflare` now checks the intentional Workers integration structure across package scripts, OpenNext/Wrangler config, deployment workflow markers, and README framing.
 
 ### TASK-074 — Add admin subsection exhaustiveness validation coverage
 Status: Ready
@@ -718,6 +719,28 @@ Validation:
 - the new admin-subsection validation command
 Notes:
 - Keep the scope on route exhaustiveness and dead-path prevention, not new admin UX.
+
+### TASK-075 — Add generated-artifact ignore validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-070
+Objective:
+- Add a repeatable validation check that generated Cloudflare/OpenNext artifacts stay excluded from source linting and repo noise.
+Deliverables:
+- a lightweight validation script that exercises `.gitignore` and `eslint.config.mjs` markers for `.open-next`, `.wrangler`, and `cloudflare-env.d.ts`
+- assertions covering the current generated-artifact ignore posture used by the intentional Workers setup
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- generated-artifact ignore regressions can be caught without manually diffing repo config files
+- the validation stays aligned with the current Workers build posture and does not imply the generated output is committed source
+- the check remains about local repo hygiene, not remote deployment behavior
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new generated-artifact ignore validation command
+Notes:
+- Keep the scope on ignore and lint posture, not build output contents.
 
 ## Blocked
 
