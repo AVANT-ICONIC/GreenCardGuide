@@ -29,6 +29,41 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:44 UTC — TASK-039
+
+Summary:
+- Added a dedicated `npm run validate:reviews` smoke check for the deterministic admin review queue.
+- Covered review-queue priority counts, descending score ordering, required metadata fields, and the current under-sourced placeholder posture.
+- Updated the loop docs and README prompt so agents must not stop at a clean task or commit boundary while ready work still exists.
+
+Files changed:
+- README.md
+- docs/AGENT_LOOP.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateReviewQueue.ts
+
+Decisions:
+- Kept the validation as a standalone `tsx` script, matching the existing lightweight repo validation pattern.
+- Asserted the current queue posture explicitly, including the top two entries and current priority counts, so regressions in deterministic scoring are caught early.
+- Tightened the operator docs after my earlier stop decision so the loop now explicitly forbids stopping at a clean boundary when actionable work remains.
+
+Validation:
+- Ran `npm run validate:reviews`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the new validation output included ordered review surfaces and current priority counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-040
+
+---
+
 ### 2026-04-14 21:38 UTC — TASK-038
 
 Summary:

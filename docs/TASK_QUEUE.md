@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-039 — Add deterministic review-queue validation coverage
-Status: Ready
-Priority: P2
-Depends on: TASK-036
-Objective:
-- Add a repeatable validation check for review-queue ordering and metadata assembly.
-Deliverables:
-- a validation script that exercises the review queue summary and entry ordering
-- assertions covering priority sorting, required metadata fields, and current under-sourced counts
-- package wiring and docs updates if a new validation command is added
-Acceptance Criteria:
-- review-queue regressions can be caught without manually opening `/admin/reviews`
-- the validation proves entries remain sorted by deterministic priority score
-- the checks stay aligned with the current placeholder trust posture and do not require browser automation
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- the new review-queue validation command
-Notes:
-- Prefer the lightweight script pattern already used for other repo validation commands.
-
 ### TASK-040 — Add deterministic feedback inbox validation coverage
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Prefer extending the existing route validation posture rather than building browser automation.
 
+### TASK-042 — Surface feedback summary counts in admin reviews
+Status: Ready
+Priority: P2
+Depends on: TASK-037
+Objective:
+- Make the admin reviews inbox easier to scan by summarizing stored feedback counts by type and route.
+Deliverables:
+- a deterministic feedback-summary helper derived from stored submissions
+- `/admin/reviews` updates that show counts by report type and most-reported routes ahead of the inbox list
+- truthful copy that keeps the feature framed as local maintainer input, not moderation tooling
+Acceptance Criteria:
+- maintainers can see whether feedback skews toward confusion, missing content, or route bugs without reading every entry
+- the summary is derived from the stored inbox data instead of hardcoded labels
+- the page does not imply triage, assignment, or moderation workflows already exist
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct route check of `/admin/reviews`
+Notes:
+- Keep the summary lightweight and operational. Do not add filtering or workflow state in this cycle.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-039 — Add deterministic review-queue validation coverage
+Status: Done
+Priority: P2
+Depends on: TASK-036
+Objective:
+- Add a repeatable validation check for review-queue ordering and metadata assembly.
+Deliverables:
+- a validation script that exercises the review queue summary and entry ordering
+- assertions covering priority sorting, required metadata fields, and current under-sourced counts
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- review-queue regressions can be caught without manually opening `/admin/reviews`
+- the validation proves entries remain sorted by deterministic priority score
+- the checks stay aligned with the current placeholder trust posture and do not require browser automation
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new review-queue validation command
+Notes:
+- Completed 2026-04-14. `npm run validate:reviews` now checks review-queue ordering, required metadata, and current placeholder posture counts.
 
 ### TASK-038 — Expose source-to-surface coverage in admin sources
 Status: Done

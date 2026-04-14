@@ -61,6 +61,7 @@ Validation:
 ```bash
 npm run validate:seed
 npm run validate:checklist
+npm run validate:reviews
 npm run validate:sources
 npm run validate:routes
 npm run lint
@@ -90,6 +91,7 @@ Current state:
 - `/admin/sources` now includes a deterministic source-change review task watchlist that maps registered sources to affected content surfaces.
 - Public content surfaces and `/admin/reviews` now use deterministic per-surface source mappings instead of attaching the full placeholder source registry everywhere.
 - `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
+- `npm run validate:reviews` now exercises review-queue ordering and metadata assembly as a repeatable smoke check.
 - The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
 - `/admin/sources` now shows direct source-to-surface coverage counts and routes alongside the separate change-watchlist tasks.
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
@@ -185,6 +187,7 @@ After updating those files, return to `docs/AGENT_LOOP.md` and continue the loop
 If a task hits a stop condition or true blocker, document it, contain it, update the queue, and continue with the next highest-priority actionable task.
 Only treat the repository as blocked if no meaningful safe progress remains anywhere in the queue.
 Do not stop just because the queue is thin; refill it and continue in the same run.
+Do not stop just because one task or commit cycle ended at a clean boundary; continue looping until the repository is truly blocked or no meaningful safe progress remains.
 Do not skip documentation updates.
 Do not skip the per-cycle commit and push unless push is unsafe or impossible; in that case record the issue clearly in `docs/WORK_LOG.md`.
 Do not invent requirements beyond the repo docs.

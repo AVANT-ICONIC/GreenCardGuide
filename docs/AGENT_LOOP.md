@@ -70,6 +70,7 @@ Repeat the following loop continuously. If a task hits a blocker or stop conditi
 13. Return to this file and begin the next cycle.
 
 Do not stop just because the queue is thin. A thin queue means you must replenish it and keep going.
+Do not stop at a clean boundary, a successful commit, or the end of one coherent task if `Ready` work still exists. Finish the cycle, then immediately start the next one in the same run unless the repository is truly blocked.
 
 ## Queue refill rules
 
