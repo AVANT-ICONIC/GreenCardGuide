@@ -539,7 +539,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:rules-audit-markers` now checks the `/admin/rules` component markers, read-only audit posture, question-key framing, and rule-output inventory markers without duplicating the broader rules audit validation.
 
 ### TASK-066 — Add admin home component marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -559,6 +559,7 @@ Validation:
 - the new admin-home-marker validation command
 Notes:
 - Keep the assertions tied to component markers and current admin-section framing, not future workflow features.
+- Completed 2026-04-14. `npm run validate:admin-home-markers` now checks the `/admin` component markers, navigation-only posture, shared section-registry order, and section-link framing without duplicating the broader admin route validation.
 
 ### TASK-067 — Derive admin route params from the shared section registry
 Status: Ready
@@ -603,6 +604,28 @@ Validation:
 - the new admin-section-registry validation command
 Notes:
 - Keep the assertions tied to the shared registry and current admin section framing, not future workflow features.
+
+### TASK-070 — Normalize Next build lockfile churn
+Status: Ready
+Priority: P2
+Depends on: none
+Objective:
+- Stop `npm run build` from mutating repository files with generated SWC and Cloudflare scaffolding noise during routine validation.
+Deliverables:
+- the minimum package-manager or config change needed so the current Next.js build completes without rewriting tracked manifests or generating unrelated deployment scaffolding
+- cleanup of any tracked build artifacts or package metadata that are only appearing because of the current environment patch behavior
+- docs updates if the local validation workflow changes for maintainers
+Acceptance Criteria:
+- `npm run build` succeeds without modifying tracked files such as `package.json`, `package-lock.json`, or unrelated deployment config
+- the fix does not add a deployment platform commitment that is not already present in repo docs
+- routine autonomous validation can run without leaving noisy generated files behind in the worktree
+Validation:
+- `npm install`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on build-environment stability and repo cleanliness, not new hosting or deployment features.
 
 ## Blocked
 

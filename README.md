@@ -61,6 +61,7 @@ Validation:
 ```bash
 npm run validate:seed
 npm run validate:admin
+npm run validate:admin-home-markers
 npm run validate:checklist
 npm run validate:ciudad-juarez
 npm run validate:content-diff
@@ -106,6 +107,7 @@ Current state:
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
 - `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.
 - A deterministic `validate:routes` script now checks that the expected route files and route patterns exist.
+- `npm run validate:admin-home-markers` now checks the `/admin` component markers, navigation-only posture, and section-link framing without duplicating the broader admin route validation.
 - `/admin/sources` now exposes the current typed source registry through a truthful review-dashboard scaffold.
 - `/admin/rules` now exposes the current seeded checklist questions and requirement rules through a read-only audit scaffold.
 - `/admin/reviews` now summarizes current placeholder content surfaces in a queue-shaped review scaffold.

@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:48 UTC — TASK-066
+
+Summary:
+- Added a dedicated `npm run validate:admin-home-markers` smoke check for the `/admin` landing component markers.
+- Locked in the current admin landing posture: four shared section-registry entries in stable order, one navigation-only status card, and shared slug-derived links to the current admin subsections.
+- Refilled the queue with one build-hygiene follow-on task because the repo dropped below three actionable `Ready` tasks after this cycle.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateAdminHomeMarkers.ts
+
+Decisions:
+- Reused `adminSections` directly so the validator stays aligned with the shared admin section registry instead of duplicating the current titles, slugs, and statuses in another static fixture.
+- Narrowed the source checks to registry-driven iteration and slug-templated links after the first validator draft overfit dynamic JSX output as if it were rendered HTML.
+- Treated the build-generated lockfile and Cloudflare scaffold churn as environment noise, cleaned it back out of the worktree, and queued a separate build-stability task instead of smuggling that scope into this cycle.
+
+Validation:
+- Ran `npm run validate:admin-home-markers`, fixed two over-specific assertions, then reran it successfully.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build` sequentially successfully.
+- Confirmed the final validation output included the expected section count, admin slug order, and current section statuses.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-067
+
+---
+
 ### 2026-04-14 22:44 UTC — TASK-065
 
 Summary:
