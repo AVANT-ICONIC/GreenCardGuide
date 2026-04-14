@@ -6,6 +6,7 @@ import { AdminSourcesPage } from '@/components/admin-sources-page';
 import { loadContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
+import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
 import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
@@ -33,6 +34,7 @@ export default async function AdminSubsectionPage({
       <AdminContentPage
         summary={loadContentInventory()}
         diffSummary={loadContentDiffSummary()}
+        publishSummary={loadPublishControlsSummary()}
       />
     );
   }

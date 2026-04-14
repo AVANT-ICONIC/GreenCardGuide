@@ -1,13 +1,16 @@
 import Link from 'next/link';
 import type { ContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import type { ContentInventorySummary } from '@/lib/admin/loadContentInventory';
+import type { PublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
 
 export function AdminContentPage({
   summary,
   diffSummary,
+  publishSummary,
 }: {
   summary: ContentInventorySummary;
   diffSummary: ContentDiffSummary;
+  publishSummary: PublishControlsSummary;
 }) {
   return (
     <main className="app-shell">
@@ -16,8 +19,8 @@ export function AdminContentPage({
         <h1>Content inventory and diff scaffold.</h1>
         <p className="hero__lede">
           This page summarizes the current structured content surfaces that exist
-          in the repository. It is a read-only inventory and diff view, not an
-          editor or publish workflow.
+          in the repository. It is a read-only inventory, diff, and publish-readiness
+          view, not an editor or live publish workflow.
         </p>
 
         <article className="hero__card content-meta">
@@ -90,6 +93,47 @@ export function AdminContentPage({
                 {entry.details.map((detail) => (
                   <li key={detail}>{detail}</li>
                 ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <article className="hero__card content-meta">
+          <p>
+            <strong>Publish-ready surfaces:</strong> {publishSummary.publishReadyCount}
+          </p>
+          <p>
+            <strong>Blocked surfaces:</strong> {publishSummary.blockedCount}
+          </p>
+          <p>
+            <strong>Current posture:</strong> Read-only planning scaffold
+          </p>
+        </article>
+
+        <div className="guide-sections">
+          {publishSummary.entries.map((entry) => (
+            <article key={`${entry.route}-publish`} className="hero__card">
+              <h2>{entry.surface} publish view</h2>
+              <p>
+                This scaffold shows the current publish gate status for the route
+                without exposing any live publish action.
+              </p>
+              <p className="results-section__confidence">
+                {entry.publish_ready ? 'ready' : 'blocked'}
+              </p>
+              <ul className="results-list">
+                <li>
+                  <strong>Route:</strong> {entry.route}
+                </li>
+                <li>
+                  <strong>Current state:</strong> {entry.current_state}
+                </li>
+                <li>
+                  <strong>Required gates:</strong> {publishSummary.requiredGates.join(', ')}
+                </li>
+                <li>
+                  <strong>Current blockers:</strong> {entry.blockers.join('; ')}
+                </li>
               </ul>
             </article>
           ))}

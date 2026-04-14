@@ -84,6 +84,7 @@ Current state:
 - `/admin/reviews` now summarizes current placeholder content surfaces in a queue-shaped review scaffold.
 - `/admin/content` now summarizes the current guide, FAQ, glossary, documents, and hub surfaces through a read-only content inventory and structural diff scaffold.
 - FAQ and glossary content now use stable bilingual identifiers so admin diffing can compare locale structures cleanly.
+- `/admin/content` now also exposes a truthful publish-readiness scaffold based on review status, source references, and last-reviewed tracking gates.
 
 ## Non-negotiables
 

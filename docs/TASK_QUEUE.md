@@ -16,13 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-023 — Add publish controls scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-021
-
-Summary:
-Add a truthful admin scaffold for publish controls that explains planned publish states, review gates, and current non-functional boundaries without implying live publishing exists.
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -197,6 +191,14 @@ Depends on: TASK-022
 
 Summary:
 Normalized FAQ and glossary locale keys so bilingual content diffs and future editorial workflows can compare stable identifiers instead of language-specific keys.
+
+### TASK-023 — Add publish controls scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-021
+
+Summary:
+Extended `/admin/content` with a truthful publish-readiness scaffold that explains the current review gates and shows why no existing surface is publish-ready yet.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

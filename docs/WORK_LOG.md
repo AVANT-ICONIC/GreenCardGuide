@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:43 UTC — TASK-023
+
+Summary:
+- Extended `/admin/content` with a read-only publish-controls scaffold.
+- Defined the current publish gate contract using existing trust metadata: verified review state, source references, and last-reviewed tracking.
+- Kept every current surface truthfully blocked from publish readiness because the repository still lacks verified content and last-reviewed dates.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/admin/README.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-content-page.tsx
+- src/lib/admin/loadPublishControlsScaffold.ts
+
+Decisions:
+- Implemented publish controls as a readiness summary rather than fake buttons, because no live publish workflow or persistence layer exists in the repository.
+- Reused the content inventory as the surface list so publish gating stays aligned with the same route inventory shown elsewhere in admin.
+- Treated missing last-reviewed dates as a blocking gate across all current surfaces, matching the trust-and-safety requirement that every content page carry review recency metadata.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/content`.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 20:42 UTC — TASK-024
 
 Summary:
