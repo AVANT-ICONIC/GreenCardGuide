@@ -16,13 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-034 — Add checklist behavior smoke validation script
-Status: Ready
-Priority: P2
-Depends on: TASK-032, TASK-033
-
-Summary:
-Add a deterministic validation script that exercises checklist parsing, resume logic, completion guards, and seeded result assembly so future route and rules changes can be checked without manual one-off shell commands.
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -221,6 +215,14 @@ Depends on: TASK-012, TASK-018, TASK-020
 
 Summary:
 Extended `/admin/sources` with a deterministic source-change review task watchlist that maps each registered source to affected routes without claiming live monitoring exists.
+
+### TASK-034 — Add checklist behavior smoke validation script
+Status: Done
+Priority: P2
+Depends on: TASK-032, TASK-033
+
+Summary:
+Added `npm run validate:checklist`, a deterministic smoke validation script that exercises checklist parsing, resume logic, completion guards, and seeded result assembly without relying on ad hoc shell commands.
 
 ### TASK-027 — Add base sponsor financial packet rule
 Status: Done

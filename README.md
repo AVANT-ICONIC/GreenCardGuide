@@ -60,6 +60,7 @@ Validation:
 
 ```bash
 npm run validate:seed
+npm run validate:checklist
 npm run validate:sources
 npm run validate:routes
 npm run lint
@@ -94,6 +95,7 @@ Current state:
 - The checklist results and print views now add role-aware framing for principal applicants, derivative applicants, and sponsor/helpers.
 - The checklist flow now resumes at the first unanswered step, and incomplete results or print requests are redirected back into the guided question flow.
 - Checklist answer parsing and question-route canonicalization now drop unsupported URL values so only seeded answers survive into deterministic flow state and checklist output.
+- `npm run validate:checklist` now exercises checklist parsing, resume logic, completion guards, and seeded result assembly as a repeatable smoke check.
 
 ## Non-negotiables
 

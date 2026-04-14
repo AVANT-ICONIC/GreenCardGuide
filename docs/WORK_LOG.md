@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:15 UTC — TASK-034
+
+Summary:
+- Added a dedicated `validate:checklist` script for deterministic checklist smoke validation.
+- Covered checklist answer parsing, canonical URL-state expectations, resume/completion helpers, and seeded result assembly in one repeatable script.
+- Updated the README validation commands and current-state summary so the new check is part of the documented workflow.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/checklist/validateChecklistBehavior.ts
+
+Decisions:
+- Kept the new validation as a standalone `tsx` script, matching the repository’s existing validation-script pattern instead of introducing a heavier test runner.
+- Focused the script on deterministic behaviors already encoded in shared checklist helpers so future route and rules changes can be checked without browser automation.
+- Used one seeded complete-case scenario to validate assembled outputs across required, conditional, risk, and verify-with-official sections.
+
+Validation:
+- Ran `npm run validate:checklist`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 21:11 UTC — TASK-033
 
 Summary:
