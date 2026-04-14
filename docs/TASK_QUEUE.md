@@ -493,7 +493,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:review-queue-markers` now checks the `/admin/reviews` component markers, deterministic queue framing, and local-feedback-only posture without duplicating the broader review-queue loader validation.
 
 ### TASK-064 — Add content inventory component marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041, TASK-046, TASK-047, TASK-048
 Objective:
@@ -513,6 +513,7 @@ Validation:
 - the new content-inventory-marker validation command
 Notes:
 - Keep the assertions tied to component markers and current inventory/diff/publish framing, not future editing workflows.
+- Completed 2026-04-14. `npm run validate:content-inventory-markers` now checks the `/admin/content` component markers, read-only planning posture, structural-diff framing, and publish gate markers without duplicating the broader inventory, diff, or publish loader validations.
 
 ### TASK-065 — Add rules audit component marker validation coverage
 Status: Ready
@@ -557,6 +558,50 @@ Validation:
 - the new admin-home-marker validation command
 Notes:
 - Keep the assertions tied to component markers and current admin-section framing, not future workflow features.
+
+### TASK-067 — Derive admin route params from the shared section registry
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Remove hardcoded admin subsection slugs so route generation and admin navigation use one deterministic section registry.
+Deliverables:
+- a shared helper or exported registry shape that `src/app/admin/[section]/page.tsx` can use for `generateStaticParams()`
+- route code updates so the admin subsection static params stay aligned with `adminSections` instead of duplicating the slug list
+- docs updates if the implementation changes developer-facing maintenance expectations
+Acceptance Criteria:
+- admin subsection static params are derived from the shared section registry rather than a separate hardcoded list
+- the change does not alter the current four admin routes or imply new maintenance surfaces exist
+- the route remains truthful about the current read-only admin posture
+Validation:
+- `npm run validate:admin`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on registry alignment and duplication removal, not new admin surface area.
+
+### TASK-068 — Add admin section registry validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-067
+Objective:
+- Add a repeatable validation check that the shared admin section registry, route params, and section-visibility framing stay aligned.
+Deliverables:
+- a lightweight validation script that exercises the current admin section slugs, titles, statuses, and route param derivation
+- assertions covering the current four admin sections, navigation-only posture, and shared registry-driven linkage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin section registry regressions can be caught without manually opening the admin surfaces
+- the validation stays aligned with the existing shared section registry instead of duplicating section definitions in multiple places
+- the check stays truthful about the current navigation-only and read-only admin posture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin-section-registry validation command
+Notes:
+- Keep the assertions tied to the shared registry and current admin section framing, not future workflow features.
 
 ## Blocked
 

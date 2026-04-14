@@ -12,6 +12,7 @@
     "validate:admin": "tsx src/lib/admin/validateAdminOperations.ts",
     "validate:checklist": "tsx src/lib/checklist/validateChecklistBehavior.ts",
     "validate:content-diff": "tsx src/lib/admin/validateContentDiff.ts",
+    "validate:content-inventory-markers": "tsx src/lib/admin/validateContentInventoryMarkers.ts",
     "validate:content-inventory": "tsx src/lib/admin/validateContentInventory.ts",
     "validate:ciudad-juarez": "tsx src/lib/content/validateCiudadJuarezHub.ts",
     "validate:content-review-metadata": "tsx src/lib/content/validateContentReviewMetadata.ts",

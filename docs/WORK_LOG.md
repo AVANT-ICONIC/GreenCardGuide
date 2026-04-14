@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:42 UTC — TASK-064
+
+Summary:
+- Added a dedicated `npm run validate:content-inventory-markers` smoke check for the `/admin/content` component markers.
+- Locked in the current admin content posture: eight tracked surfaces, eight aligned structural diff entries, and eight blocked publish-readiness entries in the read-only planning scaffold.
+- Refilled the queue with two adjacent admin follow-on tasks so the repo kept at least three actionable `Ready` tasks after completing this cycle.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateContentInventoryMarkers.ts
+
+Decisions:
+- Reused `loadContentInventory()`, `loadContentDiffSummary()`, and `loadPublishControlsSummary()` directly so the validator stays aligned with the live admin content scaffold instead of freezing summary counts into duplicate fixtures.
+- Kept the assertions focused on component markers, structural-diff framing, and publish gate posture because broader inventory, diff, and publish loader behavior already has separate validation coverage.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:content-inventory-markers`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the final validation output included the expected tracked-surface, aligned-diff, and blocked-publish counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-065
+
+---
+
 ### 2026-04-14 22:35 UTC — TASK-063
 
 Summary:

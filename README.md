@@ -64,6 +64,7 @@ npm run validate:admin
 npm run validate:checklist
 npm run validate:ciudad-juarez
 npm run validate:content-diff
+npm run validate:content-inventory-markers
 npm run validate:content-inventory
 npm run validate:content-review-metadata
 npm run validate:content-surfaces
@@ -118,6 +119,7 @@ Current state:
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
 - `npm run validate:ciudad-juarez` now checks the Ciudad Juarez hub trust metadata, review date, and mapped source posture in both locales.
 - `npm run validate:content-diff` now checks content diff counts, per-surface alignment posture, and key `/admin/content` diff markers.
+- `npm run validate:content-inventory-markers` now checks the `/admin/content` component markers, read-only planning posture, and publish gate framing without duplicating the broader inventory, diff, or publish loader validations.
 - `npm run validate:content-inventory` now checks tracked-surface counts, bilingual inventory metadata, and key `/admin/content` inventory markers.
 - `npm run validate:content-review-metadata` now checks the shared content review-date registry across all current public surfaces in both locales.
 - `npm run validate:content-surfaces` now checks the shared content surface registry and its alignment with guide slugs plus source-mapping order.
