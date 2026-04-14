@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:31 UTC — TASK-061
+
+Summary:
+- Added a dedicated `npm run validate:source-dashboard-markers` smoke check for the `/admin/sources` component markers and truthful governance-reference framing.
+- Locked in the current source dashboard posture: three repository governance references, three watching tasks, and fifteen mapped source-to-surface links.
+- Refilled the queue with adjacent marker-validation follow-on tasks before and after implementation so the repo stayed above its minimum actionable `Ready` threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateSourceDashboardMarkers.ts
+
+Decisions:
+- Reused `loadSourceReferences()`, `loadSourceCoverageSummary()`, and `loadSourceChangeReviewTasks()` directly so the validator stays aligned with the current dashboard posture instead of duplicating seed parsing.
+- Kept the assertions tied to component markers and explicit governance-only limitations because broader loader coverage already exists in `validate:source-dashboard`.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:source-dashboard-markers`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected source keys, mapped-source count, mapped surface links, and watchlist task count.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-062
+
+---
+
 ### 2026-04-14 22:27 UTC — TASK-060
 
 Summary:

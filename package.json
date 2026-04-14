@@ -31,6 +31,7 @@
     "validate:rules": "tsx src/lib/admin/validateRulesAudit.ts",
     "validate:reviews": "tsx src/lib/admin/validateReviewQueue.ts",
     "validate:source-dashboard": "tsx src/lib/admin/validateSourceDashboard.ts",
+    "validate:source-dashboard-markers": "tsx src/lib/admin/validateSourceDashboardMarkers.ts",
     "validate:sources": "tsx src/lib/content/validateSourceRegistry.ts",
     "validate:routes": "tsx src/app/validateRoutes.ts"
   },

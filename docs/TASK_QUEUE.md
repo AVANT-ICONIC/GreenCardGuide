@@ -427,7 +427,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:language-entry` now checks language-entry markers and the rendered bilingual locale labels through the shared locale helper.
 
 ### TASK-061 — Add source dashboard component marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-043
 Objective:
@@ -446,7 +446,7 @@ Validation:
 - `npm run build`
 - the new source-dashboard-marker validation command
 Notes:
-- Keep the assertions tied to component markers and current registry posture, not future monitoring features.
+- Completed 2026-04-14. `npm run validate:source-dashboard-markers` now checks the `/admin/sources` component markers, mapped-coverage framing, and governance-reference-only posture without duplicating the broader source dashboard loader validation.
 
 ### TASK-062 — Add locale layout marker validation coverage
 Status: Ready
@@ -469,6 +469,50 @@ Validation:
 - the new locale-layout validation command
 Notes:
 - Keep the assertions tightly scoped to the current bilingual layout surface.
+
+### TASK-063 — Add review queue component marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-036, TASK-042
+Objective:
+- Add a repeatable validation check for the admin reviews component markers that expose deterministic queue posture and local feedback summaries to maintainers.
+Deliverables:
+- a lightweight validation script that exercises the key `/admin/reviews` marker strings alongside the current review summary and feedback-summary posture
+- assertions covering the current deterministic queue framing, local-feedback-only inbox posture, and recommended-next-action markers
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- review queue component regressions can be caught without manually opening `/admin/reviews`
+- the validation remains aligned with the existing review queue scaffold instead of duplicating broader loader validations
+- the check stays truthful about the current local maintainer review posture and does not imply moderation or publishing tooling already exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new review-queue-marker validation command
+Notes:
+- Keep the assertions tied to component markers and current review/feedback framing, not future moderation features.
+
+### TASK-064 — Add content inventory component marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041, TASK-046, TASK-047, TASK-048
+Objective:
+- Add a repeatable validation check for the admin content component markers that expose content inventory, structural diff, and publish-readiness framing to maintainers.
+Deliverables:
+- a lightweight validation script that exercises the key `/admin/content` marker strings alongside the current inventory, diff, and publish summary posture
+- assertions covering the current read-only planning scaffold, structural-diff-only framing, and publish blocker markers
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin content component regressions can be caught without manually opening `/admin/content`
+- the validation remains aligned with the existing content inventory scaffold instead of duplicating broader loader validations
+- the check stays truthful about the current read-only planning posture and does not imply live editing or publishing tooling exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new content-inventory-marker validation command
+Notes:
+- Keep the assertions tied to component markers and current inventory/diff/publish framing, not future editing workflows.
 
 ## Blocked
 
