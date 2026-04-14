@@ -1,12 +1,20 @@
 import { loadDocuments } from '@/lib/seed/loadSeedData';
 import { loadContentReviewMetadata } from './loadContentReviewMetadata';
+import { loadDocumentCoverageSummary } from './loadDocumentCoverageSummary';
 import { loadSourceReferenceKeysForSurface } from './sourceMappings';
 import type { DocumentDefinition, Language } from '@/lib/types/domain';
+
+export interface DocumentsOverviewDocument {
+  document: DocumentDefinition;
+  reference_count: number;
+  output_types: string[];
+  is_covered: boolean;
+}
 
 export interface DocumentsOverviewSection {
   category: string;
   title: string;
-  documents: DocumentDefinition[];
+  documents: DocumentsOverviewDocument[];
 }
 
 export interface DocumentsOverviewContent {
@@ -52,6 +60,9 @@ function groupDocumentsByCategory(
   language: Language,
   documents: DocumentDefinition[],
 ): DocumentsOverviewSection[] {
+  const coverageBySlug = new Map(
+    loadDocumentCoverageSummary().map((item) => [item.document_slug, item]),
+  );
   const grouped = new Map<string, DocumentDefinition[]>();
 
   for (const document of documents) {
@@ -65,7 +76,16 @@ function groupDocumentsByCategory(
     title:
       categoryTitles[language][category as keyof (typeof categoryTitles)[typeof language]] ??
       category,
-    documents: categoryDocuments,
+    documents: categoryDocuments.map((document) => {
+      const coverage = coverageBySlug.get(document.slug);
+
+      return {
+        document,
+        reference_count: coverage?.reference_count ?? 0,
+        output_types: coverage?.output_types ?? [],
+        is_covered: coverage?.is_covered ?? false,
+      };
+    }),
   }));
 }
 

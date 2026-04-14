@@ -129,6 +129,7 @@ Current state:
 - A typed source-registry stub now supports consistent placeholder source attachment across content surfaces.
 - A bilingual documents overview route now exposes the seeded document set through the same trust-aware content layer.
 - Bilingual document detail routes now let each seeded document explain its current deterministic checklist coverage without inventing new guidance.
+- The documents overview now distinguishes seeded documents already covered by active checklist rules from those still uncovered.
 - A bilingual feedback route now defines the public feedback surface, while making its non-persistent placeholder state explicit.
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
 - `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.

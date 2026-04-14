@@ -71,10 +71,10 @@ function main() {
   );
 
   const englishSlugs = english.sections.flatMap((section) =>
-    section.documents.map((document) => document.slug),
+    section.documents.map((entry) => entry.document.slug),
   );
   const spanishSlugs = spanish.sections.flatMap((section) =>
-    section.documents.map((document) => document.slug),
+    section.documents.map((entry) => entry.document.slug),
   );
   assert(
     englishSlugs.join(',') === spanishSlugs.join(','),
@@ -89,6 +89,8 @@ function main() {
   const englishPassport = loadDocumentDetailPage('en', 'passport');
   const spanishPassport = loadDocumentDetailPage('es', 'passport');
   const englishAppointmentLetter = loadDocumentDetailPage('en', 'appointment-letter');
+  const englishPassportOverview = english.sections[0]?.documents[0];
+  const englishAppointmentOverview = english.sections[1]?.documents[0];
 
   assert(
     englishPassport.document.slug === 'passport' && spanishPassport.document.slug === 'passport',
@@ -125,6 +127,20 @@ function main() {
     englishAppointmentLetter.references.length === 0,
     `Expected appointment-letter detail coverage to remain empty, received ${englishAppointmentLetter.references.length}`,
   );
+  assert(
+    englishPassportOverview?.document.slug === 'passport' &&
+      englishPassportOverview.reference_count === 1 &&
+      englishPassportOverview.output_types.join(',') === 'required_document' &&
+      englishPassportOverview.is_covered === true,
+    `Unexpected passport overview coverage: ${JSON.stringify(englishPassportOverview)}`,
+  );
+  assert(
+    englishAppointmentOverview?.document.slug === 'appointment-letter' &&
+      englishAppointmentOverview.reference_count === 0 &&
+      englishAppointmentOverview.output_types.length === 0 &&
+      englishAppointmentOverview.is_covered === false,
+    `Unexpected appointment-letter overview coverage: ${JSON.stringify(englishAppointmentOverview)}`,
+  );
 
   console.log(
     JSON.stringify(
@@ -145,6 +161,12 @@ function main() {
           passportRuleKeys: englishPassport.references.map((reference) => reference.rule_key),
           uncoveredDocument: englishAppointmentLetter.document.slug,
           uncoveredReferenceCount: englishAppointmentLetter.references.length,
+        },
+        overviewCoverage: {
+          coveredDocument: englishPassportOverview?.document.slug ?? null,
+          coveredRuleCount: englishPassportOverview?.reference_count ?? null,
+          uncoveredDocument: englishAppointmentOverview?.document.slug ?? null,
+          uncoveredRuleCount: englishAppointmentOverview?.reference_count ?? null,
         },
       },
       null,

@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 00:34 UTC — TASK-083
+
+Summary:
+- Added a shared per-document coverage summary derived from the active deterministic rule set.
+- Updated the bilingual documents overview so each seeded document now shows whether it is covered by active checklist rules or still uncovered.
+- Extended `npm run validate:documents` so the overview validation now locks in both covered and uncovered document summary states.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/documents-overview-page.tsx
+- src/lib/content/loadDocumentCoverageSummary.ts
+- src/lib/content/loadDocumentsOverview.ts
+- src/lib/content/validateDocumentsOverview.ts
+
+Decisions:
+- Derived overview coverage from the active rule set at load time instead of duplicating counts in static content data, so the summary will track future rule changes automatically.
+- Kept uncovered documents visible and explicitly labeled because the shared document library should surface current deterministic gaps rather than hide them.
+- Limited the overview summary to rule counts and output-type labels, leaving full condition detail in the document-detail route where there is room to explain it cleanly.
+
+Validation:
+- Ran `npm run validate:documents`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the build still prerenders the bilingual documents overview and document-detail routes with the new coverage metadata in place.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-084
+
+---
+
 ### 2026-04-15 00:20 UTC — TASK-082
 
 Summary:
