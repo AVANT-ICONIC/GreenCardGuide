@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:15 UTC — TASK-074
+
+Summary:
+- Added a dedicated `npm run validate:admin-subsections` smoke check for the `/admin/[section]` route exhaustiveness contract.
+- Locked in the current admin subsection posture: four explicit section branches, one shared slug/static-param registry, and a final `notFound()` fallback instead of a generic subsection page.
+- Left the queue with two remaining `Ready` tasks, so the next cycle must refill it before implementation per the repo loop contract.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateAdminSubsectionExhaustiveness.ts
+
+Decisions:
+- Validated the route by source instead of trying to instantiate page components, because this task is about deterministic branch coverage and dead-path prevention rather than runtime UI output.
+- Reused the shared admin section slug registry so the validator fails if the route branches drift away from the documented admin surfaces or static param set.
+- Asserted that the removed `src/components/admin-section-page.tsx` file stays absent and that `AdminSectionPage` is not referenced in the route, so the old generic fallback cannot quietly return.
+
+Validation:
+- Ran `npm run validate:admin-subsections`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output reported the expected four supported slugs, matching static params, two `notFound()` calls, and no generic fallback.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-075
+
+---
+
 ### 2026-04-14 23:07 UTC — TASK-073
 
 Summary:

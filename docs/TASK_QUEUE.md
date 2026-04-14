@@ -699,7 +699,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:cloudflare` now checks the intentional Workers integration structure across package scripts, OpenNext/Wrangler config, deployment workflow markers, and README framing.
 
 ### TASK-074 — Add admin subsection exhaustiveness validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-071
 Objective:
@@ -719,6 +719,7 @@ Validation:
 - the new admin-subsection validation command
 Notes:
 - Keep the scope on route exhaustiveness and dead-path prevention, not new admin UX.
+- Completed 2026-04-14. `npm run validate:admin-subsections` now checks the explicit `content`, `sources`, `rules`, and `reviews` branches, the final `notFound()` fallback, and the absence of the removed generic subsection component.
 
 ### TASK-075 — Add generated-artifact ignore validation coverage
 Status: Ready

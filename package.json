@@ -15,6 +15,7 @@
     "validate:admin": "tsx src/lib/admin/validateAdminOperations.ts",
     "validate:checklist": "tsx src/lib/checklist/validateChecklistBehavior.ts",
     "validate:admin-section-registry": "tsx src/lib/admin/validateAdminSectionRegistry.ts",
+    "validate:admin-subsections": "tsx src/lib/admin/validateAdminSubsectionExhaustiveness.ts",
     "validate:cloudflare": "tsx src/lib/admin/validateCloudflareIntegration.ts",
     "validate:content-diff": "tsx src/lib/admin/validateContentDiff.ts",
     "validate:admin-home-markers": "tsx src/lib/admin/validateAdminHomeMarkers.ts",
