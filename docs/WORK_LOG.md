@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:12 UTC — TASK-052
+
+Summary:
+- Added a dedicated `npm run validate:faq-glossary` smoke check for the bilingual FAQ and glossary loaders.
+- Locked in the current FAQ and glossary baseline across both locales: stable keys, shared review date, placeholder trust posture, and their distinct mapped source references.
+- Refilled the queue with `TASK-054` for review-metadata validation before implementation because the ready queue had dropped below the minimum threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateFaqGlossaryPages.ts
+
+Decisions:
+- Reused `loadFaqPage()` and `loadGlossaryPage()` directly so the validator exercises the live loader and source-mapping path instead of duplicating page assembly logic.
+- Asserted the FAQ and glossary source postures separately because they intentionally map to different trust references today.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:faq-glossary`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected FAQ keys, glossary term keys, review date, and source mappings.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-053
+
+---
+
 ### 2026-04-14 22:10 UTC — TASK-051
 
 Summary:

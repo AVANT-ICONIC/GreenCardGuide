@@ -229,7 +229,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:guides` now checks guide slugs, bilingual section counts, shared review metadata, and mapped source posture through the shared guide loader.
 
 ### TASK-052 — Add FAQ and glossary loader validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -248,7 +248,7 @@ Validation:
 - `npm run build`
 - the new FAQ/glossary validation command
 Notes:
-- Keep the assertions anchored to stable keys, review metadata, and source mappings rather than future editorial wording.
+- Completed 2026-04-14. `npm run validate:faq-glossary` now checks FAQ item keys, glossary term keys, review metadata, and mapped source posture through the shared loaders.
 
 ### TASK-053 — Add Ciudad Juarez hub loader validation coverage
 Status: Ready
@@ -271,6 +271,28 @@ Validation:
 - the new hub validation command
 Notes:
 - Keep the assertions tied to trust metadata and source mapping, not future editorial section content that does not exist yet.
+
+### TASK-054 — Add content review metadata validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the shared content review-metadata layer that powers last-reviewed dates across current public surfaces.
+Deliverables:
+- a lightweight validation script that exercises the review date mapping for every current content surface key in both locales
+- assertions covering the current deterministic date registry and surface-key completeness
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- review-metadata regressions can be caught without manually opening multiple public routes or admin surfaces
+- the validation remains aligned with the shared review-metadata loader instead of duplicating date lookups in page-level code
+- the check stays focused on deterministic metadata infrastructure, not future editorial review workflows
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new review-metadata validation command
+Notes:
+- Keep the assertions tied to current surface keys and recorded dates rather than inventing new review policy.
 
 ## Blocked
 

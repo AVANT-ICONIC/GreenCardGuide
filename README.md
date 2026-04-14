@@ -67,6 +67,7 @@ npm run validate:content-inventory
 npm run validate:documents
 npm run validate:feedback
 npm run validate:feedback-summary
+npm run validate:faq-glossary
 npm run validate:guides
 npm run validate:publish
 npm run validate:rule-integrity
@@ -110,6 +111,7 @@ Current state:
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
+- `npm run validate:faq-glossary` now checks bilingual FAQ and glossary keys, review metadata, and mapped source posture through the shared loaders.
 - `npm run validate:guides` now checks guide slugs, bilingual guide structure, shared review metadata, and mapped source posture across the current guide routes.
 - `npm run validate:publish` now checks publish-readiness counts, required gates, blocker assembly, and key `/admin/content` publish markers.
 - `npm run validate:rule-integrity` now checks that seeded rule document references resolve and that the assembled checklist output still lands in the expected deterministic sections.

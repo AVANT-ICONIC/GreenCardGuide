@@ -16,6 +16,7 @@
     "validate:documents": "tsx src/lib/content/validateDocumentsOverview.ts",
     "validate:feedback": "tsx src/lib/feedback/validateFeedbackInbox.ts",
     "validate:feedback-summary": "tsx src/lib/admin/validateFeedbackSummary.ts",
+    "validate:faq-glossary": "tsx src/lib/content/validateFaqGlossaryPages.ts",
     "validate:guides": "tsx src/lib/content/validateGuidePages.ts",
     "validate:publish": "tsx src/lib/admin/validatePublishReadiness.ts",
     "validate:rule-integrity": "tsx src/lib/rules/validateRuleDocumentIntegrity.ts",
