@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:59 UTC — TASK-070
+
+Summary:
+- Stabilized the intentional Cloudflare Workers setup so routine validation stops tripping over generated OpenNext output and missing SWC lockfile entries.
+- Added explicit root-level `@next/swc-*` optional dependencies so `next build` no longer patches the lockfile at runtime.
+- Refilled the queue with a Cloudflare integration validation follow-on so the repo kept at least three actionable `Ready` tasks after this cycle.
+
+Files changed:
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- eslint.config.mjs
+- package-lock.json
+- package.json
+
+Decisions:
+- Treated the Cloudflare Workers files as intentional repo state after the user clarified that posture mid-run, and shifted the task from “strip the churn” to “make the intentional setup deterministic.”
+- Ignored `.open-next/**`, `.wrangler/**`, and `cloudflare-env.d.ts` in ESLint so generated Workers build output no longer pollutes source linting.
+- Mirrored Next 15.5.15’s SWC optional dependency set at the repo root because the lockfile only kept the local Linux binary by default, which caused `next build` to patch missing platform entries on every run.
+
+Validation:
+- Ran `npm install`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Re-ran `npm install` and `npm run build` while stabilizing the SWC dependency fix, then confirmed the final build completed without re-dirtying tracked files.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-071
+
+---
+
 ### 2026-04-14 22:50 UTC — TASK-068
 
 Summary:

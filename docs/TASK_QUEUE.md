@@ -608,7 +608,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:admin-section-registry` now checks the shared admin section registry, exported static params, slug guard, and the current route/home consumers without duplicating the broader admin route validation.
 
 ### TASK-070 — Stabilize intentional Cloudflare build integration
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: none
 Objective:
@@ -628,6 +628,7 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on stabilizing the intentional Cloudflare setup, not inventing new hosting platforms.
+- Completed 2026-04-14. The intentional Cloudflare Workers setup now keeps `@next/swc-*` optional dependencies explicit at the repo level, and lint ignores OpenNext/Wrangler build artifacts so routine validation no longer rewrites tracked files.
 
 ### TASK-071 — Remove unreachable generic admin subsection fallback
 Status: Ready
@@ -672,6 +673,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on stable registry identity, not visual or copy changes.
+
+### TASK-073 — Add Cloudflare integration validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-070
+Objective:
+- Add a repeatable validation check that the intentional Cloudflare Workers integration stays structurally aligned with the repo’s package scripts, config files, and deploy workflow.
+Deliverables:
+- a lightweight validation script that exercises the required Cloudflare package scripts, `open-next.config.ts`, `wrangler.jsonc`, and deployment workflow markers
+- assertions covering the current worker entrypoint, asset binding, and required GitHub Actions secret names
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- Cloudflare integration regressions can be caught without manually re-reading the config files
+- the validation stays aligned with the intentional Workers posture already documented in the repo
+- the check remains about deterministic integration structure, not live deployment or secret validation
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new Cloudflare integration validation command
+Notes:
+- Keep the scope on checked-in integration structure, not remote Cloudflare account state.
 
 ## Blocked
 
