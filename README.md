@@ -90,6 +90,7 @@ Current state:
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
 - The checklist now surfaces a deterministic risk flag when the applicant does not have a current passport ready.
 - The checklist now routes arrest or court-record scenarios into a conservative `verify with official instructions` output instead of leaving that answer unused.
+- The checklist flow, results, and print views now show localized human-readable answer labels instead of raw internal slugs.
 
 ## Non-negotiables
 

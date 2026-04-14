@@ -30,6 +30,7 @@ export default async function ChecklistResultsPage({
       editHref={editHref}
       language={lang}
       printHref={printHref}
+      questions={questions}
       result={result}
     />
   );

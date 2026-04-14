@@ -16,7 +16,13 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-031 — Add role-aware checklist framing
+Status: Ready
+Priority: P1
+Depends on: TASK-030
+
+Summary:
+Use `applicant_role` to add role-aware framing on the checklist results and print views so sponsor/helpers and derivative applicants see context that matches the selected mode.
 
 ## Blocked
 
@@ -239,6 +245,14 @@ Depends on: TASK-003, TASK-004, TASK-005
 
 Summary:
 Added a conservative `verify_with_official` checklist rule for cases with arrests or court records so the existing `needs_court_records` input produces a trust-safe output.
+
+### TASK-030 — Localize checklist answer labels
+Status: Done
+Priority: P1
+Depends on: TASK-004
+
+Summary:
+Replaced raw checklist keys and option values in the flow and answer summaries with localized human-readable labels so the guided experience no longer exposes internal slugs.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

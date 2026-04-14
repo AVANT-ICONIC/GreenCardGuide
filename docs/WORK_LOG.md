@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:03 UTC — TASK-030
+
+Summary:
+- Added a localized checklist label helper for question prompts and option/value labels.
+- Updated the checklist flow and the results/print answer summaries to use human-readable localized labels instead of raw internal keys and slugs.
+- Kept answer serialization unchanged so the route contract and deterministic parsing behavior remain stable.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/checklist/print/page.tsx
+- src/app/[lang]/checklist/results/page.tsx
+- src/components/checklist-flow.tsx
+- src/components/checklist-results.tsx
+- src/components/print-checklist.tsx
+- src/lib/checklist/labels.ts
+
+Decisions:
+- Implemented the label mapping in a client-safe helper so the same localized labels can be reused by the interactive flow and the server-rendered summary views.
+- Passed the seeded questions into the results and print pages so summaries respect the original question order and labels instead of iterating raw object keys.
+- Limited the mapping to the currently seeded answer values and fell back safely to raw values for any future options that are not mapped yet.
+
+Validation:
+- Ran a direct label smoke check and confirmed the helper returns localized labels for `applicant_role` and `post`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-031
+
+---
+
 ### 2026-04-14 20:58 UTC — TASK-029
 
 Summary:

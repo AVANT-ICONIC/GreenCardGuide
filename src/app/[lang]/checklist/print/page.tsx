@@ -23,5 +23,12 @@ export default async function ChecklistPrintPage({
   const result = assembleChecklistResults(answers);
   const resultsHref = `/${lang}/checklist/results?${serializeChecklistAnswers(answers).toString()}`;
 
-  return <PrintChecklist language={lang} result={result} resultsHref={resultsHref} />;
+  return (
+    <PrintChecklist
+      language={lang}
+      questions={questions}
+      result={result}
+      resultsHref={resultsHref}
+    />
+  );
 }

@@ -11,6 +11,10 @@ import {
   parseChecklistAnswers,
   serializeChecklistAnswers,
 } from '@/lib/checklist/answers';
+import {
+  getChecklistAnswerLabel,
+  getChecklistQuestionLabel,
+} from '@/lib/checklist/labels';
 import type { ChecklistQuestion, Language } from '@/lib/types/domain';
 
 const flowCopy = {
@@ -51,11 +55,20 @@ function getOptionLabel(
   question: ChecklistQuestion,
   option: string,
 ): string {
-  if (question.input_type === 'boolean') {
-    return option === 'true' ? flowCopy[language].yes : flowCopy[language].no;
-  }
+  const typedValue =
+    question.input_type === 'boolean' ? option === 'true' : option;
 
-  return option;
+  const localizedValue = getChecklistAnswerLabel(
+    question,
+    typedValue,
+    language,
+  );
+
+  return localizedValue || (question.input_type === 'boolean'
+    ? option === 'true'
+      ? flowCopy[language].yes
+      : flowCopy[language].no
+    : option);
 }
 
 export function ChecklistFlow({
@@ -152,9 +165,7 @@ export function ChecklistFlow({
 
       <article className="question-card">
         <h2>
-          {language === 'en'
-            ? currentQuestion.label_en
-            : currentQuestion.label_es}
+          {getChecklistQuestionLabel(currentQuestion, language)}
         </h2>
 
         <div className="question-card__options">

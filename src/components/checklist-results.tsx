@@ -1,5 +1,14 @@
 import Link from 'next/link';
-import type { ChecklistResult, ChecklistResultSection, Language } from '@/lib/types/domain';
+import {
+  getChecklistAnswerLabel,
+  getChecklistQuestionLabel,
+} from '@/lib/checklist/labels';
+import type {
+  ChecklistQuestion,
+  ChecklistResult,
+  ChecklistResultSection,
+  Language,
+} from '@/lib/types/domain';
 
 const resultsCopy = {
   en: {
@@ -51,11 +60,13 @@ function getItemNotes(
 
 export function ChecklistResults({
   language,
+  questions,
   result,
   editHref,
   printHref,
 }: {
   language: Language;
+  questions: ChecklistQuestion[];
   result: ChecklistResult;
   editHref: string;
   printHref: string;
@@ -71,11 +82,18 @@ export function ChecklistResults({
       <article className="hero__card">
         <h2>{copy.answers}</h2>
         <ul className="results-answers">
-          {Object.entries(result.answers).map(([key, value]) => (
-            <li key={key}>
-              <strong>{key}</strong>: {String(value)}
-            </li>
-          ))}
+          {questions
+            .filter((question) => result.answers[question.key] !== undefined)
+            .map((question) => (
+              <li key={question.key}>
+                <strong>{getChecklistQuestionLabel(question, language)}</strong>:{' '}
+                {getChecklistAnswerLabel(
+                  question,
+                  result.answers[question.key],
+                  language,
+                )}
+              </li>
+            ))}
         </ul>
       </article>
 
