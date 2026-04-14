@@ -16,24 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-019 — Add rules audit view scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-003, TASK-005, TASK-016
-
-Objective:
-Create the first admin rules audit scaffold using the seeded checklist questions and requirement rules.
-
-Deliverables:
-- `/admin/rules` upgraded from a generic placeholder to a rules-oriented audit page
-- counts or grouped summaries for questions and rules
-- deterministic references to existing seed-backed rule data
-
-Acceptance Criteria:
-- rules surface exposes current deterministic rule assets
-- page does not imply inline rule editing exists yet
-- structure is ready for later rule audit tooling
-
 ### TASK-020 — Add review queue scaffold
 Status: Ready
 Priority: P2
@@ -185,6 +167,14 @@ Depends on: TASK-012, TASK-016
 
 Summary:
 Upgraded `/admin/sources` into a source-oriented dashboard scaffold that displays the current typed source registry and preserves an explicit read-only trust posture.
+
+### TASK-019 — Add rules audit view scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-003, TASK-005, TASK-016
+
+Summary:
+Upgraded `/admin/rules` into a read-only audit scaffold that exposes the current seeded checklist questions, rule counts, output types, and rule inventory.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:27 UTC — TASK-019
+
+Summary:
+- Upgraded `/admin/rules` from a generic placeholder to a deterministic rules audit scaffold.
+- Exposed the current checklist question set, requirement rule counts, output-type counts, and rule inventory on the admin rules surface.
+- Kept the page read-only and explicit about the lack of inline rule editing.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-rules-page.tsx
+
+Decisions:
+- Used the existing seeded loaders directly so the rules audit stays tightly coupled to the same deterministic data the public checklist path already uses.
+- Focused on counts, keys, and rule inventory rather than rendering a pseudo-editor, because the task calls for audit visibility rather than editing workflows.
+- Preserved the specialized route pattern introduced for `/admin/sources`, extending it only to `/admin/rules` as the next smallest coherent admin increment.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/rules`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-020
+
+---
+
 ### 2026-04-14 20:26 UTC — TASK-018
 
 Summary:
