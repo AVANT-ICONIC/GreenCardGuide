@@ -29,6 +29,45 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:37 UTC — TASK-021
+
+Summary:
+- Upgraded `/admin/content` from a generic placeholder to a read-only content inventory dashboard.
+- Summarized the current guide, FAQ, glossary, documents, and Ciudad Juarez hub surfaces through one typed admin inventory loader.
+- Kept the route explicit that it is an inventory scaffold only, not an editor or publish workflow.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/admin/README.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-content-page.tsx
+- src/lib/admin/loadContentInventory.ts
+- src/lib/admin/sections.ts
+
+Decisions:
+- Built the admin content surface from the existing public content loaders so the inventory reflects actual repository state instead of a second manually curated registry.
+- Summarized each surface at the route level with entry counts, locales, trust state, and source keys, which is enough to support later diffs and publish controls without inventing an editor prematurely.
+- Left verified counts in place even though the current inventory is fully placeholder, because the metric shape will remain useful once reviewed content starts landing.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/content`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-022
+
+---
+
 ### 2026-04-14 20:29 UTC — TASK-020
 
 Summary:

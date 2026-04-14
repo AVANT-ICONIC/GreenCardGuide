@@ -9,5 +9,6 @@ Suggested first admin capabilities:
 
 Current scaffold:
 - `/admin` landing page exists as a truthful orientation surface only
-- `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection placeholders
-- content, sources, rules, and reviews are still not implemented as working tools yet
+- `/admin/content` now provides a read-only content inventory over the current guide, FAQ, glossary, documents, and hub surfaces
+- `/admin/sources`, `/admin/rules`, and `/admin/reviews` now expose read-only source, rules, and review dashboards
+- content, sources, rules, and reviews are still not implemented as editing or publish tools yet

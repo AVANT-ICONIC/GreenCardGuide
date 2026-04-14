@@ -82,7 +82,7 @@ Current state:
 - `/admin/sources` now exposes the current typed source registry through a truthful review-dashboard scaffold.
 - `/admin/rules` now exposes the current seeded checklist questions and requirement rules through a read-only audit scaffold.
 - `/admin/reviews` now summarizes current placeholder content surfaces in a queue-shaped review scaffold.
-- The current queued work is exhausted again; add the next prioritized task to `docs/TASK_QUEUE.md` before the next autonomous cycle.
+- `/admin/content` now summarizes the current guide, FAQ, glossary, documents, and hub surfaces through a read-only content inventory dashboard.
 
 ## Non-negotiables
 

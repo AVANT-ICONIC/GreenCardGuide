@@ -16,7 +16,21 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-022 — Add content diffs scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-021
+
+Summary:
+Add a deterministic admin scaffold for content diffs so maintainers can see how future source-backed editorial changes will be summarized before any real publish workflow exists.
+
+### TASK-023 — Add publish controls scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-021
+
+Summary:
+Add a truthful admin scaffold for publish controls that explains planned publish states, review gates, and current non-functional boundaries without implying live publishing exists.
 
 ## Blocked
 
@@ -167,6 +181,14 @@ Depends on: TASK-007, TASK-012, TASK-016
 
 Summary:
 Upgraded `/admin/reviews` into a review-oriented scaffold that summarizes current placeholder content surfaces, their trust labels, and the remaining review work shape.
+
+### TASK-021 — Add admin content inventory dashboard
+Status: Done
+Priority: P2
+Depends on: TASK-007, TASK-013, TASK-016, TASK-020
+
+Summary:
+Upgraded `/admin/content` into a read-only content inventory dashboard that summarizes the current guide, FAQ, glossary, documents, and hub surfaces with trust-aware metadata.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

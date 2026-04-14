@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation';
+import { AdminContentPage } from '@/components/admin-content-page';
 import { AdminRulesPage } from '@/components/admin-rules-page';
 import { AdminReviewsPage } from '@/components/admin-reviews-page';
 import { AdminSourcesPage } from '@/components/admin-sources-page';
 import { AdminSectionPage } from '@/components/admin-section-page';
+import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
@@ -23,6 +25,10 @@ export default async function AdminSubsectionPage({
 
   if (!isAdminSectionSlug(section)) {
     notFound();
+  }
+
+  if (section === 'content') {
+    return <AdminContentPage summary={loadContentInventory()} />;
   }
 
   if (section === 'sources') {

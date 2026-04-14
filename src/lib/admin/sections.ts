@@ -3,8 +3,8 @@ export const adminSections = [
     slug: 'content',
     title: 'Content',
     body:
-      'Manage guide, FAQ, glossary, documents, and post hub content once structured editing tools exist.',
-    status: 'Planned surface',
+      'Review the current guide, FAQ, glossary, documents, and post hub inventory before structured editing and publishing tools exist.',
+    status: 'Read-only inventory',
   },
   {
     slug: 'sources',
