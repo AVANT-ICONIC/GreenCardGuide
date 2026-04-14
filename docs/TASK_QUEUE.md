@@ -16,23 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-020 — Add review queue scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-007, TASK-012, TASK-016
-
-Objective:
-Create the first admin reviews scaffold that summarizes placeholder versus verified content surfaces and future review work.
-
-Deliverables:
-- `/admin/reviews` upgraded from a generic placeholder to a review-oriented page
-- structured list of current content surfaces and their review states
-- explicit note about future queue and handoff workflows
-
-Acceptance Criteria:
-- review surface exposes current placeholder/verified state consistently
-- page remains truthful about the lack of actual queue tooling
-- structure is ready for later review-event and queue features
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -175,6 +159,14 @@ Depends on: TASK-003, TASK-005, TASK-016
 
 Summary:
 Upgraded `/admin/rules` into a read-only audit scaffold that exposes the current seeded checklist questions, rule counts, output types, and rule inventory.
+
+### TASK-020 — Add review queue scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-007, TASK-012, TASK-016
+
+Summary:
+Upgraded `/admin/reviews` into a review-oriented scaffold that summarizes current placeholder content surfaces, their trust labels, and the remaining review work shape.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

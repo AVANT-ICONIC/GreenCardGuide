@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:29 UTC — TASK-020
+
+Summary:
+- Upgraded `/admin/reviews` from a generic placeholder to a review queue scaffold.
+- Summarized the current guide, FAQ, glossary, documents, and Ciudad Juarez hub surfaces through a consistent review-entry model.
+- Kept the page explicit that it is a manual summary scaffold rather than a live queue or workflow engine.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-reviews-page.tsx
+- src/lib/admin/loadReviewQueue.ts
+
+Decisions:
+- Built the review surface from the current content loaders so the queue summary reflects actual repo state rather than a separate manually maintained list.
+- Included only surfaces that currently have typed content scaffolding, avoiding fake coverage of routes that do not yet carry review metadata.
+- Kept the entries route-oriented and trust-oriented, which is enough to support later review queue and event tooling without introducing premature complexity.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/reviews`.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 20:27 UTC — TASK-019
 
 Summary:

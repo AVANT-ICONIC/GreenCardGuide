@@ -1,7 +1,9 @@
 import { notFound } from 'next/navigation';
 import { AdminRulesPage } from '@/components/admin-rules-page';
+import { AdminReviewsPage } from '@/components/admin-reviews-page';
 import { AdminSourcesPage } from '@/components/admin-sources-page';
 import { AdminSectionPage } from '@/components/admin-section-page';
+import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
 import { loadChecklistQuestions, loadRequirementRules } from '@/lib/seed/loadSeedData';
@@ -34,6 +36,10 @@ export default async function AdminSubsectionPage({
         rules={loadRequirementRules()}
       />
     );
+  }
+
+  if (section === 'reviews') {
+    return <AdminReviewsPage entries={loadReviewQueueEntries()} />;
   }
 
   return <AdminSectionPage slug={section} />;
