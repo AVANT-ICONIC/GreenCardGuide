@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Language } from '@/lib/types/domain';
 
 const homeContent = {
@@ -9,7 +10,7 @@ const homeContent = {
     cards: [
       {
         title: 'Checklist path',
-        body: 'Question flow, result assembly, and print mode are separate tasks layered on top of this route shell.',
+        body: 'Question flow, result assembly, and print mode are now connected through the bilingual checklist routes.',
       },
       {
         title: 'Trust posture',
@@ -20,6 +21,10 @@ const homeContent = {
         body: 'English and Spanish routes now exist in parallel so shared navigation and future content can evolve symmetrically.',
       },
     ],
+    actions: [
+      { label: 'Open Ciudad Juarez hub', href: '/ciudad-juarez' },
+      { label: 'Start checklist', href: '/checklist/start' },
+    ],
   },
   es: {
     eyebrow: 'Preparacion familiar en Ciudad Juarez',
@@ -29,7 +34,7 @@ const homeContent = {
     cards: [
       {
         title: 'Ruta de lista',
-        body: 'El flujo de preguntas, el ensamblado de resultados y la vista imprimible siguen como tareas separadas sobre esta base.',
+        body: 'El flujo de preguntas, el ensamblado de resultados y la vista imprimible ya estan conectados en las rutas bilingues.',
       },
       {
         title: 'Postura de confianza',
@@ -40,6 +45,10 @@ const homeContent = {
         body: 'Las rutas en ingles y espanol ahora existen en paralelo para que la navegacion compartida y el contenido crezcan con simetria.',
       },
     ],
+    actions: [
+      { label: 'Abrir centro Ciudad Juarez', href: '/ciudad-juarez' },
+      { label: 'Empezar lista', href: '/checklist/start' },
+    ],
   },
 } satisfies Record<
   Language,
@@ -48,6 +57,7 @@ const homeContent = {
     title: string;
     lede: string;
     cards: Array<{ title: string; body: string }>;
+    actions: Array<{ label: string; href: string }>;
   }
 >;
 
@@ -59,6 +69,18 @@ export function LocalizedHome({ language }: { language: Language }) {
       <p className="hero__eyebrow">{content.eyebrow}</p>
       <h1>{content.title}</h1>
       <p className="hero__lede">{content.lede}</p>
+
+      <div className="hero__actions">
+        {content.actions.map((action) => (
+          <Link
+            key={action.href}
+            className="hero__button hero__button--primary"
+            href={`/${language}${action.href}`}
+          >
+            {action.label}
+          </Link>
+        ))}
+      </div>
 
       <div className="hero__grid">
         {content.cards.map((card) => (

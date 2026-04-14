@@ -69,6 +69,7 @@ Current state:
 - The repository now includes a runnable Next.js App Router scaffold.
 - Locale-aware routes, the first deterministic checklist flow, and a dedicated print view are now wired.
 - A repeatable content-loading scaffold now powers bilingual placeholder guide pages.
+- A post-specific Ciudad Juarez hub route now links the checklist and guide surfaces from one bilingual entry point.
 - The initial queued foundation work is complete; follow-on tasks should be added to `docs/TASK_QUEUE.md` before the next autonomous cycle.
 
 ## Non-negotiables

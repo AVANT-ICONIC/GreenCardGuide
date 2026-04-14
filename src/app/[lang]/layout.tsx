@@ -6,9 +6,17 @@ import {
   supportedLanguages,
 } from '@/lib/content/locale';
 
-const navLabels = {
-  en: ['Home', 'Checklist', 'Ciudad Juarez'],
-  es: ['Inicio', 'Lista', 'Ciudad Juarez'],
+const navLinks = {
+  en: [
+    { label: 'Home', href: '' },
+    { label: 'Checklist', href: '/checklist/start' },
+    { label: 'Ciudad Juarez', href: '/ciudad-juarez' },
+  ],
+  es: [
+    { label: 'Inicio', href: '' },
+    { label: 'Lista', href: '/checklist/start' },
+    { label: 'Ciudad Juarez', href: '/ciudad-juarez' },
+  ],
 } as const;
 
 export function generateStaticParams() {
@@ -28,7 +36,7 @@ export default async function LanguageLayout({
     notFound();
   }
 
-  const labels = navLabels[lang];
+  const links = navLinks[lang];
 
   return (
     <main className="app-shell">
@@ -38,10 +46,14 @@ export default async function LanguageLayout({
             Consular Prep
           </Link>
           <nav className="locale-header__nav" aria-label="Primary">
-            {labels.map((label) => (
-              <span key={label} className="locale-header__nav-item">
-                {label}
-              </span>
+            {links.map((link) => (
+              <Link
+                key={link.href || 'home'}
+                className="locale-header__nav-item"
+                href={`/${lang}${link.href}`}
+              >
+                {link.label}
+              </Link>
             ))}
           </nav>
           <div className="locale-switcher" aria-label="Language switcher">

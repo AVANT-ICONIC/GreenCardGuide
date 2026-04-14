@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:46 UTC — TASK-010
+
+Summary:
+- Replenished the queue from existing repo docs with the next post-hub, FAQ/glossary, and source-registry tasks.
+- Added a bilingual `/[lang]/ciudad-juarez` hub route.
+- Wired the shared locale nav and localized home page to link into the new Ciudad Juarez hub and the current checklist flow.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/ciudad-juarez/page.tsx
+- src/app/[lang]/layout.tsx
+- src/app/globals.css
+- src/components/ciudad-juarez-hub.tsx
+- src/components/localized-home.tsx
+
+Decisions:
+- Refilled `docs/TASK_QUEUE.md` directly from the documented product surface map so the autonomous loop could continue without inventing off-road work.
+- Kept the hub content explicitly placeholder and orientation-focused rather than adding unreviewed procedural guidance.
+- Turned the shared nav items into real links so the post hub and checklist routes are reachable from the bilingual layout, not only from the root page.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en/ciudad-juarez` and `/es/ciudad-juarez`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-011
+
+---
+
 ### 2026-04-14 19:41 UTC — TASK-007
 
 Summary:

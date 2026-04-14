@@ -16,7 +16,41 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-011 — Add FAQ and glossary route scaffolds
+Status: Ready
+Priority: P2
+Depends on: TASK-007
+
+Objective:
+Create initial FAQ and glossary route scaffolds aligned with the information architecture.
+
+Deliverables:
+- `/[lang]/faq` route scaffold
+- `/[lang]/glossary` route scaffold
+- reusable localized content-loading pattern where practical
+
+Acceptance Criteria:
+- both routes exist for both locales
+- placeholder vs verified status is explicit
+- structure is ready for future typed content expansion
+
+### TASK-012 — Add source registry stub data surface
+Status: Ready
+Priority: P2
+Depends on: TASK-003, TASK-007
+
+Objective:
+Create the first structured source registry stub for future trust and review tooling.
+
+Deliverables:
+- source reference seed file or typed registry
+- loader and validation for source entries
+- documented assumptions for placeholder source mapping
+
+Acceptance Criteria:
+- source entries can be loaded through typed helpers
+- content surfaces can attach placeholder source references consistently
+- trust scaffolding remains explicit about what is and is not verified
 
 ## Blocked
 
@@ -79,6 +113,14 @@ Depends on: TASK-001, TASK-002
 
 Summary:
 Added a typed bilingual guide-content loader, placeholder-vs-verified review metadata, and routed guide stubs for the key public guide pages under `/[lang]/guides/[slug]`.
+
+### TASK-010 — Add Ciudad Juárez hub route scaffold
+Status: Done
+Priority: P1
+Depends on: TASK-002, TASK-007
+
+Summary:
+Added `/[lang]/ciudad-juarez` with bilingual placeholder hub content, trust-status framing, and deterministic links into the current checklist and guide routes.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
