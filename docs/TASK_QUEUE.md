@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-041 — Add admin operations route smoke validation
-Status: Ready
-Priority: P2
-Depends on: TASK-036, TASK-037, TASK-038
-Objective:
-- Add a repeatable smoke check for the current admin operations routes and their key rendered markers.
-Deliverables:
-- a lightweight validation script or route-check extension that verifies `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`
-- assertions covering the latest deterministic metadata now exposed on the sources and reviews pages
-- package wiring and docs updates if a new validation command is added
-Acceptance Criteria:
-- admin surface regressions can be caught without manual browser checks
-- the smoke check confirms the presence of the latest review-queue, feedback-inbox, and source-coverage markers
-- the validation remains lightweight and truthful about the current scaffold state
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- the new admin route smoke validation command
-Notes:
-- Prefer extending the existing route validation posture rather than building browser automation.
-
 ### TASK-042 — Surface feedback summary counts in admin reviews
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Reuse the existing source coverage and watchlist loaders instead of duplicating route-derivation logic.
 
+### TASK-044 — Add deterministic rules audit validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Add a repeatable validation check for the admin rules audit data and rendered markers.
+Deliverables:
+- a lightweight validation script that exercises checklist-question counts, rule-output inventory, and key admin-rules UI markers
+- assertions covering the current seeded question count, rule count, and output-type coverage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin rules regressions can be caught without manually opening `/admin/rules`
+- the validation remains aligned with the current seeded deterministic rules posture
+- the check avoids browser automation and reuses existing loaders where possible
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new rules validation command
+Notes:
+- Keep the assertions tied to deterministic seed structures, not speculative future editor features.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-041 — Add admin operations route smoke validation
+Status: Done
+Priority: P2
+Depends on: TASK-036, TASK-037, TASK-038
+Objective:
+- Add a repeatable smoke check for the current admin operations routes and their key rendered markers.
+Deliverables:
+- a lightweight validation script or route-check extension that verifies `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`
+- assertions covering the latest deterministic metadata now exposed on the sources and reviews pages
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin surface regressions can be caught without manual browser checks
+- the smoke check confirms the presence of the latest review-queue, feedback-inbox, and source-coverage markers
+- the validation remains lightweight and truthful about the current scaffold state
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin route smoke validation command
+Notes:
+- Completed 2026-04-14. `npm run validate:admin` now checks admin route files, loader outputs, and key sources/reviews markers without requiring a dev server.
 
 ### TASK-040 — Add deterministic feedback inbox validation coverage
 Status: Done

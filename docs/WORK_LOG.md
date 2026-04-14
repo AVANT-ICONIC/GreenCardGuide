@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:47 UTC — TASK-041
+
+Summary:
+- Added a dedicated `npm run validate:admin` smoke check for the current admin operations routes.
+- Validated the admin content, sources, rules, and reviews surfaces through their backing loaders plus key rendered UI markers.
+- Kept the smoke coverage lightweight and server-free by checking route files, loader outputs, and component marker strings instead of running browser automation.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateAdminOperations.ts
+
+Decisions:
+- Reused existing admin loaders so the smoke check validates the same deterministic data that powers the admin routes today.
+- Checked marker strings in the admin component files to make sure the newest sources and reviews metadata stays visible without requiring HTML fetches.
+- Left `validate:routes` focused on route existence and added a separate `validate:admin` command for operational admin-surface checks.
+
+Validation:
+- Ran `npm run validate:admin`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the smoke output included source coverage counts, watchlist task totals, review queue counts, stored feedback reports, and current rules inventory totals.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-042
+
+---
+
 ### 2026-04-14 21:45 UTC — TASK-040
 
 Summary:

@@ -60,6 +60,7 @@ Validation:
 
 ```bash
 npm run validate:seed
+npm run validate:admin
 npm run validate:checklist
 npm run validate:feedback
 npm run validate:reviews
@@ -93,6 +94,7 @@ Current state:
 - Public content surfaces and `/admin/reviews` now use deterministic per-surface source mappings instead of attaching the full placeholder source registry everywhere.
 - `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
 - `npm run validate:reviews` now exercises review-queue ordering and metadata assembly as a repeatable smoke check.
+- `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
 - `/admin/sources` now shows direct source-to-surface coverage counts and routes alongside the separate change-watchlist tasks.
