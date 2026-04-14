@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-040 — Add deterministic feedback inbox validation coverage
-Status: Ready
-Priority: P2
-Depends on: TASK-037
-Objective:
-- Add a repeatable validation check for feedback submission validation, persistence, and inbox loading.
-Deliverables:
-- a lightweight validation script that exercises one valid and one invalid feedback submission against the shared storage helpers
-- assertions covering stored field shape, newest-first inbox ordering, and validation-error handling
-- package wiring and docs updates if a new validation command is added
-Acceptance Criteria:
-- feedback inbox regressions can be caught without manual browser submission
-- the validation does not require network access or a running Next.js server
-- the check stays isolated from real local inbox data by using a temporary storage path or fixture
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- the new feedback validation command
-Notes:
-- Reuse the shared feedback storage helpers instead of duplicating validation logic in the script.
-
 ### TASK-041 — Add admin operations route smoke validation
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Keep the summary lightweight and operational. Do not add filtering or workflow state in this cycle.
 
+### TASK-043 — Add deterministic source dashboard validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-038
+Objective:
+- Add a repeatable validation check for the source coverage summary and watchlist task assembly.
+Deliverables:
+- a lightweight validation script that exercises source coverage counts, mapped routes, and watchlist task relationships
+- assertions covering current mapped-source counts and affected-route linkage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source dashboard regressions can be caught without manually opening `/admin/sources`
+- the validation proves direct mapped coverage and change-watchlist tasks stay consistent with the current source registry
+- the check remains aligned with the current placeholder governance-reference posture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-dashboard validation command
+Notes:
+- Reuse the existing source coverage and watchlist loaders instead of duplicating route-derivation logic.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-040 — Add deterministic feedback inbox validation coverage
+Status: Done
+Priority: P2
+Depends on: TASK-037
+Objective:
+- Add a repeatable validation check for feedback submission validation, persistence, and inbox loading.
+Deliverables:
+- a lightweight validation script that exercises one valid and one invalid feedback submission against the shared storage helpers
+- assertions covering stored field shape, newest-first inbox ordering, and validation-error handling
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- feedback inbox regressions can be caught without manual browser submission
+- the validation does not require network access or a running Next.js server
+- the check stays isolated from real local inbox data by using a temporary storage path or fixture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new feedback validation command
+Notes:
+- Completed 2026-04-14. `npm run validate:feedback` now exercises invalid payload handling plus deterministic inbox persistence and ordering on a temporary storage file.
 
 ### TASK-039 — Add deterministic review-queue validation coverage
 Status: Done

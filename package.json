@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "validate:seed": "tsx src/lib/seed/validateSeedData.ts",
     "validate:checklist": "tsx src/lib/checklist/validateChecklistBehavior.ts",
+    "validate:feedback": "tsx src/lib/feedback/validateFeedbackInbox.ts",
     "validate:reviews": "tsx src/lib/admin/validateReviewQueue.ts",
     "validate:sources": "tsx src/lib/content/validateSourceRegistry.ts",
     "validate:routes": "tsx src/app/validateRoutes.ts"

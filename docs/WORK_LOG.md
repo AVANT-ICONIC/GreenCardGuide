@@ -29,6 +29,41 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:45 UTC — TASK-040
+
+Summary:
+- Added a dedicated `npm run validate:feedback` smoke check for feedback validation, persistence, and inbox ordering.
+- Refactored the shared feedback storage helper to accept an override storage path plus deterministic timestamp and id providers for isolated validation.
+- Kept the validation fully local by using a temporary JSON file, so the check does not touch the real ignored inbox file in `data/feedback/submissions.json`.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/feedback/storage.ts
+- src/lib/feedback/validateFeedbackInbox.ts
+
+Decisions:
+- Extended the shared storage helper instead of mocking the whole feedback layer so the validation exercises the real persistence and loading code paths.
+- Used deterministic ids and timestamps in the validation script to make newest-first ordering assertions stable and non-flaky.
+- Kept the script network-free and server-free so it can run in the same lightweight validation style as the other repo checks.
+
+Validation:
+- Ran `npm run validate:feedback`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included invalid field errors plus deterministic ordered submission ids and routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-041
+
+---
+
 ### 2026-04-14 21:44 UTC — TASK-039
 
 Summary:

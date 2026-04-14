@@ -23,8 +23,25 @@ export interface StoredFeedbackSubmission extends FeedbackSubmissionInput {
   created_at: string;
 }
 
-const feedbackStorageDirectory = path.join(process.cwd(), 'data', 'feedback');
-const feedbackStoragePath = path.join(feedbackStorageDirectory, 'submissions.json');
+export interface FeedbackStorageOptions {
+  storagePath?: string;
+  now?: () => Date;
+  createId?: () => string;
+}
+
+const defaultFeedbackStorageDirectory = path.join(process.cwd(), 'data', 'feedback');
+const defaultFeedbackStoragePath = path.join(
+  defaultFeedbackStorageDirectory,
+  'submissions.json',
+);
+
+function getFeedbackStoragePath(options?: FeedbackStorageOptions): string {
+  return options?.storagePath ?? defaultFeedbackStoragePath;
+}
+
+function getFeedbackStorageDirectory(options?: FeedbackStorageOptions): string {
+  return path.dirname(getFeedbackStoragePath(options));
+}
 
 function normalizeString(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
@@ -87,13 +104,15 @@ export function validateFeedbackSubmission(
   };
 }
 
-async function ensureFeedbackStorageDirectory() {
-  await mkdir(feedbackStorageDirectory, { recursive: true });
+async function ensureFeedbackStorageDirectory(options?: FeedbackStorageOptions) {
+  await mkdir(getFeedbackStorageDirectory(options), { recursive: true });
 }
 
-export async function loadStoredFeedbackSubmissions(): Promise<StoredFeedbackSubmission[]> {
+export async function loadStoredFeedbackSubmissions(
+  options?: FeedbackStorageOptions,
+): Promise<StoredFeedbackSubmission[]> {
   try {
-    const file = await readFile(feedbackStoragePath, 'utf8');
+    const file = await readFile(getFeedbackStoragePath(options), 'utf8');
     const parsed = JSON.parse(file) as unknown;
 
     if (!Array.isArray(parsed)) {
@@ -128,18 +147,19 @@ export async function loadStoredFeedbackSubmissions(): Promise<StoredFeedbackSub
 
 export async function persistFeedbackSubmission(
   input: FeedbackSubmissionInput,
+  options?: FeedbackStorageOptions,
 ): Promise<StoredFeedbackSubmission> {
-  await ensureFeedbackStorageDirectory();
+  await ensureFeedbackStorageDirectory(options);
 
-  const existing = await loadStoredFeedbackSubmissions();
+  const existing = await loadStoredFeedbackSubmissions(options);
   const submission: StoredFeedbackSubmission = {
-    id: crypto.randomUUID(),
-    created_at: new Date().toISOString(),
+    id: options?.createId?.() ?? crypto.randomUUID(),
+    created_at: (options?.now?.() ?? new Date()).toISOString(),
     ...input,
   };
 
   await writeFile(
-    feedbackStoragePath,
+    getFeedbackStoragePath(options),
     `${JSON.stringify([submission, ...existing], null, 2)}\n`,
     'utf8',
   );
