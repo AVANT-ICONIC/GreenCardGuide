@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:31 UTC — TASK-036
+
+Summary:
+- Replaced the unsorted admin review summary with a deterministic review-queue assembler built from the shared content inventory.
+- Added explicit review metadata per surface, including priority, priority score, blocker reason, recommended next action, source coverage, and review-recency state.
+- Updated `/admin/reviews` to display the queue in priority order with high/medium/low counts plus under-sourced and stale-review summaries.
+- Corrected the hub inventory entry so it now reports its own mapped source references instead of reusing the documents overview sources.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-reviews-page.tsx
+- src/lib/admin/loadContentInventory.ts
+- src/lib/admin/loadReviewQueue.ts
+
+Decisions:
+- Reused `loadContentInventory()` as the foundation for the queue so review prioritization stays aligned with the existing admin inventory surface instead of introducing a second content registry.
+- Classified current source coverage as `governance_only` when a surface only points at repository policy references; this keeps the queue truthful about why editorial review cannot yet complete.
+- Used deterministic content-type weights plus placeholder, source-coverage, and recency factors to score queue priority, keeping the ordering explainable and stable.
+- Kept the stale-review threshold internal to the assembler and surfaced the resulting status, not the raw algorithm, in the UI.
+
+Validation:
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Ran a direct route smoke check with `npm run dev` and `curl http://127.0.0.1:3000/admin/reviews`.
+- Confirmed the route rendered priority counts, source coverage, blocker reasons, recommended next actions, and the expected sorted order with the Ciudad Juarez hub and documents overview first.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-037
+
+---
+
 ### 2026-04-14 21:27 UTC — TASK-035
 
 Summary:

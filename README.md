@@ -89,6 +89,7 @@ Current state:
 - Current guide, FAQ, glossary, documents, and Ciudad Juarez hub pages now expose explicit last-reviewed dates through a shared review-metadata scaffold.
 - `/admin/sources` now includes a deterministic source-change review task watchlist that maps registered sources to affected content surfaces.
 - Public content surfaces and `/admin/reviews` now use deterministic per-surface source mappings instead of attaching the full placeholder source registry everywhere.
+- `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
 - The checklist now surfaces a deterministic risk flag when the applicant does not have a current passport ready.
 - The checklist now routes arrest or court-record scenarios into a conservative `verify with official instructions` output instead of leaving that answer unused.

@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-036 — Turn the review scaffold into a prioritized deterministic review queue
-Status: Ready
-Priority: P1
-Depends on: TASK-020, TASK-025, TASK-035
-Objective:
-- Upgrade the current review summary into an actionable queue sorted by deterministic review priority.
-Deliverables:
-- a shared review-task assembler that derives queue entries from review status, source coverage, and review recency
-- explicit queue metadata such as priority, blocker reason, recommended next action, and stale-review flags
-- an `/admin/reviews` update that presents the queue in priority order instead of as an unsorted scaffold list
-Acceptance Criteria:
-- review entries are ordered by explicit deterministic priority rather than route declaration order
-- each entry explains why it needs review and what action is expected next
-- stale or under-sourced surfaces are visibly distinguishable from lower-risk placeholder work
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- direct route check of `/admin/reviews`
-Notes:
-- Keep this strictly operational. Do not claim that editorial review is automated or complete.
-
 ### TASK-037 — Persist public feedback submissions into a deterministic review inbox
 Status: Ready
 Priority: P1
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Reuse the `TASK-035` source mapping registry as the single source of truth instead of creating a second attachment list.
 
+### TASK-039 — Add deterministic review-queue validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-036
+Objective:
+- Add a repeatable validation check for review-queue ordering and metadata assembly.
+Deliverables:
+- a validation script that exercises the review queue summary and entry ordering
+- assertions covering priority sorting, required metadata fields, and current under-sourced counts
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- review-queue regressions can be caught without manually opening `/admin/reviews`
+- the validation proves entries remain sorted by deterministic priority score
+- the checks stay aligned with the current placeholder trust posture and do not require browser automation
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new review-queue validation command
+Notes:
+- Prefer the lightweight script pattern already used for other repo validation commands.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-036 — Turn the review scaffold into a prioritized deterministic review queue
+Status: Done
+Priority: P1
+Depends on: TASK-020, TASK-025, TASK-035
+Objective:
+- Upgrade the current review summary into an actionable queue sorted by deterministic review priority.
+Deliverables:
+- a shared review-task assembler that derives queue entries from review status, source coverage, and review recency
+- explicit queue metadata such as priority, blocker reason, recommended next action, and stale-review flags
+- an `/admin/reviews` update that presents the queue in priority order instead of as an unsorted scaffold list
+Acceptance Criteria:
+- review entries are ordered by explicit deterministic priority rather than route declaration order
+- each entry explains why it needs review and what action is expected next
+- stale or under-sourced surfaces are visibly distinguishable from lower-risk placeholder work
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct route check of `/admin/reviews`
+Notes:
+- Completed 2026-04-14. The queue remains operational only; it prioritizes review work without implying automated editorial approval.
 
 ### TASK-035 — Replace blanket placeholder source attachments with surface-specific mappings
 Status: Done

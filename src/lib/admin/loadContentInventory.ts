@@ -1,4 +1,5 @@
 import { guideSlugs } from '@/content/guides';
+import { loadCiudadJuarezHubContent } from '@/lib/content/loadCiudadJuarezHubContent';
 import { loadDocumentsOverview } from '@/lib/content/loadDocumentsOverview';
 import { loadContentReviewMetadata } from '@/lib/content/loadContentReviewMetadata';
 import { loadFaqItems } from '@/lib/content/loadFaq';
@@ -58,6 +59,8 @@ export function loadContentInventory(): ContentInventorySummary {
   const glossaryEs = loadGlossaryTerms('es');
   const documentsEn = loadDocumentsOverview('en');
   const documentsEs = loadDocumentsOverview('es');
+  const hubEn = loadCiudadJuarezHubContent('en');
+  const hubEs = loadCiudadJuarezHubContent('es');
 
   const sharedItems = [
     {
@@ -115,11 +118,11 @@ export function loadContentInventory(): ContentInventorySummary {
       surface: 'Ciudad Juarez hub',
       route: '/[lang]/ciudad-juarez',
       content_type: 'hub',
-      locales: ['en', 'es'],
-      review_status: 'placeholder',
-      confidence_label: 'verify_with_official',
-      last_reviewed_at: loadContentReviewMetadata('en', 'ciudad-juarez').last_reviewed_at,
-      source_references: documentsEn.source_references,
+      locales: mergeLocales([hubEn.language], [hubEs.language]),
+      review_status: hubEn.review_status,
+      confidence_label: hubEn.confidence_label,
+      last_reviewed_at: hubEn.last_reviewed_at,
+      source_references: hubEn.source_references,
       entry_count: 2,
       note: 'Post hub exists for both locales, but its step framing and practical guidance still need source-backed editorial work.',
     },

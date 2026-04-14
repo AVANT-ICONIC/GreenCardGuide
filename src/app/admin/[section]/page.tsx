@@ -7,7 +7,7 @@ import { loadContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
-import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
+import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
@@ -59,7 +59,7 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'reviews') {
-    return <AdminReviewsPage entries={loadReviewQueueEntries()} />;
+    return <AdminReviewsPage summary={loadReviewQueueSummary()} />;
   }
 
   return <AdminSectionPage slug={section} />;
