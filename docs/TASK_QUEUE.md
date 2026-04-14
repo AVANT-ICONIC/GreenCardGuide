@@ -16,24 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-002 — Add locale-aware routing shell
-Status: Ready
-Priority: P0
-Depends on: TASK-001
-
-Objective:
-Establish English and Spanish route scaffolding for the public app.
-
-Deliverables:
-- locale route structure
-- base layout with language-aware navigation placeholder
-- home route placeholders for both locales
-
-Acceptance Criteria:
-- route structure supports `/en` and `/es` style paths or equivalent
-- shared layout exists
-- bilingual expansion path is obvious in code
-
 ### TASK-004 — Build checklist question flow
 Status: Ready
 Priority: P1
@@ -123,6 +105,14 @@ Depends on: none
 
 Summary:
 Added typed seed entities, path-aware validation helpers, JSON-backed loaders for questions/documents/rules, a runnable `validate:seed` script, and documented assumptions for the current seed structure.
+
+### TASK-002 — Add locale-aware routing shell
+Status: Done
+Priority: P0
+Depends on: TASK-001
+
+Summary:
+Added `/en` and `/es` route scaffolding with a shared localized layout, language switcher, bilingual home placeholders, and a root language entry page.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

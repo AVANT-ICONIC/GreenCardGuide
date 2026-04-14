@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:24 UTC — TASK-002
+
+Summary:
+- Added locale-aware route scaffolding for `/en` and `/es`.
+- Added a shared `[lang]` layout with placeholder navigation and a language switcher.
+- Reworked the root page into a language entry surface and added localized home placeholders for both supported languages.
+
+Files changed:
+- package-lock.json
+- src/app/globals.css
+- src/app/page.tsx
+- src/app/[lang]/layout.tsx
+- src/app/[lang]/page.tsx
+- src/components/language-entry.tsx
+- src/components/localized-home.tsx
+- src/lib/content/locale.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Kept locale copy in simple route-local dictionaries instead of introducing a fuller content loader, because `TASK-007` owns the broader content-loading pattern.
+- Used a shared `[lang]` layout with explicit language validation and `generateStaticParams` so the supported locales are deterministic and statically generated.
+- Converted the root route into a language selector rather than redirecting immediately, which preserves the documented `/` entry point while making `/en` and `/es` first-class routes.
+
+Validation:
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and generated static output for `/`, `/en`, and `/es`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-005
+
+---
+
 ### 2026-04-14 19:21 UTC — TASK-003
 
 Summary:
