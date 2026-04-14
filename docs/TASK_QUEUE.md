@@ -317,7 +317,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:content-surfaces` now checks shared surface-key completeness and alignment with guide slugs plus source-mapping order.
 
 ### TASK-056 — Add source mapping registry validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -336,7 +336,51 @@ Validation:
 - `npm run build`
 - the new source-mapping validation command
 Notes:
-- Keep the assertions tied to the current source key assignments and surface coverage order.
+- Completed 2026-04-14. `npm run validate:source-mappings` now checks per-surface source key assignments and registry order through the shared source-mapping layer.
+
+### TASK-057 — Add source reference loader validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the typed source-reference loader and its current governance-reference registry.
+Deliverables:
+- a lightweight validation script that exercises source keys, publishers, languages, reviewed dates, and registry ordering from `loadSourceReferences()`
+- assertions covering the current placeholder governance-reference posture without implying official immigration-source coverage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source-reference loader regressions can be caught without manually reading the registry JSON
+- the validation remains aligned with the shared typed loader instead of duplicating JSON parsing logic
+- the check stays truthful about the current governance-reference-only state
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-reference validation command
+Notes:
+- Keep assertions tied to the current typed registry shape, not to future source expansion.
+
+### TASK-058 — Add locale support validation coverage
+Status: Ready
+Priority: P2
+Depends on: none
+Objective:
+- Add a repeatable validation check for the shared locale helper layer that powers bilingual routing and content loading.
+Deliverables:
+- a lightweight validation script that exercises supported locale checks and any exported locale constants used by content loaders and routes
+- assertions covering the current `en` and `es` posture only
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- locale-helper regressions can be caught without manually tracing route and content loader behavior
+- the validation remains aligned with the shared locale helper instead of duplicating route logic
+- the check does not imply support for locales beyond the current repo scope
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new locale validation command
+Notes:
+- Keep assertions tightly scoped to the current bilingual product surface.
 
 ## Blocked
 

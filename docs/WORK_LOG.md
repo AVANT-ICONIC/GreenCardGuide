@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:20 UTC — TASK-056
+
+Summary:
+- Added a dedicated `npm run validate:source-mappings` smoke check for the shared source-mapping registry.
+- Locked in the current mapping baseline: eight mapped content surfaces with deterministic per-surface source key assignments and registry order.
+- Kept the task scoped to the source-mapping layer itself, separate from the broader source-reference loader seam that remains queued.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateSourceMappings.ts
+
+Decisions:
+- Reused `contentSurfaceKeys`, `loadSourceReferenceKeysForSurface()`, and `listSourceReferenceMappings()` directly so the validator stays aligned with the shared mapping layer instead of duplicating page-level source expectations.
+- Asserted FAQ and glossary mappings explicitly because those two surfaces intentionally differ from the shared guide/documents/hub trust posture.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:source-mappings`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included all eight mapped surfaces and the expected source key assignments.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-057
+
+---
+
 ### 2026-04-14 22:18 UTC — TASK-055
 
 Summary:
