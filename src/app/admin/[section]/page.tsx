@@ -12,9 +12,9 @@ import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
 import { loadSourceCoverageSummary } from '@/lib/admin/loadSourceCoverageSummary';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
+import { loadRulesAuditSummary } from '@/lib/admin/loadRulesAuditSummary';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
 import { loadStoredFeedbackSubmissions } from '@/lib/feedback/storage';
-import { loadChecklistQuestions, loadRequirementRules } from '@/lib/seed/loadSeedData';
 
 export function generateStaticParams() {
   return ['content', 'sources', 'rules', 'reviews'].map((section) => ({
@@ -54,12 +54,7 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'rules') {
-    return (
-      <AdminRulesPage
-        questions={loadChecklistQuestions()}
-        rules={loadRequirementRules()}
-      />
-    );
+    return <AdminRulesPage summary={loadRulesAuditSummary()} />;
   }
 
   if (section === 'reviews') {

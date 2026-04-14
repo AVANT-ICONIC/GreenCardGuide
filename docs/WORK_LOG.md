@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:56 UTC — TASK-044
+
+Summary:
+- Added a dedicated `npm run validate:rules` smoke check for the admin rules audit baseline.
+- Introduced a shared rules-audit summary loader so the `/admin/rules` page and the new validator read the same seeded question, rule, and output-type data.
+- Kept the validation deterministic by asserting the current seeded question count, rule count, active-rule posture, output-type distribution, and key admin-rules markers.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/app/admin/[section]/page.tsx
+- src/components/admin-rules-page.tsx
+- src/lib/admin/loadRulesAuditSummary.ts
+- src/lib/admin/validateRulesAudit.ts
+
+Decisions:
+- Added a dedicated rules-audit summary loader instead of duplicating counts in the page and validation script, keeping `/admin/rules` and `validate:rules` aligned on one deterministic data path.
+- Asserted the exact current seed baseline, including five present output types and eight active rules, so regressions in the current audit posture are caught early.
+- Kept the check server-free and lightweight by reading the component file for key markers instead of introducing browser automation.
+
+Validation:
+- Ran `npm run validate:rules`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the current question keys and output-type counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-045
+
+---
+
 ### 2026-04-14 21:51 UTC — TASK-043
 
 Summary:

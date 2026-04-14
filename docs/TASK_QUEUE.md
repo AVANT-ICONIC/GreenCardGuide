@@ -53,7 +53,7 @@ Notes:
 ## Ready
 
 ### TASK-044 — Add deterministic rules audit validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -72,7 +72,7 @@ Validation:
 - `npm run build`
 - the new rules validation command
 Notes:
-- Keep the assertions tied to deterministic seed structures, not speculative future editor features.
+- Completed 2026-04-14. `npm run validate:rules` now checks the seeded rules audit baseline, output-type counts, active-rule posture, and required `/admin/rules` markers through a shared audit summary loader.
 
 ### TASK-045 — Add feedback summary validation coverage
 Status: Ready
