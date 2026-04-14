@@ -251,7 +251,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:faq-glossary` now checks FAQ item keys, glossary term keys, review metadata, and mapped source posture through the shared loaders.
 
 ### TASK-053 — Add Ciudad Juarez hub loader validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -270,7 +270,7 @@ Validation:
 - `npm run build`
 - the new hub validation command
 Notes:
-- Keep the assertions tied to trust metadata and source mapping, not future editorial section content that does not exist yet.
+- Completed 2026-04-14. `npm run validate:ciudad-juarez` now checks the bilingual hub trust metadata, review date, and mapped source posture through the shared hub loader.
 
 ### TASK-054 — Add content review metadata validation coverage
 Status: Ready
@@ -293,6 +293,28 @@ Validation:
 - the new review-metadata validation command
 Notes:
 - Keep the assertions tied to current surface keys and recorded dates rather than inventing new review policy.
+
+### TASK-055 — Add content surface registry validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the shared content surface key registry that underpins review metadata and source mappings.
+Deliverables:
+- a lightweight validation script that exercises the current content surface key list and its alignment with source mappings and public surface expectations
+- assertions covering current surface completeness for guides, FAQ, glossary, documents, and the Ciudad Juarez hub
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- regressions in the shared content surface registry can be caught without manually tracing multiple loaders
+- the validation remains aligned with the existing metadata and source-mapping infrastructure instead of duplicating page logic
+- the check stays focused on deterministic registry completeness, not editorial content
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new content-surface validation command
+Notes:
+- Keep the assertions tied to the current route surface set and shared metadata infrastructure.
 
 ## Blocked
 

@@ -62,6 +62,7 @@ Validation:
 npm run validate:seed
 npm run validate:admin
 npm run validate:checklist
+npm run validate:ciudad-juarez
 npm run validate:content-diff
 npm run validate:content-inventory
 npm run validate:documents
@@ -105,6 +106,7 @@ Current state:
 - `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
 - `npm run validate:reviews` now exercises review-queue ordering and metadata assembly as a repeatable smoke check.
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
+- `npm run validate:ciudad-juarez` now checks the Ciudad Juarez hub trust metadata, review date, and mapped source posture in both locales.
 - `npm run validate:content-diff` now checks content diff counts, per-surface alignment posture, and key `/admin/content` diff markers.
 - `npm run validate:content-inventory` now checks tracked-surface counts, bilingual inventory metadata, and key `/admin/content` inventory markers.
 - `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping.

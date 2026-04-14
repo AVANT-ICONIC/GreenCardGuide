@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:14 UTC — TASK-053
+
+Summary:
+- Added a dedicated `npm run validate:ciudad-juarez` smoke check for the Ciudad Juarez hub loader.
+- Locked in the current hub baseline in both locales: placeholder review state, `verify_with_official` confidence, shared review date, and the existing two-source trust posture.
+- Refilled the queue with `TASK-055` for content surface registry validation before implementation because the ready queue had dropped below the minimum threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateCiudadJuarezHub.ts
+
+Decisions:
+- Reused `loadCiudadJuarezHubContent()` directly so the validator stays aligned with the live hub trust-metadata loader instead of duplicating review-date or source-mapping logic.
+- Added component-marker assertions for the hub trust section because the loader alone would not catch regressions in the visible trust metadata framing.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:ciudad-juarez`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included both locales, the shared review date, and the expected source references.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-054
+
+---
+
 ### 2026-04-14 22:12 UTC — TASK-052
 
 Summary:
