@@ -29,6 +29,36 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 18:20 UTC — TASK-008
+
+Summary:
+- Updated the autonomous loop instructions so blocked tasks are documented and sidelined instead of halting the overall work stream.
+- Reframed stop conditions as escalation conditions that should be logged and quarantined while other actionable work continues.
+- Updated the operator prompt in `README.md` to match the new continue-by-default behavior.
+
+Files changed:
+- docs/AGENT_LOOP.md
+- README.md
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Chose continuation by default over hard stopping so the agent can keep shipping unrelated or partially related work.
+- Preserved escalation for ambiguity, secrets, broken-state, and trust-review cases, but required the agent to keep moving when unaffected tasks remain.
+- Kept the workflow file-driven so the backlog remains the source of truth for sidestepping blockers.
+
+Validation:
+- Reviewed the loop instructions and README prompt to ensure the stopping language was replaced with document-and-continue behavior.
+- No runtime validation was needed because this change only affects repository operating instructions.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-001
+
+---
+
 ### 2026-04-14 18:00 UTC — TASK-000
 
 Summary:

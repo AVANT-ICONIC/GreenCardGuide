@@ -146,6 +146,14 @@ None currently.
 
 ## Done
 
+### TASK-008 — Make autonomous loop blocker-resilient
+Status: Done
+Priority: P0
+Depends on: none
+
+Summary:
+Updated `docs/AGENT_LOOP.md` and the README operator prompt so blocked tasks are documented, contained, and bypassed instead of stopping the whole autonomous loop.
+
 ### TASK-000 — Add autonomous repo loop docs
 Status: Done
 Priority: P0

@@ -122,7 +122,8 @@ Then choose the highest-priority ready task from `docs/TASK_QUEUE.md`.
 Implement it fully, validate your changes, and update both `docs/WORK_LOG.md` and `docs/TASK_QUEUE.md` before stopping.
 
 After updating those files, return to `docs/AGENT_LOOP.md` and continue the loop.
-Only stop if you hit a documented stop condition or a true blocker that requires human input.
+If a task hits a stop condition or true blocker, document it, contain it, update the queue, and continue with the next highest-priority actionable task.
+Only treat the repository as blocked if no meaningful safe progress remains anywhere in the queue.
 Do not skip documentation updates.
 Do not invent requirements beyond the repo docs.
 Prefer small, coherent, shippable increments.

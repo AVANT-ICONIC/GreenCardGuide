@@ -49,7 +49,7 @@ The product is not legal advice. It is an operational preparation tool built on 
 
 ## Work loop
 
-Repeat the following loop until you hit a documented stop condition.
+Repeat the following loop continuously. If a task hits a blocker or stop condition, document it, contain it, and continue with the next highest-priority actionable work.
 
 1. Read this file and the current project state files listed above.
 2. Open `docs/TASK_QUEUE.md`.
@@ -58,7 +58,8 @@ Repeat the following loop until you hit a documented stop condition.
 5. Validate your changes.
 6. Update `docs/WORK_LOG.md` with what you changed, decisions made, validations run, blockers, and the recommended next task.
 7. Update `docs/TASK_QUEUE.md` to reflect completed work, newly unblocked tasks, status changes, or follow-on tasks.
-8. Return to this file and begin the next cycle.
+8. If the current task cannot be completed cleanly, record the blocker, downgrade or split scope as needed, and select the next highest-priority task that is still actionable.
+9. Return to this file and begin the next cycle.
 
 ## Task selection rules
 
@@ -109,15 +110,33 @@ Also update any affected source-of-truth docs, such as:
 - `docs/content/CONTENT_MODEL.md`
 - `README.md`
 
-## Stop conditions
+## Blocker handling rules
 
-Stop and report clearly if any of the following are true:
+Do not halt the overall work loop when one task is blocked. Instead:
+
+1. Record the blocker clearly in `docs/WORK_LOG.md`, including what was attempted, what remains unknown, and the smallest safe next step.
+2. Update `docs/TASK_QUEUE.md` so the blocked task reflects reality:
+   - mark it `Blocked` if it truly cannot proceed right now
+   - or split it into a blocked portion plus one or more smaller `Ready` follow-on tasks
+3. Continue with the highest-priority task that is still actionable and does not depend on the blocker.
+4. Prefer containment over stopping:
+   - if a product decision is missing, implement the surrounding deterministic scaffolding and leave the decision-sensitive portion isolated
+   - if source-backed content is ambiguous, avoid publishing the disputed claim and continue with infrastructure, placeholders, or unaffected flows
+   - if secrets or paid services are missing, build interfaces, mocks, local adapters, or docs-backed scaffolding that can be completed without them
+   - if trust-sensitive content needs review, mark that content as pending review and continue with non-sensitive implementation
+5. Only treat the repository as globally blocked when no meaningful `Ready` work remains that can be advanced safely.
+
+## Escalation conditions
+
+Escalate clearly in the docs if any of the following are true, but still continue with other actionable work whenever possible:
 
 1. A required product decision is missing and cannot be reasonably inferred from the repository.
 2. A source-backed immigration requirement is ambiguous or conflicts with existing project guidance.
 3. The next task requires external credentials, paid services, or environment secrets not present in the repository.
 4. The repository enters a broken state that cannot be repaired within the current work cycle.
 5. The remaining work depends on human review of trust-sensitive content.
+
+If one of these conditions affects only part of the backlog, quarantine that part and keep going elsewhere.
 
 ## Output expectations for each cycle
 
