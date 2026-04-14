@@ -119,7 +119,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:publish` now checks publish-readiness counts, required gates, blocked-route posture, and required `/admin/content` publish markers against the current read-only scaffold.
 
 ### TASK-047 — Add content diff validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -138,7 +138,7 @@ Validation:
 - `npm run build`
 - the new content-diff validation command
 Notes:
-- Keep assertions tied to current deterministic route structure, locale key alignment, and diff-status output instead of future editorial workflows.
+- Completed 2026-04-14. `npm run validate:content-diff` now checks aligned versus flagged diff counts, current locale-shape details, and required `/admin/content` diff markers against the structural-diff scaffold.
 
 ### TASK-048 — Add content inventory validation coverage
 Status: Ready

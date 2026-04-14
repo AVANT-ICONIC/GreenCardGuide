@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:01 UTC — TASK-047
+
+Summary:
+- Added a dedicated `npm run validate:content-diff` smoke check for the `/admin/content` structural diff scaffold.
+- Locked in the current fully aligned diff posture across guides, FAQ, glossary, documents, and the Ciudad Juarez hub.
+- Covered aligned-versus-flagged counts, key locale-shape detail rows, and the diff markers rendered by the admin content page.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateContentDiff.ts
+
+Decisions:
+- Reused `loadContentDiffSummary()` directly so the validator stays aligned with the current structural-diff assembler rather than duplicating locale comparison logic.
+- Asserted concrete detail strings for FAQ keys, glossary term keys, and documents categories so structural drift is caught before the admin content page becomes misleading.
+- Kept the check read-only and server-free by validating the component markers from source instead of adding rendered-route automation.
+
+Validation:
+- Ran `npm run validate:content-diff`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included eight aligned routes and zero flagged entries.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-048
+
+---
+
 ### 2026-04-14 22:00 UTC — TASK-046
 
 Summary:

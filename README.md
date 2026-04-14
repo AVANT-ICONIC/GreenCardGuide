@@ -62,6 +62,7 @@ Validation:
 npm run validate:seed
 npm run validate:admin
 npm run validate:checklist
+npm run validate:content-diff
 npm run validate:feedback
 npm run validate:feedback-summary
 npm run validate:publish
@@ -99,6 +100,7 @@ Current state:
 - `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
 - `npm run validate:reviews` now exercises review-queue ordering and metadata assembly as a repeatable smoke check.
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
+- `npm run validate:content-diff` now checks content diff counts, per-surface alignment posture, and key `/admin/content` diff markers.
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
