@@ -67,6 +67,7 @@ npm run validate:content-inventory
 npm run validate:documents
 npm run validate:feedback
 npm run validate:feedback-summary
+npm run validate:guides
 npm run validate:publish
 npm run validate:rule-integrity
 npm run validate:rules
@@ -109,6 +110,7 @@ Current state:
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
+- `npm run validate:guides` now checks guide slugs, bilingual guide structure, shared review metadata, and mapped source posture across the current guide routes.
 - `npm run validate:publish` now checks publish-readiness counts, required gates, blocker assembly, and key `/admin/content` publish markers.
 - `npm run validate:rule-integrity` now checks that seeded rule document references resolve and that the assembled checklist output still lands in the expected deterministic sections.
 - `npm run validate:source-dashboard` now validates source coverage counts and watchlist route linkage for the admin sources surface.
@@ -197,20 +199,9 @@ Supporting project-state files:
 Recommended operator prompt:
 
 ```text
+Use `$repo-work-loop`.
+
 Read `docs/AGENT_LOOP.md` and follow it exactly.
-
-Start by reading the required project documents in the order specified there.
-If `docs/TASK_QUEUE.md` has fewer than 3 ready tasks, inspect the codebase, docs, placeholders, TODOs, incomplete flows, trust gaps, and recent work, then add specific ready tasks before implementing.
-Then choose the highest-priority ready task from `docs/TASK_QUEUE.md`.
-Implement it fully, validate your changes, update both `docs/WORK_LOG.md` and `docs/TASK_QUEUE.md`, then commit and push the completed work before continuing.
-
-After updating those files, return to `docs/AGENT_LOOP.md` and continue the loop.
-If a task hits a stop condition or true blocker, document it, contain it, update the queue, and continue with the next highest-priority actionable task.
-Only treat the repository as blocked if no meaningful safe progress remains anywhere in the queue.
-Do not stop just because the queue is thin; refill it and continue in the same run.
-Do not stop just because one task or commit cycle ended at a clean boundary; continue looping until the repository is truly blocked or no meaningful safe progress remains.
-Do not skip documentation updates.
-Do not skip the per-cycle commit and push unless push is unsafe or impossible; in that case record the issue clearly in `docs/WORK_LOG.md`.
+Treat `docs/AGENT_LOOP.md` as the repository's source of truth for workflow, queue refill, blocker handling, validation, documentation updates, and git expectations.
 Do not invent requirements beyond the repo docs.
-Prefer small, coherent, shippable increments.
 ```

@@ -207,7 +207,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping through the shared loader.
 
 ### TASK-051 — Add guide loader validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -226,7 +226,7 @@ Validation:
 - `npm run build`
 - the new guide validation command
 Notes:
-- Keep the assertions tied to the current route set, section structure, and source mapping instead of future editorial copy changes.
+- Completed 2026-04-14. `npm run validate:guides` now checks guide slugs, bilingual section counts, shared review metadata, and mapped source posture through the shared guide loader.
 
 ### TASK-052 — Add FAQ and glossary loader validation coverage
 Status: Ready
@@ -249,6 +249,28 @@ Validation:
 - the new FAQ/glossary validation command
 Notes:
 - Keep the assertions anchored to stable keys, review metadata, and source mappings rather than future editorial wording.
+
+### TASK-053 — Add Ciudad Juarez hub loader validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the Ciudad Juarez hub trust metadata and source mapping in both locales.
+Deliverables:
+- a lightweight validation script that exercises bilingual hub loader output, review metadata, confidence label, and mapped source references
+- assertions covering the current placeholder posture and shared route trust scaffolding
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- hub loader regressions can be caught without manually opening `/[lang]/ciudad-juarez`
+- the validation remains aligned with the current placeholder hub scaffold and mapped source registry
+- the check reuses the shared hub loader instead of duplicating trust-metadata assembly logic
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new hub validation command
+Notes:
+- Keep the assertions tied to trust metadata and source mapping, not future editorial section content that does not exist yet.
 
 ## Blocked
 

@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:10 UTC — TASK-051
+
+Summary:
+- Added a dedicated `npm run validate:guides` smoke check for the bilingual guide loader scaffold.
+- Locked in the current guide baseline across all four routes in both locales: stable slug order, two sections per guide, shared review date, and the existing two-source mapping.
+- Refilled the queue with `TASK-053` for Ciudad Juarez hub loader validation before implementation because the ready queue had dropped below the minimum threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateGuidePages.ts
+
+Decisions:
+- Reused `listGuideSlugs()` and `loadGuidePage()` so the validator exercises the live guide loader and source-mapping path instead of duplicating guide assembly logic.
+- Asserted exact slug order and localized titles so route-shape drift is caught before it affects the guide route scaffold or admin inventory.
+- Kept this cycle's validation clean with `lint`, `build`, and `typecheck` all succeeding without the `.next/types` rerun needed in the previous task.
+
+Validation:
+- Ran `npm run validate:guides`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected slug order, bilingual titles, section counts, and review dates.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-052
+
+---
+
 ### 2026-04-14 22:08 UTC — TASK-050
 
 Summary:
