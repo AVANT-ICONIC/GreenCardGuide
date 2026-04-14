@@ -16,6 +16,22 @@
     "is_active": true
   },
   {
+    "rule_key": "base-sponsor-financial-packet",
+    "conditions": {
+      "post": "ciudad-juarez",
+      "case_family": "family-based"
+    },
+    "output_type": "required_document",
+    "output_payload": {
+      "document_slug": "i-864",
+      "strength": "required",
+      "notes_en": "Bring the sponsor financial packet, including the Affidavit of Support (I-864), for the family-based case.",
+      "notes_es": "Lleve el paquete financiero del patrocinador, incluyendo la Declaracion jurada de patrocinio (I-864), para el caso familiar."
+    },
+    "priority": 105,
+    "is_active": true
+  },
+  {
     "rule_key": "joint-sponsor-packet",
     "conditions": {
       "post": "ciudad-juarez",

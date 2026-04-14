@@ -16,7 +16,21 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-028 — Add passport readiness risk flag
+Status: Ready
+Priority: P1
+Depends on: TASK-003, TASK-004, TASK-005
+
+Summary:
+Add a deterministic risk flag for cases where the applicant does not have a current passport ready so the checklist reflects the existing `passport_ready` input.
+
+### TASK-029 — Add court-record caution rule
+Status: Ready
+Priority: P1
+Depends on: TASK-003, TASK-004, TASK-005
+
+Summary:
+Add a conservative `verify_with_official` checklist rule for cases with arrests or court records so the existing `needs_court_records` input produces a trust-safe output.
 
 ## Blocked
 
@@ -215,6 +229,14 @@ Depends on: TASK-012, TASK-018, TASK-020
 
 Summary:
 Extended `/admin/sources` with a deterministic source-change review task watchlist that maps each registered source to affected routes without claiming live monitoring exists.
+
+### TASK-027 — Add base sponsor financial packet rule
+Status: Done
+Priority: P1
+Depends on: TASK-003, TASK-004, TASK-005
+
+Summary:
+Extended the seeded checklist rules so family-based cases surface the base sponsor financial packet through the existing `i-864` document instead of only mentioning joint-sponsor materials.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

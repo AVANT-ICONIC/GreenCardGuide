@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:56 UTC — TASK-027
+
+Summary:
+- Added a base family-based checklist rule for the sponsor financial packet using the existing `i-864` document definition.
+- Kept the existing joint-sponsor rule intact so the result set now expresses both the base sponsor packet and the extra joint-sponsor packet when applicable.
+- Verified the assembled required-documents section now includes `i-864` for the baseline Ciudad Juarez family-based case.
+
+Files changed:
+- README.md
+- data/seed/requirement-rules.json
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+
+Decisions:
+- Reused the existing `i-864` document definition rather than introducing a second overlapping financial document concept.
+- Scoped the rule to the same base Ciudad Juarez family-based conditions as the current passport requirement, keeping this as a small deterministic rule increment.
+- Left sponsor-helper-specific branching for a later task so the rule change stays focused on the missing financial packet output already implied by the seed data model.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran a direct assembler smoke check for `{ post: 'ciudad-juarez', case_family: 'family-based' }` and confirmed `i-864` now appears in `required_documents`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-028
+
+---
+
 ### 2026-04-14 20:52 UTC — TASK-026
 
 Summary:
