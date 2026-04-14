@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:52 UTC — TASK-026
+
+Summary:
+- Extended `/admin/sources` with a deterministic source-change review task watchlist.
+- Derived one watch task per registered source and linked each task to the currently affected placeholder content routes.
+- Kept the feature explicit that it is a read-only planning scaffold and not a live snapshot, alerting, or monitoring system.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-sources-page.tsx
+- src/lib/admin/loadSourceChangeReviewTasks.ts
+
+Decisions:
+- Derived affected routes from the existing review queue so the task watchlist stays aligned with the current content surfaces already represented in admin.
+- Used a simple `watching` versus `needs_baseline_review` status model because the repository does not yet have real source snapshots or change events.
+- Added the watchlist to `/admin/sources` rather than creating a new route, keeping all source-oriented maintenance scaffolding in one truthful place.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/sources`.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 20:51 UTC — TASK-025
 
 Summary:

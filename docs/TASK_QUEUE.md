@@ -16,13 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-026 — Add source-change review task scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-012, TASK-018, TASK-020
-
-Summary:
-Add a deterministic scaffold for source-change review tasks so the trust/update layer can represent how source updates would create follow-up review work before live monitoring exists.
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -213,6 +207,14 @@ Depends on: TASK-007, TASK-013, TASK-021, TASK-023
 
 Summary:
 Added shared last-reviewed metadata for the current public content surfaces so each page can show review recency and the admin publish-readiness scaffold can evaluate a real date field.
+
+### TASK-026 — Add source-change review task scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-012, TASK-018, TASK-020
+
+Summary:
+Extended `/admin/sources` with a deterministic source-change review task watchlist that maps each registered source to affected routes without claiming live monitoring exists.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

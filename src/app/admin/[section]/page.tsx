@@ -8,6 +8,7 @@ import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
 import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
+import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
 import { loadChecklistQuestions, loadRequirementRules } from '@/lib/seed/loadSeedData';
@@ -40,7 +41,12 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'sources') {
-    return <AdminSourcesPage references={loadSourceReferences()} />;
+    return (
+      <AdminSourcesPage
+        references={loadSourceReferences()}
+        tasks={loadSourceChangeReviewTasks()}
+      />
+    );
   }
 
   if (section === 'rules') {

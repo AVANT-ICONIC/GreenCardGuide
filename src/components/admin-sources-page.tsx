@@ -1,10 +1,13 @@
 import Link from 'next/link';
+import type { SourceChangeReviewTask } from '@/lib/admin/loadSourceChangeReviewTasks';
 import type { SourceReference } from '@/lib/types/domain';
 
 export function AdminSourcesPage({
   references,
+  tasks,
 }: {
   references: SourceReference[];
+  tasks: SourceChangeReviewTask[];
 }) {
   return (
     <main className="app-shell">
@@ -19,6 +22,9 @@ export function AdminSourcesPage({
         <article className="hero__card content-meta">
           <p>
             <strong>Registry entries:</strong> {references.length}
+          </p>
+          <p>
+            <strong>Source-change tasks:</strong> {tasks.length}
           </p>
           <p>
             <strong>Status:</strong> Read-only scaffold
@@ -59,6 +65,40 @@ export function AdminSourcesPage({
                   Open reference
                 </a>
               </div>
+            </article>
+          ))}
+        </div>
+
+        <article className="hero__card content-meta">
+          <p>
+            <strong>Task posture:</strong> Deterministic watchlist only
+          </p>
+          <p>
+            <strong>Current limitation:</strong> No automated source snapshots
+            or change alerts exist yet.
+          </p>
+        </article>
+
+        <div className="guide-sections">
+          {tasks.map((task) => (
+            <article key={task.task_key} className="hero__card">
+              <h2>{task.source_title}</h2>
+              <p>{task.note}</p>
+              <p className="results-section__confidence">{task.status}</p>
+              <ul className="results-list">
+                <li>
+                  <strong>Task key:</strong> {task.task_key}
+                </li>
+                <li>
+                  <strong>Source key:</strong> {task.source_key}
+                </li>
+                <li>
+                  <strong>Trigger:</strong> {task.trigger}
+                </li>
+                <li>
+                  <strong>Affected routes:</strong> {task.affected_routes.join(', ')}
+                </li>
+              </ul>
             </article>
           ))}
         </div>

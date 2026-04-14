@@ -86,6 +86,7 @@ Current state:
 - FAQ and glossary content now use stable bilingual identifiers so admin diffing can compare locale structures cleanly.
 - `/admin/content` now also exposes a truthful publish-readiness scaffold based on review status, source references, and last-reviewed tracking gates.
 - Current guide, FAQ, glossary, documents, and Ciudad Juarez hub pages now expose explicit last-reviewed dates through a shared review-metadata scaffold.
+- `/admin/sources` now includes a deterministic source-change review task watchlist that maps registered sources to affected content surfaces.
 
 ## Non-negotiables
 
