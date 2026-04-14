@@ -18,3 +18,25 @@ export interface GuidePageContent {
   last_reviewed_at?: string;
   source_references: string[];
 }
+
+export interface FaqItemContent {
+  key: string;
+  language: Language;
+  question: string;
+  answer: string;
+  tags: string[];
+  confidence_label: ConfidenceLabel;
+  review_status: ContentReviewStatus;
+  source_references: string[];
+}
+
+export interface GlossaryTermContent {
+  term_key: string;
+  language: Language;
+  term: string;
+  definition: string;
+  related_terms: string[];
+  confidence_label: ConfidenceLabel;
+  review_status: ContentReviewStatus;
+  source_references: string[];
+}

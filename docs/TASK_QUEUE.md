@@ -16,24 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-011 — Add FAQ and glossary route scaffolds
-Status: Ready
-Priority: P2
-Depends on: TASK-007
-
-Objective:
-Create initial FAQ and glossary route scaffolds aligned with the information architecture.
-
-Deliverables:
-- `/[lang]/faq` route scaffold
-- `/[lang]/glossary` route scaffold
-- reusable localized content-loading pattern where practical
-
-Acceptance Criteria:
-- both routes exist for both locales
-- placeholder vs verified status is explicit
-- structure is ready for future typed content expansion
-
 ### TASK-012 — Add source registry stub data surface
 Status: Ready
 Priority: P2
@@ -121,6 +103,14 @@ Depends on: TASK-002, TASK-007
 
 Summary:
 Added `/[lang]/ciudad-juarez` with bilingual placeholder hub content, trust-status framing, and deterministic links into the current checklist and guide routes.
+
+### TASK-011 — Add FAQ and glossary route scaffolds
+Status: Done
+Priority: P2
+Depends on: TASK-007
+
+Summary:
+Added bilingual `/[lang]/faq` and `/[lang]/glossary` routes backed by typed placeholder content loaders and explicit placeholder-vs-verified trust states.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -29,6 +29,47 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:48 UTC — TASK-011
+
+Summary:
+- Added bilingual FAQ and glossary content registries and loader helpers.
+- Added localized `/[lang]/faq` and `/[lang]/glossary` routes.
+- Reused the placeholder-vs-verified content model so these routes stay aligned with the guide content scaffolding.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/faq/page.tsx
+- src/app/[lang]/glossary/page.tsx
+- src/components/faq-page.tsx
+- src/components/glossary-page.tsx
+- src/content/faq.ts
+- src/content/glossary.ts
+- src/lib/content/loadFaq.ts
+- src/lib/content/loadGlossary.ts
+- src/lib/content/types.ts
+
+Decisions:
+- Kept FAQ and glossary content in the same typed in-repo content pattern as guides so future content expansion does not fork into route-specific ad hoc data shapes.
+- Marked all entries as placeholder and `verify_with_official` to avoid overstating trust before source references exist.
+- Limited the first glossary to a small bilingual seed set because this task is about route and loader structure, not comprehensive terminology coverage.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en/faq`, `/es/faq`, `/en/glossary`, and `/es/glossary`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-012
+
+---
+
 ### 2026-04-14 19:46 UTC — TASK-010
 
 Summary:
