@@ -16,13 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-029 — Add court-record caution rule
-Status: Ready
-Priority: P1
-Depends on: TASK-003, TASK-004, TASK-005
-
-Summary:
-Add a conservative `verify_with_official` checklist rule for cases with arrests or court records so the existing `needs_court_records` input produces a trust-safe output.
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -237,6 +231,14 @@ Depends on: TASK-003, TASK-004, TASK-005
 
 Summary:
 Added a deterministic risk flag for cases where the applicant does not have a current passport ready so the checklist reflects the existing `passport_ready` input.
+
+### TASK-029 — Add court-record caution rule
+Status: Done
+Priority: P1
+Depends on: TASK-003, TASK-004, TASK-005
+
+Summary:
+Added a conservative `verify_with_official` checklist rule for cases with arrests or court records so the existing `needs_court_records` input produces a trust-safe output.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

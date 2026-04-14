@@ -94,6 +94,20 @@
     "is_active": true
   },
   {
+    "rule_key": "court-records-verify-official",
+    "conditions": {
+      "needs_court_records": true
+    },
+    "output_type": "verify_with_official",
+    "output_payload": {
+      "item_key": "court-record-review",
+      "notes_en": "If arrests or court records may be relevant, gather the available records and verify the exact document expectations with official instructions or qualified legal help before travel.",
+      "notes_es": "Si arrestos o expedientes judiciales pueden ser relevantes, junte los documentos disponibles y verifique las expectativas exactas con instrucciones oficiales o ayuda legal calificada antes de viajar."
+    },
+    "priority": 126,
+    "is_active": true
+  },
+  {
     "rule_key": "night-before-print-check",
     "conditions": {
       "post": "ciudad-juarez"

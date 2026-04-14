@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:58 UTC — TASK-029
+
+Summary:
+- Added a conservative `verify_with_official` rule for cases where `needs_court_records` is true.
+- Wired the existing arrests/court-records answer into the checklist output so the flow no longer drops that high-risk input on the floor.
+- Kept the output trust-safe by directing users to gather available records and verify exact expectations with official instructions or qualified legal help.
+
+Files changed:
+- README.md
+- data/seed/requirement-rules.json
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+
+Decisions:
+- Used `verify_with_official` rather than a document requirement because criminal-history and court-record scenarios are explicitly high-risk in the trust docs.
+- Left the rule broad and conservative, avoiding unsupported claims about which exact documents are always required.
+- Scoped the change to the existing seed answer without adding new branching or UI so the increment remains small and deterministic.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran a direct assembler smoke check for `{ post: 'ciudad-juarez', case_family: 'family-based', needs_court_records: true }` and confirmed the `verify_with_official` section now includes the court-record caution.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 20:57 UTC — TASK-028
 
 Summary:
