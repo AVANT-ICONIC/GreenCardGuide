@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "passport",
+    "label_en": "Passport",
+    "label_es": "Pasaporte",
+    "category": "identity"
+  },
+  {
+    "slug": "appointment-letter",
+    "label_en": "Appointment Letter",
+    "label_es": "Carta de cita",
+    "category": "appointment"
+  },
+  {
+    "slug": "ds-260-confirmation",
+    "label_en": "DS-260 Confirmation",
+    "label_es": "Confirmación DS-260",
+    "category": "appointment"
+  },
+  {
+    "slug": "birth-certificate",
+    "label_en": "Birth Certificate",
+    "label_es": "Acta de nacimiento",
+    "category": "civil"
+  },
+  {
+    "slug": "marriage-certificate",
+    "label_en": "Marriage Certificate",
+    "label_es": "Acta de matrimonio",
+    "category": "civil"
+  },
+  {
+    "slug": "marriage-termination-records",
+    "label_en": "Marriage Termination Records",
+    "label_es": "Documentos de terminación de matrimonio",
+    "category": "civil"
+  },
+  {
+    "slug": "i-864",
+    "label_en": "Affidavit of Support (I-864)",
+    "label_es": "Declaración jurada de patrocinio (I-864)",
+    "category": "financial"
+  },
+  {
+    "slug": "joint-sponsor-financial-packet",
+    "label_en": "Joint Sponsor Financial Packet",
+    "label_es": "Paquete financiero del copatrocinador",
+    "category": "financial"
+  },
+  {
+    "slug": "child-birth-certificates",
+    "label_en": "Children's Birth Certificates",
+    "label_es": "Actas de nacimiento de los hijos",
+    "category": "civil"
+  }
+]

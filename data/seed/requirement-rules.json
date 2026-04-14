@@ -1,0 +1,79 @@
+[
+  {
+    "rule_key": "base-cdj-family-documents",
+    "conditions": {
+      "post": "ciudad-juarez",
+      "case_family": "family-based"
+    },
+    "output_type": "required_document",
+    "output_payload": {
+      "document_slug": "passport",
+      "strength": "required",
+      "notes_en": "Bring a valid passport and core interview confirmations.",
+      "notes_es": "Lleve un pasaporte vigente y las confirmaciones principales de la cita."
+    },
+    "priority": 100,
+    "is_active": true
+  },
+  {
+    "rule_key": "joint-sponsor-packet",
+    "conditions": {
+      "post": "ciudad-juarez",
+      "case_family": "family-based",
+      "joint_sponsor": true
+    },
+    "output_type": "conditional_document",
+    "output_payload": {
+      "document_slug": "joint-sponsor-financial-packet",
+      "strength": "required",
+      "notes_en": "Include joint sponsor financial evidence if a joint sponsor is part of the case.",
+      "notes_es": "Incluya la evidencia financiera del copatrocinador si forma parte del caso."
+    },
+    "priority": 120,
+    "is_active": true
+  },
+  {
+    "rule_key": "prior-marriage-records",
+    "conditions": {
+      "has_prior_marriage": true
+    },
+    "output_type": "conditional_document",
+    "output_payload": {
+      "document_slug": "marriage-termination-records",
+      "strength": "required",
+      "notes_en": "Bring records showing how prior marriages ended when applicable.",
+      "notes_es": "Lleve documentos que demuestren cómo terminaron matrimonios anteriores, si aplica."
+    },
+    "priority": 110,
+    "is_active": true
+  },
+  {
+    "rule_key": "children-birth-certs",
+    "conditions": {
+      "children_immigrating": true
+    },
+    "output_type": "conditional_document",
+    "output_payload": {
+      "document_slug": "child-birth-certificates",
+      "strength": "required",
+      "notes_en": "Bring the required civil documents for each immigrating child.",
+      "notes_es": "Lleve los documentos civiles requeridos para cada hijo que inmigrará."
+    },
+    "priority": 115,
+    "is_active": true
+  },
+  {
+    "rule_key": "night-before-print-check",
+    "conditions": {
+      "post": "ciudad-juarez"
+    },
+    "output_type": "print_item",
+    "output_payload": {
+      "item_key": "confirmations-and-letters",
+      "notes_en": "Print your appointment and confirmation pages before travel.",
+      "notes_es": "Imprima sus cartas y páginas de confirmación antes de viajar."
+    },
+    "priority": 130,
+    "is_active": true
+  }
+]

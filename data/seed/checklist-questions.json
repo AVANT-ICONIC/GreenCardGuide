@@ -1,0 +1,61 @@
+[
+  {
+    "key": "post",
+    "label_en": "Where is the interview?",
+    "label_es": "¿Dónde es la entrevista?",
+    "input_type": "select",
+    "options": ["ciudad-juarez"],
+    "step_order": 1
+  },
+  {
+    "key": "case_family",
+    "label_en": "What kind of immigrant visa case is this?",
+    "label_es": "¿Qué tipo de caso de visa de inmigrante es?",
+    "input_type": "select",
+    "options": ["family-based"],
+    "step_order": 2
+  },
+  {
+    "key": "applicant_role",
+    "label_en": "Who are you preparing for?",
+    "label_es": "¿Para quién está preparando esto?",
+    "input_type": "select",
+    "options": ["principal-applicant", "derivative-applicant", "sponsor-helper"],
+    "step_order": 3
+  },
+  {
+    "key": "joint_sponsor",
+    "label_en": "Is there a joint sponsor?",
+    "label_es": "¿Hay copatrocinador?",
+    "input_type": "boolean",
+    "step_order": 4
+  },
+  {
+    "key": "has_prior_marriage",
+    "label_en": "Has the applicant or petitioner had a prior marriage?",
+    "label_es": "¿El solicitante o peticionario tuvo un matrimonio anterior?",
+    "input_type": "boolean",
+    "step_order": 5
+  },
+  {
+    "key": "children_immigrating",
+    "label_en": "Are children immigrating too?",
+    "label_es": "¿También están inmigrando hijos?",
+    "input_type": "boolean",
+    "step_order": 6
+  },
+  {
+    "key": "needs_court_records",
+    "label_en": "Are there arrests or court records that may need documentation?",
+    "label_es": "¿Hay arrestos o expedientes judiciales que puedan requerir documentación?",
+    "input_type": "boolean",
+    "step_order": 7
+  },
+  {
+    "key": "passport_ready",
+    "label_en": "Does the applicant have a current passport ready?",
+    "label_es": "¿El solicitante tiene un pasaporte vigente listo?",
+    "input_type": "boolean",
+    "step_order": 8
+  }
+]
