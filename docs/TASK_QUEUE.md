@@ -67,8 +67,130 @@ Notes:
 
 ## Ready
 
-### TASK-082 — Link checklist document items to seeded document detail routes
+### TASK-085 — Promote the document library from the Ciudad Juarez hub
 Status: Ready
+Priority: P1
+Depends on: TASK-081
+Objective:
+- Turn the Ciudad Juarez hub into stronger wayfinding by surfacing the document library and seeded packet-planning path alongside the existing checklist shortcuts.
+Deliverables:
+- hub updates that add or strengthen links into the documents overview and seeded packet guide
+- copy updates that explain when to use the checklist versus the document library without claiming verified editorial guidance
+- any small route or component cleanup needed to keep the hub aligned with the current deterministic product scope
+Acceptance Criteria:
+- the hub no longer acts as a mostly placeholder orientation page once the document library and packet guide exist
+- users can move from the post hub into checklist, documents, and packet-planning surfaces through explicit navigation
+- the route remains truthful about placeholder trust posture and does not invent new Ciudad Juarez process claims
+Validation:
+- `npm run validate:ciudad-juarez`
+- `npm run validate:documents`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on deterministic navigation and framing, not new content claims or broader hub redesign.
+
+### TASK-086 — Add packet-guide wayfinding from document detail pages
+Status: Ready
+Priority: P1
+Depends on: TASK-084
+Objective:
+- Let each seeded document detail page point users back into the packet-planning flow instead of acting as an isolated leaf route.
+Deliverables:
+- document detail updates that link back into the `what-to-bring` guide and the checklist path where useful
+- any small loader or component cleanup needed to keep those hrefs shared and locale-safe
+- validation updates if the document-detail surface materially changes
+Acceptance Criteria:
+- document detail pages no longer strand users after they inspect one seeded document
+- the added wayfinding stays conservative and routes users into existing deterministic surfaces rather than new editorial claims
+- locale-aware navigation remains correct for both English and Spanish document pages
+Validation:
+- `npm run validate:documents`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on route continuity and deterministic navigation, not deeper document editorial expansion.
+
+### TASK-087 — Add shared guide-to-guide wayfinding across prep surfaces
+Status: Ready
+Priority: P2
+Depends on: TASK-084
+Objective:
+- Keep the current guide routes from feeling like dead ends by giving users deterministic next-step navigation between packet, format, timing, and mistake-prevention surfaces.
+Deliverables:
+- a shared guide-navigation pattern or content data path for adjacent guide links
+- route or component updates so each guide points toward the next relevant prep surface
+- validation updates if the rendered guide structure materially changes
+Acceptance Criteria:
+- guide pages give users at least one deterministic next step instead of trapping them on isolated scaffolds
+- the navigation respects the current product scope and does not imply source-backed content that the repo does not have yet
+- the shared pattern stays bilingual and route-safe across the existing guide set
+Validation:
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on navigation continuity and reusable structure, not new guide copy claims.
+
+## Blocked
+
+None currently.
+
+## Done
+
+Recent completed tasks:
+
+### TASK-084 — Turn the bring-list guide into a seeded packet guide
+Status: Done
+Priority: P1
+Depends on: TASK-083
+Objective:
+- Replace the current placeholder `what-to-bring` guide with a deterministic packet guide assembled from the existing document library and active rule references.
+Deliverables:
+- a shared loader or guide-content path that groups the current seeded documents into clear packet sections for the bring-list guide
+- updates to the `what-to-bring` guide so it shows deterministic packet structure and links into seeded document detail routes where useful
+- docs and guide/documents validation updates if the route surface materially changes
+Acceptance Criteria:
+- the `what-to-bring` guide becomes a useful bilingual orientation surface instead of pure placeholder prose
+- the page stays conservative by reusing current document and rule seeds rather than inventing new interview guidance
+- users can move from the guide into the seeded document library without hitting another dead end
+Validation:
+- `npm run validate:guides`
+- `npm run validate:documents`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. The `what-to-bring` guide now groups checklist-first actions, core packet documents, conditional packet branches, and uncovered library items while linking directly into the seeded bilingual document-detail routes.
+
+### TASK-083 — Summarize document coverage in the overview
+Status: Done
+Priority: P1
+Depends on: TASK-081
+Objective:
+- Show which seeded documents are already covered by active checklist rules and which remain uncovered.
+Deliverables:
+- a shared per-document coverage summary derived from the active deterministic rule set
+- bilingual documents overview updates that expose covered and uncovered states
+- validation updates that lock in both summary states
+Acceptance Criteria:
+- users can tell which seeded documents are already surfaced by active rules
+- uncovered documents remain visible without being presented as universal requirements
+- the overview stays grounded in current structured rule data rather than new guidance
+Validation:
+- `npm run validate:documents`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-15. The documents overview now shows current rule coverage counts and keeps uncovered seeded documents visible as explicit gaps in deterministic coverage.
+
+### TASK-082 — Link checklist document items to seeded document detail routes
+Status: Done
 Priority: P1
 Depends on: TASK-081
 Objective:
@@ -88,62 +210,7 @@ Validation:
 - `npm run typecheck`
 - `npm run build`
 Notes:
-- Keep the scope on navigation and deterministic document context, not broader checklist redesign.
-
-### TASK-083 — Turn the bring-list guide into a seeded packet guide
-Status: Ready
-Priority: P1
-Depends on: TASK-081
-Objective:
-- Replace the current placeholder `what-to-bring` guide with a deterministic packet guide assembled from the existing document library and active rule references.
-Deliverables:
-- a shared loader or guide-content path that groups the current seeded documents into clear packet sections for the bring-list guide
-- updates to the `what-to-bring` guide so it shows deterministic packet structure and links into seeded document detail routes where useful
-- docs and guide/documents validation updates if the route surface materially changes
-Acceptance Criteria:
-- the `what-to-bring` guide becomes a useful bilingual orientation surface instead of pure placeholder prose
-- the page stays conservative by reusing current document and rule seeds rather than inventing new interview guidance
-- users can move from the guide into the seeded document library without hitting another dead end
-Validation:
-- `npm run validate:guides`
-- `npm run validate:documents`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- Keep the scope on deterministic packet structure and navigation, not new editorial requirements or unsupported case branches.
-
-### TASK-084 — Promote the document library from the Ciudad Juarez hub
-Status: Ready
-Priority: P1
-Depends on: TASK-081
-Objective:
-- Turn the Ciudad Juarez hub into stronger wayfinding by surfacing the document library and current bring-list path alongside the existing checklist shortcuts.
-Deliverables:
-- hub updates that add or strengthen links into the documents overview and seeded packet-planning surfaces
-- copy updates that explain when to use the checklist versus the document library without claiming verified editorial guidance
-- any small route or component cleanup needed to keep the hub aligned with the current deterministic product scope
-Acceptance Criteria:
-- the hub no longer acts as a mostly placeholder orientation page once the document library exists
-- users can move from the post hub into checklist, documents, and packet-planning surfaces through explicit navigation
-- the route remains truthful about placeholder trust posture and does not invent new Ciudad Juarez process claims
-Validation:
-- `npm run validate:ciudad-juarez`
-- `npm run validate:documents`
-- `npm run validate:guides`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- Keep the scope on deterministic navigation and framing, not new content claims or broader hub redesign.
-
-## Blocked
-
-None currently.
-
-## Done
-
-Recent completed tasks:
+- Completed 2026-04-15. Checklist results and print now link only document-backed items into the seeded bilingual document-detail routes through one shared href helper.
 
 ### TASK-081 — Add bilingual document detail routes from seeded data
 Status: Done

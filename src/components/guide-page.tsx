@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { GuidePageContent } from '@/lib/content/types';
 
 const guideMetaCopy = {
@@ -50,6 +51,18 @@ export function GuidePage({ page }: { page: GuidePageContent }) {
           <article key={section.heading} className="hero__card">
             <h2>{section.heading}</h2>
             <p>{section.body}</p>
+            {section.links && section.links.length > 0 ? (
+              <ul className="results-list">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <strong>
+                      <Link href={link.href}>{link.label}</Link>
+                    </strong>
+                    {link.description ? <p>{link.description}</p> : null}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </article>
         ))}
       </div>

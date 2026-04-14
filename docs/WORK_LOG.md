@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 00:54 UTC — TASK-084
+
+Summary:
+- Replaced the placeholder `what-to-bring` guide with a deterministic packet guide built from the current seeded documents and active checklist rule coverage.
+- Extended the shared guide content shape and renderer so guide sections can expose localized next-step links without hard-coding a one-off page component.
+- Repaired the queue frontier so completed work from `TASK-082` and `TASK-083` is recorded as done and the next `Ready` tasks now reflect the current repo state.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/guide-page.tsx
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/types.ts
+- src/lib/content/validateGuidePages.ts
+
+Decisions:
+- Derived the packet sections from the existing seeded document set plus the shared coverage summary, so the guide deepens the current deterministic path without inventing new interview guidance.
+- Kept uncovered document-detail pages in the guide as explicit library references instead of hiding them, because the product should surface current deterministic gaps truthfully.
+- Added optional section-level links to the shared guide model so future guide wayfinding can reuse the same structure instead of growing special-case rendering logic.
+
+Validation:
+- Ran `npm run validate:guides`.
+- Ran `npm run validate:documents`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the production build still prerenders bilingual `/[lang]/guides/what-to-bring` routes with the new packet-guide structure.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-085
+
+---
+
 ### 2026-04-15 00:34 UTC — TASK-083
 
 Summary:

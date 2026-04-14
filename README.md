@@ -123,13 +123,14 @@ npm run build
 Current state:
 - The repository now includes a runnable Next.js App Router scaffold.
 - Locale-aware routes, the first deterministic checklist flow, and a dedicated print view are now wired.
-- A repeatable content-loading scaffold now powers bilingual placeholder guide pages.
+- A repeatable content-loading scaffold now powers bilingual guide pages, and the `what-to-bring` guide now groups the seeded packet into checklist-first, core, conditional, and uncovered-library sections.
 - A post-specific Ciudad Juarez hub route now links the checklist and guide surfaces from one bilingual entry point.
 - FAQ and glossary route scaffolds now exist for both locales using the same placeholder-vs-verified content model.
 - A typed source-registry stub now supports consistent placeholder source attachment across content surfaces.
 - A bilingual documents overview route now exposes the seeded document set through the same trust-aware content layer.
 - Bilingual document detail routes now let each seeded document explain its current deterministic checklist coverage without inventing new guidance.
 - The documents overview now distinguishes seeded documents already covered by active checklist rules from those still uncovered.
+- The `what-to-bring` guide now links directly into seeded document detail routes so users can move from packet planning into the current document library without hitting a dead end.
 - A bilingual feedback route now defines the public feedback surface, while making its non-persistent placeholder state explicit.
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
 - `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.
@@ -163,7 +164,7 @@ Current state:
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
 - `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
 - `npm run validate:faq-glossary` now checks bilingual FAQ and glossary keys, review metadata, and mapped source posture through the shared loaders.
-- `npm run validate:guides` now checks guide slugs, bilingual guide structure, shared review metadata, and mapped source posture across the current guide routes.
+- `npm run validate:guides` now checks guide slugs, bilingual guide structure, packet-guide document-link coverage, shared review metadata, and mapped source posture across the current guide routes.
 - `npm run validate:language-entry` now checks the language-entry surface markers and the rendered `English` / `Español` labels.
 - `npm run validate:locale-layout` now checks the shared `[lang]` layout markers, bilingual navigation labels, and locale-switcher framing without duplicating route behavior.
 - `npm run validate:locale` now checks the shared locale helper for the current bilingual `en` and `es` product posture.

@@ -5,6 +5,13 @@ export type ContentReviewStatus = 'placeholder' | 'verified';
 export interface GuideSectionContent {
   heading: string;
   body: string;
+  links?: GuideSectionLink[];
+}
+
+export interface GuideSectionLink {
+  label: string;
+  href: string;
+  description?: string;
 }
 
 export interface GuidePageContent {

@@ -34,8 +34,9 @@ function main() {
       `Unexpected source references for ${guide.slug}/${guide.language}: ${guide.source_references.join(',')}`,
     );
     assert(
-      guide.sections.length === 2,
-      `Expected 2 sections for ${guide.slug}/${guide.language}, received ${guide.sections.length}`,
+      guide.sections.length ===
+        (guide.slug === 'what-to-bring' ? 4 : 2),
+      `Unexpected section count for ${guide.slug}/${guide.language}: ${guide.sections.length}`,
     );
   }
 
@@ -71,6 +72,44 @@ function main() {
   assert(
     spanishTitles['common-mistakes'] === 'Errores comunes',
     'Unexpected Spanish title for common-mistakes',
+  );
+
+  const englishBringGuide = englishGuides.find((guide) => guide.slug === 'what-to-bring');
+  const spanishBringGuide = spanishGuides.find((guide) => guide.slug === 'what-to-bring');
+
+  assert(englishBringGuide, 'Expected English what-to-bring guide');
+  assert(spanishBringGuide, 'Expected Spanish what-to-bring guide');
+  assert(
+    englishBringGuide.sections[0]?.links?.length === 2,
+    `Expected 2 checklist links in English what-to-bring guide, received ${englishBringGuide.sections[0]?.links?.length ?? 0}`,
+  );
+  assert(
+    englishBringGuide.sections[1]?.links?.length === 2,
+    `Expected 2 core packet links in English what-to-bring guide, received ${englishBringGuide.sections[1]?.links?.length ?? 0}`,
+  );
+  assert(
+    englishBringGuide.sections[2]?.links?.length === 3,
+    `Expected 3 conditional packet links in English what-to-bring guide, received ${englishBringGuide.sections[2]?.links?.length ?? 0}`,
+  );
+  assert(
+    englishBringGuide.sections[3]?.links?.length === 4,
+    `Expected 4 uncovered library links in English what-to-bring guide, received ${englishBringGuide.sections[3]?.links?.length ?? 0}`,
+  );
+  assert(
+    englishBringGuide.sections[1]?.links?.[0]?.href === '/en/documents/passport',
+    `Unexpected first English core packet href: ${englishBringGuide.sections[1]?.links?.[0]?.href ?? 'missing'}`,
+  );
+  assert(
+    englishBringGuide.sections[1]?.links?.[1]?.href === '/en/documents/i-864',
+    `Unexpected second English core packet href: ${englishBringGuide.sections[1]?.links?.[1]?.href ?? 'missing'}`,
+  );
+  assert(
+    spanishBringGuide.sections[1]?.links?.[0]?.href === '/es/documents/passport',
+    `Unexpected first Spanish core packet href: ${spanishBringGuide.sections[1]?.links?.[0]?.href ?? 'missing'}`,
+  );
+  assert(
+    spanishBringGuide.sections[1]?.links?.[1]?.href === '/es/documents/i-864',
+    `Unexpected second Spanish core packet href: ${spanishBringGuide.sections[1]?.links?.[1]?.href ?? 'missing'}`,
   );
 
   console.log(
