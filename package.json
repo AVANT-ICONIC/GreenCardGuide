@@ -22,6 +22,7 @@
     "validate:faq-glossary": "tsx src/lib/content/validateFaqGlossaryPages.ts",
     "validate:guides": "tsx src/lib/content/validateGuidePages.ts",
     "validate:source-mappings": "tsx src/lib/content/validateSourceMappings.ts",
+    "validate:source-references": "tsx src/lib/content/validateSourceReferenceLoader.ts",
     "validate:publish": "tsx src/lib/admin/validatePublishReadiness.ts",
     "validate:rule-integrity": "tsx src/lib/rules/validateRuleDocumentIntegrity.ts",
     "validate:rules": "tsx src/lib/admin/validateRulesAudit.ts",

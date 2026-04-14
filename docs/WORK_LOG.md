@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:22 UTC — TASK-057
+
+Summary:
+- Added a dedicated `npm run validate:source-references` smoke check for the typed source-reference loader.
+- Locked in the current governance-reference registry baseline: three source keys, repository publishers, shared reviewed date, and repository blob URLs.
+- Kept the task scoped to the typed loader and registry posture, separate from the source-mapping registry that was completed in the previous cycle.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateSourceReferenceLoader.ts
+
+Decisions:
+- Reused `loadSourceReferences()` directly so the validator stays aligned with the typed loader instead of duplicating seed parsing logic.
+- Asserted repository publisher and blob URL posture explicitly because the current registry is intentionally governance-only and should not be mistaken for official immigration-source coverage.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:source-references`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included all three source keys, the shared reviewed date, and the expected repository URLs.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-058
+
+---
+
 ### 2026-04-14 22:20 UTC — TASK-056
 
 Summary:

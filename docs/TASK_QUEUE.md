@@ -339,7 +339,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:source-mappings` now checks per-surface source key assignments and registry order through the shared source-mapping layer.
 
 ### TASK-057 — Add source reference loader validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -358,7 +358,7 @@ Validation:
 - `npm run build`
 - the new source-reference validation command
 Notes:
-- Keep assertions tied to the current typed registry shape, not to future source expansion.
+- Completed 2026-04-14. `npm run validate:source-references` now checks source keys, reviewed dates, repository publishers, and governance-reference URL posture through the typed loader.
 
 ### TASK-058 — Add locale support validation coverage
 Status: Ready
@@ -381,6 +381,28 @@ Validation:
 - the new locale validation command
 Notes:
 - Keep assertions tightly scoped to the current bilingual product surface.
+
+### TASK-059 — Add source registry ordering validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the current source registry ordering and governance-reference-only posture.
+Deliverables:
+- a lightweight validation script that exercises source key order, reviewed dates, publisher labels, and current repository URL posture from the loaded source registry
+- assertions covering the current three governance references without implying official immigration-source coverage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source registry ordering regressions can be caught without manually reading the seed file
+- the validation remains aligned with the shared typed loader instead of duplicating seed parsing logic
+- the check stays truthful about the current governance-only registry state
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-registry-order validation command
+Notes:
+- Keep the assertions tied to current source metadata, not future source expansion.
 
 ## Blocked
 
