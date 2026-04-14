@@ -2,6 +2,8 @@
 
 This file is the canonical entry point for autonomous work in this repository.
 
+If you are using the global `$repo-work-loop` skill, treat this file as the repo-local contract it must follow. The skill is only an execution aid; this document remains the source of truth for this repository's workflow, validation posture, and hard constraints.
+
 ## Mission
 
 Build **Guía Green Card**, a bilingual, source-backed preparation system for family-based immigrant visa applicants, starting with Ciudad Juárez. The product must help applicants and sponsors understand what documents to prepare, what to bring, what to print, what to expect, and what commonly causes delays or turn-aways.
@@ -53,8 +55,8 @@ Repeat the following loop continuously. If a task hits a blocker or stop conditi
 
 1. Read this file and the current project state files listed above.
 2. Open `docs/TASK_QUEUE.md`.
-3. Check the `Ready` section.
-4. If there are fewer than 3 `Ready` tasks, refill the queue before implementing:
+3. Check the `Ready` section for both quantity and quality.
+4. If there are fewer than 3 `Ready` tasks, or if the visible frontier is shallow, validator-heavy, or low-signal, repair the queue before implementing:
    - inspect the codebase, docs, placeholders, TODOs, incomplete flows, trust gaps, admin surfaces, validation gaps, persistence gaps, and recent work
    - generate specific, implementation-ready tasks
    - add them to `docs/TASK_QUEUE.md`
@@ -72,6 +74,29 @@ Repeat the following loop continuously. If a task hits a blocker or stop conditi
 Do not stop just because the queue is thin. A thin queue means you must replenish it and keep going.
 Do not stop at a clean boundary, a successful commit, or the end of one coherent task if `Ready` work still exists. Finish the cycle, then immediately start the next one in the same run unless the repository is truly blocked.
 
+## Queue frontier contract
+
+`docs/TASK_QUEUE.md` is a live frontier, not a mixed ready-list and done-log.
+
+- Keep the `Ready` section short, current, and easy to scan.
+- Do not leave `Done` tasks in `Ready`.
+- Keep at least 3 actionable `Ready` tasks when safe, but do not confuse quantity with quality.
+- If the frontier clusters around validators, component markers, metadata polish, or other low-leverage maintenance while deeper product seams remain unfinished, repair the frontier before selecting work.
+
+Good `Ready` tasks usually:
+
+- turn a placeholder or scaffold into a more usable deterministic flow
+- deepen an existing user journey instead of opening a disconnected surface
+- unlock the next meaningful step in checklist, documents, guides, or trust infrastructure
+- add validation only when it protects real feature work or unlocks deeper implementation
+
+Bad refill behavior usually looks like:
+
+- chaining the next adjacent validator for a placeholder surface
+- adding more audit or marker checks without changing user capability
+- keeping historical completed tasks in the visible frontier
+- preferring local low-risk polish over advancing the main product loop
+
 ## Queue refill rules
 
 When replenishing `docs/TASK_QUEUE.md`:
@@ -81,9 +106,11 @@ When replenishing `docs/TASK_QUEUE.md`:
 - Convert obvious placeholders, stubs, manual summaries, or non-persistent flows into deterministic implementation tasks.
 - Prefer work that strengthens deterministic logic, persistence, validation, admin usefulness, and trust/source integrity.
 - Use recent work, open trust gaps, incomplete admin scaffolds, and validation blind spots to choose follow-on tasks.
+- Keep the visible frontier balanced across product advancement, core deterministic logic, trust/content work, and validation instead of letting one low-value lane dominate.
 - Keep tasks small enough to finish in one coherent cycle when possible.
 - Do not invent immigration requirements, exceptions, or legal interpretations just to create work.
 - If source-backed product guidance is not available, create infrastructure, review, source-mapping, validation, or admin tasks instead.
+- Do not create a validation-only follow-on task unless it directly protects recent feature work, unlocks the next implementation step, or no higher-value safe task is discoverable.
 
 ## Task selection rules
 
