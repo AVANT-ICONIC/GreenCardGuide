@@ -722,7 +722,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:admin-subsections` now checks the explicit `content`, `sources`, `rules`, and `reviews` branches, the final `notFound()` fallback, and the absence of the removed generic subsection component.
 
 ### TASK-075 — Add generated-artifact ignore validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-070
 Objective:
@@ -742,6 +742,29 @@ Validation:
 - the new generated-artifact ignore validation command
 Notes:
 - Keep the scope on ignore and lint posture, not build output contents.
+- Completed 2026-04-14. `npm run validate:generated-artifacts` now checks that `.open-next`, `.wrangler`, and `cloudflare-env.d.ts` stay ignored in both `.gitignore` and ESLint.
+
+### TASK-076 — Validate Cloudflare deploy trigger posture
+Status: Ready
+Priority: P2
+Depends on: TASK-073
+Objective:
+- Extend the Cloudflare integration validation so the checked-in deploy workflow triggers and README branch guidance stay aligned with the current `main`-branch deployment posture.
+Deliverables:
+- updates to `src/lib/admin/validateCloudflareIntegration.ts` that assert the deploy workflow still runs on `push` to `main` and supports `workflow_dispatch`
+- assertions covering the README statement that pushes to `main` deploy automatically
+- docs updates if the validation surface materially changes
+Acceptance Criteria:
+- Cloudflare deploy-trigger regressions can be caught without manually re-reading the workflow file or README
+- the validation stays aligned with the current checked-in GitHub Actions posture and does not imply remote branch protection or secret state
+- the check remains about repo config and maintainer docs, not live GitHub Actions execution
+Validation:
+- `npm run validate:cloudflare`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on checked-in workflow trigger posture, not external GitHub settings.
 
 ## Blocked
 

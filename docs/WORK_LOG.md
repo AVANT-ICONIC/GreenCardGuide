@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:23 UTC — TASK-075
+
+Summary:
+- Added a dedicated `npm run validate:generated-artifacts` smoke check for the intentional Cloudflare/OpenNext generated-artifact ignore posture.
+- Locked in the current repo-hygiene contract so `.open-next`, `.wrangler`, and `cloudflare-env.d.ts` remain ignored in both `.gitignore` and ESLint.
+- Refilled the queue with a Cloudflare deploy-trigger validation follow-on before this cycle, but the next cycle will still need another refill because only two `Ready` tasks remain afterward.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateGeneratedArtifactIgnores.ts
+
+Decisions:
+- Kept the validator focused on checked-in ignore markers instead of generated file contents, because this task is about source hygiene and lint posture rather than build output semantics.
+- Required the same three Workers-specific artifacts in both `.gitignore` and ESLint so repo noise and lint noise stay aligned instead of drifting apart over time.
+- Left broader Cloudflare workflow behavior to separate follow-on validation tasks because this cycle only covers local generated-artifact handling.
+
+Validation:
+- Ran `npm run validate:generated-artifacts`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output reported the expected `.gitignore` and ESLint markers for `.open-next`, `.wrangler`, and `cloudflare-env.d.ts`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-076
+
+---
+
 ### 2026-04-14 23:15 UTC — TASK-074
 
 Summary:

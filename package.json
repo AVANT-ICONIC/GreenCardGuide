@@ -17,6 +17,7 @@
     "validate:admin-section-registry": "tsx src/lib/admin/validateAdminSectionRegistry.ts",
     "validate:admin-subsections": "tsx src/lib/admin/validateAdminSubsectionExhaustiveness.ts",
     "validate:cloudflare": "tsx src/lib/admin/validateCloudflareIntegration.ts",
+    "validate:generated-artifacts": "tsx src/lib/admin/validateGeneratedArtifactIgnores.ts",
     "validate:content-diff": "tsx src/lib/admin/validateContentDiff.ts",
     "validate:admin-home-markers": "tsx src/lib/admin/validateAdminHomeMarkers.ts",
     "validate:content-inventory-markers": "tsx src/lib/admin/validateContentInventoryMarkers.ts",
