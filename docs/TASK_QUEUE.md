@@ -516,7 +516,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:content-inventory-markers` now checks the `/admin/content` component markers, read-only planning posture, structural-diff framing, and publish gate markers without duplicating the broader inventory, diff, or publish loader validations.
 
 ### TASK-065 — Add rules audit component marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041, TASK-044
 Objective:
@@ -536,6 +536,7 @@ Validation:
 - the new rules-audit-marker validation command
 Notes:
 - Keep the assertions tied to component markers and the current seeded rules audit framing, not future editing workflows.
+- Completed 2026-04-14. `npm run validate:rules-audit-markers` now checks the `/admin/rules` component markers, read-only audit posture, question-key framing, and rule-output inventory markers without duplicating the broader rules audit validation.
 
 ### TASK-066 — Add admin home component marker validation coverage
 Status: Ready

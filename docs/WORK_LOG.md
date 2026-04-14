@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:44 UTC — TASK-065
+
+Summary:
+- Added a dedicated `npm run validate:rules-audit-markers` smoke check for the `/admin/rules` component markers.
+- Locked in the current rules audit posture: eight seeded checklist questions, eight deterministic requirement rules, and the current read-only audit framing across question, output, and rule inventories.
+- Kept the cycle task-scoped by leaving the unrelated local edit in `docs/AGENT_LOOP.md` and the build-generated `package-lock.json` patch out of the task commit scope.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateRulesAuditMarkers.ts
+
+Decisions:
+- Reused `loadRulesAuditSummary()` directly so the validator stays aligned with the live seeded rules inventory instead of duplicating rule fixtures or output-type counts.
+- Focused the assertions on component markers, inventory iteration, and read-only audit posture because the broader rules validation already covers exact counts, active-rule posture, and output-type totals.
+- Treated the initial parallel `build` failure as the existing repo-level validation race noted in prior work log entries, then reran the build sequentially to finish the strongest checks cleanly.
+
+Validation:
+- Ran `npm run validate:rules-audit-markers`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build` once in parallel with other checks, saw an environment-level `node-fetch` type-library failure, then reran `npm run build` sequentially successfully.
+- Confirmed the final validation output included the expected question count, rule count, and current output types.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-066
+
+---
+
 ### 2026-04-14 22:42 UTC — TASK-064
 
 Summary:

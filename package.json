@@ -29,6 +29,7 @@
     "validate:source-registry-order": "tsx src/lib/content/validateSourceRegistryOrdering.ts",
     "validate:source-references": "tsx src/lib/content/validateSourceReferenceLoader.ts",
     "validate:publish": "tsx src/lib/admin/validatePublishReadiness.ts",
+    "validate:rules-audit-markers": "tsx src/lib/admin/validateRulesAuditMarkers.ts",
     "validate:rule-integrity": "tsx src/lib/rules/validateRuleDocumentIntegrity.ts",
     "validate:rules": "tsx src/lib/admin/validateRulesAudit.ts",
     "validate:review-queue-markers": "tsx src/lib/admin/validateReviewQueueMarkers.ts",
