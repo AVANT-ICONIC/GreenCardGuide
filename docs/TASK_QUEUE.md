@@ -813,7 +813,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:cloudflare` now also checks `actions/checkout@v4` and the workflow’s `contents: read` permission posture.
 
 ### TASK-079 — Validate local Cloudflare secret ignore posture
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-075
 Objective:
@@ -832,6 +832,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on checked-in local secret ignore markers, not secret values or runtime loading behavior.
+- Completed 2026-04-14. `npm run validate:generated-artifacts` now also checks that the local `.dev.vars` secret file remains gitignored.
+
+### TASK-080 — Validate Next generated artifact ignore posture
+Status: Ready
+Priority: P2
+Depends on: TASK-075
+Objective:
+- Extend the generated-artifact ignore validation so the repo keeps its checked-in Next.js build-output ignore posture aligned across `.gitignore` and ESLint.
+Deliverables:
+- updates to `src/lib/admin/validateGeneratedArtifactIgnores.ts` that assert `.next/` remains gitignored and `.next/**` plus `next-env.d.ts` remain ignored by ESLint
+- docs updates if the validation surface materially changes
+Acceptance Criteria:
+- Next build-artifact ignore regressions can be caught without manually re-reading `.gitignore` or ESLint config
+- the validation stays aligned with the current local build posture and does not imply generated output belongs in source control
+- the check remains about local repo hygiene, not build output contents
+Validation:
+- `npm run validate:generated-artifacts`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on checked-in ignore markers, not generated file content or bundling behavior.
 
 ## Blocked
 

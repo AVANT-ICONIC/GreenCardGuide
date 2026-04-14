@@ -1,7 +1,12 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const requiredGitignoreMarkers = ['.open-next/', '.wrangler/', 'cloudflare-env.d.ts'] as const;
+const requiredGitignoreMarkers = [
+  '.open-next/',
+  '.wrangler/',
+  'cloudflare-env.d.ts',
+  '.dev.vars',
+] as const;
 const requiredEslintMarkers = ['.open-next/**', '.wrangler/**', 'cloudflare-env.d.ts'] as const;
 
 function assert(condition: unknown, message: string): asserts condition {
@@ -37,6 +42,7 @@ function main() {
         status: 'ok',
         gitignoreMarkers: requiredGitignoreMarkers,
         eslintIgnoreMarkers: requiredEslintMarkers,
+        localSecretFile: '.dev.vars',
       },
       null,
       2,

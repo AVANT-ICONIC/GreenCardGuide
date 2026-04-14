@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:52 UTC — TASK-079
+
+Summary:
+- Extended `npm run validate:generated-artifacts` so it now covers the local Cloudflare secret-file ignore posture in addition to the existing OpenNext/Wrangler generated-artifact markers.
+- Locked in the current repo hygiene contract that `.dev.vars` stays gitignored alongside the existing generated Workers files.
+- At this point the remaining clear tasks are `TASK-080` and `TASK-072`; any further queue refill will need to be justified by another meaningful checked-in hygiene or admin-registry seam rather than mechanical marker splitting.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/lib/admin/validateGeneratedArtifactIgnores.ts
+
+Decisions:
+- Kept the local secret-file check in the generated-artifact validator because `.dev.vars` is repo hygiene, not workflow structure.
+- Scoped the assertion to the presence of the ignore marker only; this cycle does not inspect secret values or imply any runtime env-loading contract.
+- Left the broader Next build-output ignore posture as a separate follow-on task because that extends the same validator into a distinct non-Cloudflare artifact seam already present in the repo.
+
+Validation:
+- Ran `npm run validate:generated-artifacts`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output now reports `.dev.vars` alongside the existing `.open-next`, `.wrangler`, and `cloudflare-env.d.ts` ignore markers.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-080
+
+---
+
 ### 2026-04-14 23:44 UTC — TASK-078
 
 Summary:

@@ -136,7 +136,7 @@ Current state:
 - `npm run validate:admin-section-registry` now checks the shared admin section registry, its exported static params and slug guard, and the current route/home consumers without duplicating the broader admin route validation.
 - `npm run validate:admin-subsections` now checks that `/admin/[section]` only serves the four documented admin surfaces, keeps the final `notFound()` fallback, and does not reintroduce the removed generic subsection component.
 - `npm run validate:cloudflare` now checks the intentional Cloudflare Workers integration structure across package scripts, OpenNext/Wrangler config, deployment workflow trigger, runtime, install, checkout, permission, and secret markers, and README deployment framing.
-- `npm run validate:generated-artifacts` now checks that `.open-next`, `.wrangler`, and `cloudflare-env.d.ts` stay ignored in both `.gitignore` and ESLint so generated Workers artifacts do not become source noise.
+- `npm run validate:generated-artifacts` now checks that `.open-next`, `.wrangler`, `cloudflare-env.d.ts`, and the local `.dev.vars` secret file stay ignored in the repo’s checked-in hygiene posture.
 - `/admin/sources` now exposes the current typed source registry through a truthful review-dashboard scaffold.
 - `/admin/rules` now exposes the current seeded checklist questions and requirement rules through a read-only audit scaffold.
 - `/admin/reviews` now summarizes current placeholder content surfaces in a queue-shaped review scaffold.
