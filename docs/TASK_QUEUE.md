@@ -791,7 +791,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:cloudflare` now also checks `actions/setup-node`, `node-version: 20`, `npm ci`, and the README’s `Node.js 20+` local-development requirement.
 
 ### TASK-078 — Validate Cloudflare workflow checkout posture
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-073
 Objective:
@@ -810,6 +810,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on the current checked-in checkout and permission markers, not generalized CI hardening.
+- Completed 2026-04-14. `npm run validate:cloudflare` now also checks `actions/checkout@v4` and the workflow’s `contents: read` permission posture.
+
+### TASK-079 — Validate local Cloudflare secret ignore posture
+Status: Ready
+Priority: P2
+Depends on: TASK-075
+Objective:
+- Extend the generated-artifact ignore validation so the local Cloudflare secret file posture stays aligned with the checked-in `.gitignore` contract.
+Deliverables:
+- updates to `src/lib/admin/validateGeneratedArtifactIgnores.ts` that assert `.dev.vars` remains gitignored
+- docs updates if the validation surface materially changes
+Acceptance Criteria:
+- local Cloudflare secret ignore regressions can be caught without manually re-reading `.gitignore`
+- the validation stays aligned with the current local-development posture and does not imply secrets are committed or shared in repo docs
+- the check remains about local repo hygiene, not remote deployment behavior
+Validation:
+- `npm run validate:generated-artifacts`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on checked-in local secret ignore markers, not secret values or runtime loading behavior.
 
 ## Blocked
 

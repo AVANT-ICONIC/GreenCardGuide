@@ -85,12 +85,20 @@ function main() {
     'Expected deployment workflow to use actions/setup-node@v4',
   );
   assert(
+    workflowSource.includes('actions/checkout@v4'),
+    'Expected deployment workflow to use actions/checkout@v4',
+  );
+  assert(
     workflowSource.includes('node-version: 20'),
     'Expected deployment workflow to pin Node.js 20',
   );
   assert(
     workflowSource.includes('npm ci'),
     'Expected deployment workflow to install dependencies with npm ci',
+  );
+  assert(
+    workflowSource.includes('permissions:') && workflowSource.includes('contents: read'),
+    'Expected deployment workflow to keep contents: read permissions',
   );
   assert(
     workflowSource.includes('CLOUDFLARE_ACCOUNT_ID'),
@@ -143,6 +151,10 @@ function main() {
         workflowRuntime: {
           nodeVersion: '20',
           installCommand: 'npm ci',
+        },
+        workflowGuards: {
+          checkoutAction: 'actions/checkout@v4',
+          permissions: 'contents: read',
         },
         workflowSecrets: ['CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN'],
       },

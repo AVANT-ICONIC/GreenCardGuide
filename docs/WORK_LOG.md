@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:44 UTC — TASK-078
+
+Summary:
+- Extended `npm run validate:cloudflare` so it now covers the checked-in GitHub Actions checkout and minimal permission posture alongside the existing Workers integration, trigger, runtime, install, and secret markers.
+- Locked in the current workflow contract that the deploy job still uses `actions/checkout@v4` and keeps `contents: read` permissions instead of drifting to a broader default.
+- After this cycle, only `TASK-079` and `TASK-072` remain `Ready`, so the next cycle will need another refill if meaningful repo-local follow-on work still exists.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/lib/admin/validateCloudflareIntegration.ts
+
+Decisions:
+- Kept extending the existing Cloudflare validator so checkout and permissions remain part of one deterministic integration check instead of fragmenting the deployment posture across multiple scripts.
+- Scoped the assertions to the exact checked-in workflow markers rather than introducing generalized CI hardening requirements that the repo docs do not currently call for.
+- Left local secret ignore posture as a separate follow-on task because that concern belongs with generated-artifact hygiene rather than workflow structure.
+
+Validation:
+- Ran `npm run validate:cloudflare`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output now reports `actions/checkout@v4` and `contents: read` alongside the existing trigger, runtime, install, worker entrypoint, asset binding, and secret markers.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-079
+
+---
+
 ### 2026-04-14 23:38 UTC — TASK-077
 
 Summary:
