@@ -3,6 +3,7 @@ import { AdminContentPage } from '@/components/admin-content-page';
 import { AdminRulesPage } from '@/components/admin-rules-page';
 import { AdminReviewsPage } from '@/components/admin-reviews-page';
 import { AdminSourcesPage } from '@/components/admin-sources-page';
+import { loadContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadReviewQueueEntries } from '@/lib/admin/loadReviewQueue';
@@ -28,7 +29,12 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'content') {
-    return <AdminContentPage summary={loadContentInventory()} />;
+    return (
+      <AdminContentPage
+        summary={loadContentInventory()}
+        diffSummary={loadContentDiffSummary()}
+      />
+    );
   }
 
   if (section === 'sources') {

@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:40 UTC — TASK-022
+
+Summary:
+- Extended `/admin/content` with a deterministic structural diff scaffold alongside the existing content inventory.
+- Compared the current bilingual guide, FAQ, glossary, documents, and hub structures using real loader output instead of a fake revision history.
+- Surfaced actual FAQ and glossary locale-key mismatches as a contained follow-on for stable bilingual diffing.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/admin/README.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-content-page.tsx
+- src/lib/admin/loadContentDiffScaffold.ts
+
+Decisions:
+- Kept the diff scaffold structural and route-oriented because the repository does not yet have revision storage or publish history to compare.
+- Used stable-key parity, section/category parity, and trust metadata parity as the initial diff signals so the output is truthful and deterministic.
+- Recorded the FAQ and glossary key divergence as a follow-on backlog item instead of silently fixing it inside the diff task, keeping this cycle small and task-scoped.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/content`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-024
+
+---
+
 ### 2026-04-14 20:37 UTC — TASK-021
 
 Summary:

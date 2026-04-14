@@ -16,14 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-022 — Add content diffs scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-021
-
-Summary:
-Add a deterministic admin scaffold for content diffs so maintainers can see how future source-backed editorial changes will be summarized before any real publish workflow exists.
-
 ### TASK-023 — Add publish controls scaffold
 Status: Ready
 Priority: P2
@@ -31,6 +23,14 @@ Depends on: TASK-021
 
 Summary:
 Add a truthful admin scaffold for publish controls that explains planned publish states, review gates, and current non-functional boundaries without implying live publishing exists.
+
+### TASK-024 — Normalize stable bilingual content keys
+Status: Ready
+Priority: P2
+Depends on: TASK-022
+
+Summary:
+Normalize the FAQ and glossary locale keys so bilingual content diffs and future editorial workflows can compare stable identifiers instead of language-specific keys.
 
 ## Blocked
 
@@ -189,6 +189,14 @@ Depends on: TASK-007, TASK-013, TASK-016, TASK-020
 
 Summary:
 Upgraded `/admin/content` into a read-only content inventory dashboard that summarizes the current guide, FAQ, glossary, documents, and hub surfaces with trust-aware metadata.
+
+### TASK-022 — Add content diffs scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-021
+
+Summary:
+Extended `/admin/content` with a deterministic structural diff scaffold that compares current bilingual content shapes and flags FAQ/glossary key mismatches for future cleanup.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

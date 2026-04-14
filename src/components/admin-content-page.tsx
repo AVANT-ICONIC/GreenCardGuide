@@ -1,20 +1,23 @@
 import Link from 'next/link';
+import type { ContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
 import type { ContentInventorySummary } from '@/lib/admin/loadContentInventory';
 
 export function AdminContentPage({
   summary,
+  diffSummary,
 }: {
   summary: ContentInventorySummary;
+  diffSummary: ContentDiffSummary;
 }) {
   return (
     <main className="app-shell">
       <section className="hero">
         <p className="hero__eyebrow">Admin content</p>
-        <h1>Content inventory dashboard scaffold.</h1>
+        <h1>Content inventory and diff scaffold.</h1>
         <p className="hero__lede">
           This page summarizes the current structured content surfaces that exist
-          in the repository. It is a read-only inventory view, not an editor or
-          publish workflow.
+          in the repository. It is a read-only inventory and diff view, not an
+          editor or publish workflow.
         </p>
 
         <article className="hero__card content-meta">
@@ -57,6 +60,36 @@ export function AdminContentPage({
                 <li>
                   <strong>Sources:</strong> {item.source_references.join(', ')}
                 </li>
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <article className="hero__card content-meta">
+          <p>
+            <strong>Aligned diff entries:</strong> {diffSummary.alignedEntries}
+          </p>
+          <p>
+            <strong>Flagged diff entries:</strong> {diffSummary.flaggedEntries}
+          </p>
+          <p>
+            <strong>Diff posture:</strong> Structural comparison only
+          </p>
+        </article>
+
+        <div className="guide-sections">
+          {diffSummary.entries.map((entry) => (
+            <article key={`${entry.route}-diff`} className="hero__card">
+              <h2>{entry.surface} diff view</h2>
+              <p>{entry.summary}</p>
+              <p className="results-section__confidence">{entry.status}</p>
+              <ul className="results-list">
+                <li>
+                  <strong>Route:</strong> {entry.route}
+                </li>
+                {entry.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
               </ul>
             </article>
           ))}
