@@ -15,6 +15,7 @@ import {
   getChecklistAnswerLabel,
   getChecklistQuestionLabel,
 } from '@/lib/checklist/labels';
+import { getResumeQuestionIndex } from '@/lib/checklist/progress';
 import type { ChecklistQuestion, Language } from '@/lib/types/domain';
 
 const flowCopy = {
@@ -86,7 +87,9 @@ export function ChecklistFlow({
     () => parseChecklistAnswers(initialSearchParams, questions),
     [initialSearchParams, questions],
   );
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(() =>
+    getResumeQuestionIndex(questions, initialAnswers),
+  );
   const [answers, setAnswers] = useState(initialAnswers);
   const currentQuestion = questions[currentIndex];
   const currentValue = answers[currentQuestion.key];

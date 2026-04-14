@@ -1,6 +1,7 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { PrintChecklist } from '@/components/print-checklist';
 import { parseChecklistAnswers, serializeChecklistAnswers } from '@/lib/checklist/answers';
+import { hasCompleteChecklistAnswers } from '@/lib/checklist/progress';
 import { isSupportedLanguage } from '@/lib/content/locale';
 import { assembleChecklistResults } from '@/lib/rules/assembleChecklistResults';
 import { loadChecklistQuestions } from '@/lib/seed/loadSeedData';
@@ -20,8 +21,14 @@ export default async function ChecklistPrintPage({
 
   const questions = loadChecklistQuestions();
   const answers = parseChecklistAnswers(resolvedSearchParams, questions);
+  const serializedAnswers = serializeChecklistAnswers(answers).toString();
+
+  if (!hasCompleteChecklistAnswers(questions, answers)) {
+    redirect(`/${lang}/checklist/questions?${serializedAnswers}`);
+  }
+
   const result = assembleChecklistResults(answers);
-  const resultsHref = `/${lang}/checklist/results?${serializeChecklistAnswers(answers).toString()}`;
+  const resultsHref = `/${lang}/checklist/results?${serializedAnswers}`;
 
   return (
     <PrintChecklist

@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:09 UTC — TASK-032
+
+Summary:
+- Updated the checklist question flow to resume on the first unanswered step instead of always restarting at question one.
+- Added deterministic completion guards for the results and print routes so incomplete answer sets redirect back into the guided flow.
+- Kept the URL-backed answer contract unchanged so in-progress sessions still survive refreshes and deep links.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/checklist/print/page.tsx
+- src/app/[lang]/checklist/results/page.tsx
+- src/components/checklist-flow.tsx
+- src/lib/checklist/progress.ts
+
+Decisions:
+- Implemented the resume/completion logic in a shared checklist progress helper so the interactive flow and server routes use the same deterministic definition of an incomplete session.
+- Redirected incomplete results and print requests back to `/[lang]/checklist/questions` instead of rendering partial output, because a partial personalized checklist would be misleading in the current product posture.
+- When all answers are already present, the question flow now opens on the final step so users entering from "Edit answers" can immediately review and adjust without losing their current state.
+
+Validation:
+- Ran a direct smoke check for checklist progress helpers and confirmed empty answers resume at step 1, partial answers resume at the first unanswered question, and complete answers are marked complete.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for the current checklist routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-033
+
+---
+
 ### 2026-04-14 21:05 UTC — TASK-031
 
 Summary:

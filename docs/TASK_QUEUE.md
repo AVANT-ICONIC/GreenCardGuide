@@ -16,7 +16,13 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-033 — Validate unsupported checklist answer values
+Status: Ready
+Priority: P1
+Depends on: TASK-004, TASK-032
+
+Summary:
+Harden checklist answer parsing so unsupported select values and malformed booleans do not persist through the deterministic flow or appear in results URLs as if they were valid case facts.
 
 ## Blocked
 
@@ -255,6 +261,14 @@ Depends on: TASK-030
 
 Summary:
 Used `applicant_role` to add role-aware framing on the checklist results and print views so sponsor/helpers and derivative applicants see context that matches the selected mode.
+
+### TASK-032 — Guard incomplete checklist output routes
+Status: Done
+Priority: P1
+Depends on: TASK-004
+
+Summary:
+Updated the checklist flow to resume at the first unanswered step and redirected incomplete results or print requests back into the guided question flow so partial answer sets no longer look like finished checklist output.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -92,6 +92,7 @@ Current state:
 - The checklist now routes arrest or court-record scenarios into a conservative `verify with official instructions` output instead of leaving that answer unused.
 - The checklist flow, results, and print views now show localized human-readable answer labels instead of raw internal slugs.
 - The checklist results and print views now add role-aware framing for principal applicants, derivative applicants, and sponsor/helpers.
+- The checklist flow now resumes at the first unanswered step, and incomplete results or print requests are redirected back into the guided question flow.
 
 ## Non-negotiables
 
