@@ -273,7 +273,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:ciudad-juarez` now checks the bilingual hub trust metadata, review date, and mapped source posture through the shared hub loader.
 
 ### TASK-054 — Add content review metadata validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -292,7 +292,7 @@ Validation:
 - `npm run build`
 - the new review-metadata validation command
 Notes:
-- Keep the assertions tied to current surface keys and recorded dates rather than inventing new review policy.
+- Completed 2026-04-14. `npm run validate:content-review-metadata` now checks the shared review-date registry across all current content surface keys in both locales.
 
 ### TASK-055 — Add content surface registry validation coverage
 Status: Ready
@@ -315,6 +315,28 @@ Validation:
 - the new content-surface validation command
 Notes:
 - Keep the assertions tied to the current route surface set and shared metadata infrastructure.
+
+### TASK-056 — Add source mapping registry validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the shared source-mapping registry that assigns source keys to current content surfaces.
+Deliverables:
+- a lightweight validation script that exercises the current mapping list, surface coverage, and mapped key order for all registered public content surfaces
+- assertions covering alignment with the current guide, FAQ, glossary, documents, and Ciudad Juarez hub source posture
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source-mapping regressions can be caught without manually tracing individual content loaders
+- the validation remains aligned with the existing source-mapping registry instead of duplicating public page assembly logic
+- the check stays focused on deterministic mapping completeness, not on adding new source-backed content
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-mapping validation command
+Notes:
+- Keep the assertions tied to the current source key assignments and surface coverage order.
 
 ## Blocked
 

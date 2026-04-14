@@ -14,6 +14,7 @@
     "validate:content-diff": "tsx src/lib/admin/validateContentDiff.ts",
     "validate:content-inventory": "tsx src/lib/admin/validateContentInventory.ts",
     "validate:ciudad-juarez": "tsx src/lib/content/validateCiudadJuarezHub.ts",
+    "validate:content-review-metadata": "tsx src/lib/content/validateContentReviewMetadata.ts",
     "validate:documents": "tsx src/lib/content/validateDocumentsOverview.ts",
     "validate:feedback": "tsx src/lib/feedback/validateFeedbackInbox.ts",
     "validate:feedback-summary": "tsx src/lib/admin/validateFeedbackSummary.ts",

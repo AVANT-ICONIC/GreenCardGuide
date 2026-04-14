@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:16 UTC — TASK-054
+
+Summary:
+- Added a dedicated `npm run validate:content-review-metadata` smoke check for the shared last-reviewed metadata layer.
+- Locked in the current review metadata baseline: eight content surface keys with the same recorded review date across both locales.
+- Refilled the queue with `TASK-056` for source-mapping registry validation before implementation because the ready queue had dropped below the minimum threshold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateContentReviewMetadata.ts
+
+Decisions:
+- Reused `contentSurfaceKeys` and `loadContentReviewMetadata()` directly so the validator stays aligned with the shared metadata registry instead of duplicating surface lists or date lookups.
+- Kept the assertions focused on registry completeness and locale alignment because this layer is infrastructure, not editorial review workflow.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:content-review-metadata`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included all eight surface keys and the shared `2026-04-14` review date.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-055
+
+---
+
 ### 2026-04-14 22:14 UTC — TASK-053
 
 Summary:
