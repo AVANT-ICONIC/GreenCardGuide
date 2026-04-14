@@ -88,6 +88,7 @@ Current state:
 - Current guide, FAQ, glossary, documents, and Ciudad Juarez hub pages now expose explicit last-reviewed dates through a shared review-metadata scaffold.
 - `/admin/sources` now includes a deterministic source-change review task watchlist that maps registered sources to affected content surfaces.
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
+- The checklist now surfaces a deterministic risk flag when the applicant does not have a current passport ready.
 
 ## Non-negotiables
 

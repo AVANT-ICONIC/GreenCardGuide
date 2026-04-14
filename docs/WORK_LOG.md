@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:57 UTC — TASK-028
+
+Summary:
+- Added a deterministic `risk_flag` rule for cases where `passport_ready` is false.
+- Wired the existing passport-readiness answer into the checklist output so the result no longer ignores that case fact.
+- Kept the message conservative by routing users to resolve passport readiness before travel and verify timing with official instructions.
+
+Files changed:
+- README.md
+- data/seed/requirement-rules.json
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+
+Decisions:
+- Used `risk_flag` instead of another document output because the missing passport state is primarily a readiness warning, not a second document type.
+- Scoped the rule to Ciudad Juarez cases to match the current seeded checklist posture.
+- Kept the guidance operational and conservative, avoiding any unsupported promises about passport renewal timing or exceptions.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran a direct assembler smoke check for `{ post: 'ciudad-juarez', case_family: 'family-based', passport_ready: false }` and confirmed the `risk_flags` section now includes the passport warning.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-029
+
+---
+
 ### 2026-04-14 20:56 UTC — TASK-027
 
 Summary:

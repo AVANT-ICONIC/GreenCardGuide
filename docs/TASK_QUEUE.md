@@ -16,14 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-028 — Add passport readiness risk flag
-Status: Ready
-Priority: P1
-Depends on: TASK-003, TASK-004, TASK-005
-
-Summary:
-Add a deterministic risk flag for cases where the applicant does not have a current passport ready so the checklist reflects the existing `passport_ready` input.
-
 ### TASK-029 — Add court-record caution rule
 Status: Ready
 Priority: P1
@@ -237,6 +229,14 @@ Depends on: TASK-003, TASK-004, TASK-005
 
 Summary:
 Extended the seeded checklist rules so family-based cases surface the base sponsor financial packet through the existing `i-864` document instead of only mentioning joint-sponsor materials.
+
+### TASK-028 — Add passport readiness risk flag
+Status: Done
+Priority: P1
+Depends on: TASK-003, TASK-004, TASK-005
+
+Summary:
+Added a deterministic risk flag for cases where the applicant does not have a current passport ready so the checklist reflects the existing `passport_ready` input.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

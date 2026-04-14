@@ -79,6 +79,21 @@
     "is_active": true
   },
   {
+    "rule_key": "passport-not-ready-risk",
+    "conditions": {
+      "post": "ciudad-juarez",
+      "passport_ready": false
+    },
+    "output_type": "risk_flag",
+    "output_payload": {
+      "item_key": "passport-not-ready",
+      "notes_en": "A current passport is a core interview document. Resolve passport readiness before travel and verify timing with official instructions.",
+      "notes_es": "Un pasaporte vigente es un documento central para la entrevista. Resuelva el estado del pasaporte antes del viaje y verifique los tiempos con instrucciones oficiales."
+    },
+    "priority": 125,
+    "is_active": true
+  },
+  {
     "rule_key": "night-before-print-check",
     "conditions": {
       "post": "ciudad-juarez"
