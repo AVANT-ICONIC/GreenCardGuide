@@ -768,7 +768,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:cloudflare` now also checks the `push` to `main` and `workflow_dispatch` trigger markers plus the matching README deploy-trigger note.
 
 ### TASK-077 — Validate Cloudflare workflow runtime posture
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-073
 Objective:
@@ -788,6 +788,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on checked-in runtime and install markers, not broader CI policy.
+- Completed 2026-04-14. `npm run validate:cloudflare` now also checks `actions/setup-node`, `node-version: 20`, `npm ci`, and the README’s `Node.js 20+` local-development requirement.
+
+### TASK-078 — Validate Cloudflare workflow checkout posture
+Status: Ready
+Priority: P2
+Depends on: TASK-073
+Objective:
+- Extend the Cloudflare integration validation so the checked-in GitHub Actions workflow keeps the current checkout and minimal permission posture required by the repo.
+Deliverables:
+- updates to `src/lib/admin/validateCloudflareIntegration.ts` that assert the workflow still uses `actions/checkout@v4` and `permissions: contents: read`
+- docs updates if the validation surface materially changes
+Acceptance Criteria:
+- Cloudflare workflow checkout regressions can be caught without manually re-reading the workflow file
+- the validation stays aligned with the current checked-in CI posture and does not imply broader GitHub security policy outside the repo
+- the check remains about repo config, not live GitHub Actions execution
+Validation:
+- `npm run validate:cloudflare`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on the current checked-in checkout and permission markers, not generalized CI hardening.
 
 ## Blocked
 

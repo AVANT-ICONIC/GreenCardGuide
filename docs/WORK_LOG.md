@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:38 UTC — TASK-077
+
+Summary:
+- Extended `npm run validate:cloudflare` so it now covers the checked-in workflow runtime and install posture in addition to the existing Workers integration, trigger, and secret markers.
+- Locked in the current repo contract that the GitHub Actions deploy workflow uses `actions/setup-node`, pins Node 20, installs with `npm ci`, and matches the README’s `Node.js 20+` local-development requirement.
+- The next cycle will need another queue refill before implementation because only two `Ready` tasks remain after this completion.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/lib/admin/validateCloudflareIntegration.ts
+
+Decisions:
+- Continued extending the existing Cloudflare validator so workflow runtime posture stays part of the same deterministic integration check instead of fragmenting into multiple commands.
+- Kept the assertions on checked-in workflow markers and README requirements rather than trying to infer package-manager policy or hosted-runner behavior outside the repo.
+- Left checkout and workflow permissions posture as a separate follow-on task because this cycle is specifically about runtime and install assumptions.
+
+Validation:
+- Ran `npm run validate:cloudflare`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output now reports Node 20 and `npm ci` alongside the existing script, worker entrypoint, trigger, asset binding, and secret markers.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-078
+
+---
+
 ### 2026-04-14 23:30 UTC — TASK-076
 
 Summary:

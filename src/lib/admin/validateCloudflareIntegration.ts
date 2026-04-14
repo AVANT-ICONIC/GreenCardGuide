@@ -81,6 +81,18 @@ function main() {
     'Expected deployment workflow to support manual workflow_dispatch runs',
   );
   assert(
+    workflowSource.includes('actions/setup-node@v4'),
+    'Expected deployment workflow to use actions/setup-node@v4',
+  );
+  assert(
+    workflowSource.includes('node-version: 20'),
+    'Expected deployment workflow to pin Node.js 20',
+  );
+  assert(
+    workflowSource.includes('npm ci'),
+    'Expected deployment workflow to install dependencies with npm ci',
+  );
+  assert(
     workflowSource.includes('CLOUDFLARE_ACCOUNT_ID'),
     'Expected deployment workflow to reference CLOUDFLARE_ACCOUNT_ID',
   );
@@ -111,6 +123,10 @@ function main() {
     readmeSource.includes('Pushes to `main` will lint, typecheck, and deploy automatically.'),
     'Expected README to document the main-branch deploy trigger posture',
   );
+  assert(
+    readmeSource.includes('Node.js 20+'),
+    'Expected README to document the Node.js 20+ local development requirement',
+  );
 
   console.log(
     JSON.stringify(
@@ -124,6 +140,10 @@ function main() {
         workerEntrypoint: '.open-next/worker.js',
         assetBinding: 'ASSETS',
         workflowTriggers: ['push:main', 'workflow_dispatch'],
+        workflowRuntime: {
+          nodeVersion: '20',
+          installCommand: 'npm ci',
+        },
         workflowSecrets: ['CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN'],
       },
       null,
