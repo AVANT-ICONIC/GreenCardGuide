@@ -75,7 +75,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:rules` now checks the seeded rules audit baseline, output-type counts, active-rule posture, and required `/admin/rules` markers through a shared audit summary loader.
 
 ### TASK-045 — Add feedback summary validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-042
 Objective:
@@ -94,7 +94,7 @@ Validation:
 - `npm run build`
 - the new feedback summary validation command
 Notes:
-- Reuse the shared feedback summary helper instead of duplicating counting logic in the script.
+- Completed 2026-04-14. `npm run validate:feedback-summary` now checks shared feedback-summary totals, per-type counts, most-reported route ordering, and required `/admin/reviews` summary markers without touching the real inbox file.
 
 ### TASK-046 — Add publish-readiness validation coverage
 Status: Ready
@@ -117,6 +117,72 @@ Validation:
 - the new publish validation command
 Notes:
 - Keep the assertions tied to deterministic current-state gates such as review status, source references, and last-reviewed dates.
+
+### TASK-047 — Add content diff validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Add a repeatable validation check for the admin content diff summary and locale-shape alignment posture.
+Deliverables:
+- a lightweight validation script that exercises aligned versus flagged diff counts and key per-surface diff details
+- assertions covering the current guide, FAQ, glossary, documents, and Ciudad Juarez hub diff summary output
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- content diff regressions can be caught without manually opening `/admin/content`
+- the validation remains aligned with the current structural-diff scaffold and does not imply editorial text diffing already exists
+- the check reuses the existing diff-summary loader rather than duplicating locale-comparison logic
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new content-diff validation command
+Notes:
+- Keep assertions tied to current deterministic route structure, locale key alignment, and diff-status output instead of future editorial workflows.
+
+### TASK-048 — Add content inventory validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Add a repeatable validation check for the admin content inventory summary and tracked-surface metadata.
+Deliverables:
+- a lightweight validation script that exercises total surface counts, localized-surface counts, and key route metadata in the content inventory
+- assertions covering the current guide, FAQ, glossary, documents, and Ciudad Juarez hub inventory entries
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- content inventory regressions can be caught without manually opening `/admin/content`
+- the validation remains truthful about the current placeholder posture and tracked review metadata
+- the check reuses the shared content-inventory loader instead of duplicating route inventory assembly
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new content-inventory validation command
+Notes:
+- Keep the assertions anchored to the current deterministic content registry and bilingual route posture.
+
+### TASK-049 — Add rules-to-document integrity validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-044
+Objective:
+- Add a repeatable validation check that seeded requirement rules, document definitions, and checklist-result assembly remain structurally aligned.
+Deliverables:
+- a lightweight validation script that exercises document-slug references used by rules and the current checklist-result section distribution for a seeded complete answer set
+- assertions covering unknown-document protection, expected matched-rule output sections, and the current conservative verify-with-official posture
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- regressions between requirement rules and seeded document definitions can be caught without manually running the checklist flow
+- the validation remains deterministic and reuses the shared checklist assembly path instead of duplicating rule-evaluation behavior
+- the check does not invent new immigration requirements or case branches
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new rule-integrity validation command
+Notes:
+- Focus on structural integrity and current output posture, not on expanding the seeded requirement set.
 
 ## Blocked
 

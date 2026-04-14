@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:58 UTC — TASK-045
+
+Summary:
+- Added a dedicated `npm run validate:feedback-summary` smoke check for the `/admin/reviews` feedback summary.
+- Kept the validation isolated from the real ignored inbox file by using fixture submissions instead of persistence.
+- Covered summary totals, per-type counts, route aggregation ordering, and the key rendered feedback summary markers already exposed by the admin reviews page.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateFeedbackSummary.ts
+
+Decisions:
+- Reused `loadFeedbackSummary()` directly so the validator exercises the same aggregation path as `/admin/reviews` instead of duplicating summary logic.
+- Used fixture submissions rather than temporary file persistence because this task targets summary aggregation, not storage behavior already covered by `validate:feedback`.
+- Checked route ordering with a count tie so the validation locks in the helper's current deterministic count-first, slug-second sorting behavior.
+
+Validation:
+- Ran `npm run validate:feedback-summary`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected type counts and ordered route counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-046
+
+---
+
 ### 2026-04-14 21:56 UTC — TASK-044
 
 Summary:

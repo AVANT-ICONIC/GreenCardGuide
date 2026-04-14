@@ -63,6 +63,7 @@ npm run validate:seed
 npm run validate:admin
 npm run validate:checklist
 npm run validate:feedback
+npm run validate:feedback-summary
 npm run validate:rules
 npm run validate:reviews
 npm run validate:source-dashboard
@@ -99,6 +100,7 @@ Current state:
 - `npm run validate:admin` now smoke-checks the admin operations routes by validating their backing data loaders and key rendered markers.
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.
+- `npm run validate:feedback-summary` now checks feedback summary totals, report-type counts, route aggregation ordering, and key `/admin/reviews` summary markers.
 - `npm run validate:source-dashboard` now validates source coverage counts and watchlist route linkage for the admin sources surface.
 - The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
 - `/admin/reviews` now summarizes stored feedback by report type and most-reported routes before the detailed inbox list.

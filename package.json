@@ -12,6 +12,7 @@
     "validate:admin": "tsx src/lib/admin/validateAdminOperations.ts",
     "validate:checklist": "tsx src/lib/checklist/validateChecklistBehavior.ts",
     "validate:feedback": "tsx src/lib/feedback/validateFeedbackInbox.ts",
+    "validate:feedback-summary": "tsx src/lib/admin/validateFeedbackSummary.ts",
     "validate:rules": "tsx src/lib/admin/validateRulesAudit.ts",
     "validate:reviews": "tsx src/lib/admin/validateReviewQueue.ts",
     "validate:source-dashboard": "tsx src/lib/admin/validateSourceDashboard.ts",
