@@ -312,6 +312,32 @@ a {
   margin-top: 1rem;
 }
 
+.feedback-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.feedback-form__field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.feedback-form__field span {
+  font-weight: 600;
+}
+
+.feedback-form__field input,
+.feedback-form__field select,
+.feedback-form__field textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid rgba(214, 200, 179, 0.95);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.75);
+  color: var(--text);
+  font: inherit;
+}
+
 .print-sheet__controls {
   display: flex;
   flex-wrap: wrap;

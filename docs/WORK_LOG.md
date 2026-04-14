@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:59 UTC — TASK-014
+
+Summary:
+- Added bilingual `/[lang]/feedback` routes.
+- Added a public feedback form scaffold that defines intended inputs without pretending submissions are stored yet.
+- Updated the shared locale nav so the feedback route is reachable from the current app shell.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/feedback/page.tsx
+- src/app/[lang]/layout.tsx
+- src/app/globals.css
+- src/components/feedback-page.tsx
+
+Decisions:
+- Kept the feedback form non-persistent and explicit about that state so the route can exist before storage, moderation, or review tooling is built.
+- Scoped the page copy to actionable product feedback categories instead of generic contact messaging, matching the roadmap’s “feedback capture” intent.
+- Implemented the submission state locally in the client component because the task only calls for public-surface scaffolding, not backend persistence.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en/feedback` and `/es/feedback`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-015
+
+---
+
 ### 2026-04-14 19:58 UTC — TASK-013
 
 Summary:

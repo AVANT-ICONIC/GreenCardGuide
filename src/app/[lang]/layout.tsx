@@ -12,12 +12,14 @@ const navLinks = {
     { label: 'Checklist', href: '/checklist/start' },
     { label: 'Ciudad Juarez', href: '/ciudad-juarez' },
     { label: 'Documents', href: '/documents' },
+    { label: 'Feedback', href: '/feedback' },
   ],
   es: [
     { label: 'Inicio', href: '' },
     { label: 'Lista', href: '/checklist/start' },
     { label: 'Ciudad Juarez', href: '/ciudad-juarez' },
     { label: 'Documentos', href: '/documents' },
+    { label: 'Comentarios', href: '/feedback' },
   ],
 } as const;
 

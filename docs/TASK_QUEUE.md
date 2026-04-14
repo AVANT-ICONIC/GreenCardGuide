@@ -16,24 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-014 — Add feedback route scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-002
-
-Objective:
-Create the first public feedback route aligned with the information architecture.
-
-Deliverables:
-- `/[lang]/feedback` route scaffold
-- bilingual feedback framing and placeholder submission state
-- clear note about what feedback is for
-
-Acceptance Criteria:
-- route exists for both locales
-- feedback surface is clearly scoped and non-functional areas are explicit
-- route fits the current app shell and trust posture
-
 ### TASK-015 — Add admin route scaffold
 Status: Ready
 Priority: P2
@@ -145,6 +127,14 @@ Depends on: TASK-003, TASK-007
 
 Summary:
 Added bilingual `/[lang]/documents` backed by a typed documents overview loader that groups the seeded document set and frames it as placeholder, trust-aware content.
+
+### TASK-014 — Add feedback route scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-002
+
+Summary:
+Added bilingual `/[lang]/feedback` with explicit feedback guidance, a placeholder submission form, and a clear non-persistent state message.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
