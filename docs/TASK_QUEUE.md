@@ -14,9 +14,109 @@ Priority values:
 - P2 = important but not blocking
 - P3 = later polish
 
+## Queue Maintenance Rules
+
+- Keep at least 3 specific `Ready` tasks in the queue whenever safe to do so.
+- If `Ready` has fewer than 3 tasks, inspect the current codebase, docs, placeholders, TODOs, incomplete flows, trust gaps, and recent work, then add more tasks before implementing.
+- Prefer extending the deepest unfinished deterministic flow over creating new top-level surfaces.
+- Split oversized work into small, implementation-ready tasks with explicit validation.
+- Do not invent immigration guidance to manufacture tasks. If guidance is not source-backed yet, queue infrastructure, validation, source-mapping, persistence, or admin-review work instead.
+
+## Task Format
+
+Use this format for every active task:
+
+### TASK-XXX — Short title
+Status: Ready
+Priority: P1
+Depends on: TASK-000, TASK-000 or none
+Objective:
+- one concrete outcome
+Deliverables:
+- specific code or doc artifacts to change
+Acceptance Criteria:
+- observable completion conditions
+Validation:
+- exact commands or direct checks
+Notes:
+- trust constraints, scope limits, or useful implementation context
+
+## Task Discovery Heuristics
+
+- Prefer depth over breadth.
+- Turn placeholders, stubs, and manual-only summaries into real deterministic flows.
+- Strengthen deterministic logic, persistence, validation, admin usefulness, and trust/source integrity before adding polish.
+- Use recent work to pick the next seam instead of jumping to unrelated areas.
+- If a surface exposes placeholder source references, stale review metadata, missing persistence, or weak validation, convert that gap into a concrete task.
+- Do not invent immigration guidance, legal interpretations, or unsupported case rules.
+
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-035 — Replace blanket placeholder source attachments with surface-specific mappings
+Status: Ready
+Priority: P1
+Depends on: TASK-012, TASK-018, TASK-020, TASK-025
+Objective:
+- Replace the current “attach every placeholder source to every surface” behavior with deterministic per-surface source mappings.
+Deliverables:
+- a typed source-mapping layer that assigns only relevant source keys to each public content surface
+- updates to the current content loaders and admin review queue so they use those mapped source keys instead of the blanket placeholder list
+- validation that fails if a surface references an unknown source key or is missing required mapping data
+Acceptance Criteria:
+- current guide, FAQ, glossary, documents, and Ciudad Juárez hub surfaces no longer default to the full placeholder source list
+- `/admin/reviews` and any affected public surfaces show the mapped source keys consistently
+- the change does not present placeholder references as official immigration guidance
+Validation:
+- `npm run validate:sources`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- It is acceptable to keep placeholder or governance references for now, but only when they are intentionally mapped to the specific surface that uses them.
+
+### TASK-036 — Turn the review scaffold into a prioritized deterministic review queue
+Status: Ready
+Priority: P1
+Depends on: TASK-020, TASK-025, TASK-035
+Objective:
+- Upgrade the current review summary into an actionable queue sorted by deterministic review priority.
+Deliverables:
+- a shared review-task assembler that derives queue entries from review status, source coverage, and review recency
+- explicit queue metadata such as priority, blocker reason, recommended next action, and stale-review flags
+- an `/admin/reviews` update that presents the queue in priority order instead of as an unsorted scaffold list
+Acceptance Criteria:
+- review entries are ordered by explicit deterministic priority rather than route declaration order
+- each entry explains why it needs review and what action is expected next
+- stale or under-sourced surfaces are visibly distinguishable from lower-risk placeholder work
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct route check of `/admin/reviews`
+Notes:
+- Keep this strictly operational. Do not claim that editorial review is automated or complete.
+
+### TASK-037 — Persist public feedback submissions into a deterministic review inbox
+Status: Ready
+Priority: P1
+Depends on: TASK-014, TASK-020
+Objective:
+- Replace the current non-persistent feedback placeholder with validated local persistence that feeds the review workflow.
+Deliverables:
+- a typed feedback submission schema and storage path for local submissions
+- feedback route handling that validates and persists submissions instead of only showing placeholder success text
+- admin review integration so stored feedback appears as actionable maintenance input rather than disappearing after submit
+Acceptance Criteria:
+- valid feedback submissions are stored deterministically and survive refreshes
+- invalid feedback is rejected safely with clear user-facing errors
+- admin review tooling can see stored feedback items without implying moderation or publishing tooling already exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct submission smoke check covering one valid and one invalid payload
+Notes:
+- Keep persistence local and explicit. Do not add external services or invent legal-content processing.
 
 ## Blocked
 
@@ -24,282 +124,60 @@ None currently.
 
 ## Done
 
-### TASK-001 — Create runnable web app scaffold
-Status: Done
-Priority: P0
-Depends on: none
-
-Summary:
-Added a runnable Next.js App Router scaffold with strict TypeScript and ESLint config, a minimal landing shell, a basic `.gitignore`, and README run/validation instructions.
-
-### TASK-003 — Normalize seed domain data and validators
-Status: Done
-Priority: P0
-Depends on: none
-
-Summary:
-Added typed seed entities, path-aware validation helpers, JSON-backed loaders for questions/documents/rules, a runnable `validate:seed` script, and documented assumptions for the current seed structure.
-
-### TASK-002 — Add locale-aware routing shell
-Status: Done
-Priority: P0
-Depends on: TASK-001
-
-Summary:
-Added `/en` and `/es` route scaffolding with a shared localized layout, language switcher, bilingual home placeholders, and a root language entry page.
-
-### TASK-005 — Build checklist result assembler
-Status: Done
-Priority: P1
-Depends on: TASK-003
-
-Summary:
-Added grouped checklist result assembly over the seeded rules, including stable section types, conservative confidence labels, and document metadata joins for rule outputs.
-
-### TASK-004 — Build checklist question flow
-Status: Done
-Priority: P1
-Depends on: TASK-001, TASK-002, TASK-003
-
-Summary:
-Added localized checklist start, questions, and results routes with a deterministic multi-step question renderer, URL-backed answer state, and a progress indicator structured for future branching.
-
-### TASK-006 — Add print-view checklist scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-004, TASK-005
-
-Summary:
-Added a dedicated `/[lang]/checklist/print` route with compact grouped checklist output, print-focused controls, and print media styles for night-before packing review.
-
-### TASK-007 — Add content-loading scaffold for product pages
-Status: Done
-Priority: P2
-Depends on: TASK-001, TASK-002
-
-Summary:
-Added a typed bilingual guide-content loader, placeholder-vs-verified review metadata, and routed guide stubs for the key public guide pages under `/[lang]/guides/[slug]`.
-
-### TASK-010 — Add Ciudad Juárez hub route scaffold
-Status: Done
-Priority: P1
-Depends on: TASK-002, TASK-007
-
-Summary:
-Added `/[lang]/ciudad-juarez` with bilingual placeholder hub content, trust-status framing, and deterministic links into the current checklist and guide routes.
-
-### TASK-011 — Add FAQ and glossary route scaffolds
-Status: Done
-Priority: P2
-Depends on: TASK-007
-
-Summary:
-Added bilingual `/[lang]/faq` and `/[lang]/glossary` routes backed by typed placeholder content loaders and explicit placeholder-vs-verified trust states.
-
-### TASK-012 — Add source registry stub data surface
-Status: Done
-Priority: P2
-Depends on: TASK-003, TASK-007
-
-Summary:
-Added a typed source registry stub, validation for source entries, and consistent placeholder source-reference attachment across current content loaders.
-
-### TASK-013 — Add documents overview route scaffold
-Status: Done
-Priority: P1
-Depends on: TASK-003, TASK-007
-
-Summary:
-Added bilingual `/[lang]/documents` backed by a typed documents overview loader that groups the seeded document set and frames it as placeholder, trust-aware content.
-
-### TASK-014 — Add feedback route scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-002
-
-Summary:
-Added bilingual `/[lang]/feedback` with explicit feedback guidance, a placeholder submission form, and a clear non-persistent state message.
-
-### TASK-015 — Add admin route scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-012
-
-Summary:
-Added `/admin` as a truthful landing scaffold for content, sources, rules, and review surfaces without implying unfinished tools already work.
-
-### TASK-016 — Add admin subsection route scaffolds
-Status: Done
-Priority: P2
-Depends on: TASK-015
-
-Summary:
-Added `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` as truthful subsection placeholders linked from the admin landing surface.
-
-### TASK-017 — Add route smoke verification script
-Status: Done
-Priority: P2
-Depends on: TASK-001, TASK-002, TASK-015
-
-Summary:
-Added `npm run validate:routes`, a deterministic route smoke check that verifies the expected route files and documented route patterns currently present in the app.
-
-### TASK-018 — Add source review dashboard scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-012, TASK-016
-
-Summary:
-Upgraded `/admin/sources` into a source-oriented dashboard scaffold that displays the current typed source registry and preserves an explicit read-only trust posture.
-
-### TASK-019 — Add rules audit view scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-003, TASK-005, TASK-016
-
-Summary:
-Upgraded `/admin/rules` into a read-only audit scaffold that exposes the current seeded checklist questions, rule counts, output types, and rule inventory.
-
-### TASK-020 — Add review queue scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-007, TASK-012, TASK-016
-
-Summary:
-Upgraded `/admin/reviews` into a review-oriented scaffold that summarizes current placeholder content surfaces, their trust labels, and the remaining review work shape.
-
-### TASK-021 — Add admin content inventory dashboard
-Status: Done
-Priority: P2
-Depends on: TASK-007, TASK-013, TASK-016, TASK-020
-
-Summary:
-Upgraded `/admin/content` into a read-only content inventory dashboard that summarizes the current guide, FAQ, glossary, documents, and hub surfaces with trust-aware metadata.
-
-### TASK-022 — Add content diffs scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-021
-
-Summary:
-Extended `/admin/content` with a deterministic structural diff scaffold that compares current bilingual content shapes and flags FAQ/glossary key mismatches for future cleanup.
-
-### TASK-024 — Normalize stable bilingual content keys
-Status: Done
-Priority: P2
-Depends on: TASK-022
-
-Summary:
-Normalized FAQ and glossary locale keys so bilingual content diffs and future editorial workflows can compare stable identifiers instead of language-specific keys.
-
-### TASK-023 — Add publish controls scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-021
-
-Summary:
-Extended `/admin/content` with a truthful publish-readiness scaffold that explains the current review gates and shows why no existing surface is publish-ready yet.
-
-### TASK-025 — Add last-reviewed metadata scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-007, TASK-013, TASK-021, TASK-023
-
-Summary:
-Added shared last-reviewed metadata for the current public content surfaces so each page can show review recency and the admin publish-readiness scaffold can evaluate a real date field.
-
-### TASK-026 — Add source-change review task scaffold
-Status: Done
-Priority: P2
-Depends on: TASK-012, TASK-018, TASK-020
-
-Summary:
-Extended `/admin/sources` with a deterministic source-change review task watchlist that maps each registered source to affected routes without claiming live monitoring exists.
+Recent completed tasks:
 
 ### TASK-034 — Add checklist behavior smoke validation script
 Status: Done
 Priority: P2
 Depends on: TASK-032, TASK-033
+Objective:
+- Add a repeatable deterministic checklist behavior smoke test.
+Deliverables:
+- `npm run validate:checklist`
+- checklist parsing, progress, completion, and result-assembly coverage
+Acceptance Criteria:
+- checklist behavior can be validated without ad hoc shell commands or browser automation
+Validation:
+- `npm run validate:checklist`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. See `docs/WORK_LOG.md` for implementation details.
 
-Summary:
-Added `npm run validate:checklist`, a deterministic smoke validation script that exercises checklist parsing, resume logic, completion guards, and seeded result assembly without relying on ad hoc shell commands.
-
-### TASK-027 — Add base sponsor financial packet rule
+### TASK-033 — Canonicalize checklist answers and strip unsupported values
 Status: Done
 Priority: P1
-Depends on: TASK-003, TASK-004, TASK-005
+Depends on: TASK-032
+Objective:
+- Ensure only seeded answer values survive URL-backed checklist state.
+Deliverables:
+- stricter answer parsing and route canonicalization
+Acceptance Criteria:
+- malformed or unsupported values are removed instead of influencing results
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. See `docs/WORK_LOG.md` for implementation details.
 
-Summary:
-Extended the seeded checklist rules so family-based cases surface the base sponsor financial packet through the existing `i-864` document instead of only mentioning joint-sponsor materials.
-
-### TASK-028 — Add passport readiness risk flag
-Status: Done
-Priority: P1
-Depends on: TASK-003, TASK-004, TASK-005
-
-Summary:
-Added a deterministic risk flag for cases where the applicant does not have a current passport ready so the checklist reflects the existing `passport_ready` input.
-
-### TASK-029 — Add court-record caution rule
-Status: Done
-Priority: P1
-Depends on: TASK-003, TASK-004, TASK-005
-
-Summary:
-Added a conservative `verify_with_official` checklist rule for cases with arrests or court records so the existing `needs_court_records` input produces a trust-safe output.
-
-### TASK-030 — Localize checklist answer labels
-Status: Done
-Priority: P1
-Depends on: TASK-004
-
-Summary:
-Replaced raw checklist keys and option values in the flow and answer summaries with localized human-readable labels so the guided experience no longer exposes internal slugs.
-
-### TASK-031 — Add role-aware checklist framing
-Status: Done
-Priority: P1
-Depends on: TASK-030
-
-Summary:
-Used `applicant_role` to add role-aware framing on the checklist results and print views so sponsor/helpers and derivative applicants see context that matches the selected mode.
-
-### TASK-032 — Guard incomplete checklist output routes
+### TASK-032 — Resume checklist flow and guard incomplete results
 Status: Done
 Priority: P1
 Depends on: TASK-004
+Objective:
+- Resume users at the first unanswered step and prevent partial results rendering.
+Deliverables:
+- shared progress helper and route guards for results and print views
+Acceptance Criteria:
+- incomplete sessions redirect back into the guided flow
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. See `docs/WORK_LOG.md` for implementation details.
 
-Summary:
-Updated the checklist flow to resume at the first unanswered step and redirected incomplete results or print requests back into the guided question flow so partial answer sets no longer look like finished checklist output.
-
-### TASK-033 — Validate unsupported checklist answer values
-Status: Done
-Priority: P1
-Depends on: TASK-004, TASK-032
-
-Summary:
-Hardened checklist answer parsing and question-route URL canonicalization so unsupported select values and malformed booleans no longer persist through the deterministic flow or appear in checklist URLs as if they were valid case facts.
-
-### TASK-009 — Require per-cycle commit and push
-Status: Done
-Priority: P0
-Depends on: none
-
-Summary:
-Updated the autonomous loop and README prompt so each completed work cycle now requires a small task-scoped commit and a push of the current branch.
-
-### TASK-008 — Make autonomous loop blocker-resilient
-Status: Done
-Priority: P0
-Depends on: none
-
-Summary:
-Updated `docs/AGENT_LOOP.md` and the README operator prompt so blocked tasks are documented, contained, and bypassed instead of stopping the whole autonomous loop.
-
-### TASK-000 — Add autonomous repo loop docs
-Status: Done
-Priority: P0
-Depends on: none
-
-Summary:
-Created `docs/AGENT_LOOP.md`, `docs/MASTER_PLAN.md`, `docs/TASK_QUEUE.md`, `docs/WORK_LOG.md`, and `docs/DEFINITION_OF_DONE.md` to support autonomous work cycles.
+Archived:
+- TASK-001 through TASK-031 are complete and remain documented in git history and `docs/WORK_LOG.md`.

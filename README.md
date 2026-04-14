@@ -172,12 +172,14 @@ Recommended operator prompt:
 Read `docs/AGENT_LOOP.md` and follow it exactly.
 
 Start by reading the required project documents in the order specified there.
+If `docs/TASK_QUEUE.md` has fewer than 3 ready tasks, inspect the codebase, docs, placeholders, TODOs, incomplete flows, trust gaps, and recent work, then add specific ready tasks before implementing.
 Then choose the highest-priority ready task from `docs/TASK_QUEUE.md`.
 Implement it fully, validate your changes, update both `docs/WORK_LOG.md` and `docs/TASK_QUEUE.md`, then commit and push the completed work before continuing.
 
 After updating those files, return to `docs/AGENT_LOOP.md` and continue the loop.
 If a task hits a stop condition or true blocker, document it, contain it, update the queue, and continue with the next highest-priority actionable task.
 Only treat the repository as blocked if no meaningful safe progress remains anywhere in the queue.
+Do not stop just because the queue is thin; refill it and continue in the same run.
 Do not skip documentation updates.
 Do not skip the per-cycle commit and push unless push is unsafe or impossible; in that case record the issue clearly in `docs/WORK_LOG.md`.
 Do not invent requirements beyond the repo docs.

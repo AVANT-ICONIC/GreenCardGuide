@@ -53,15 +53,36 @@ Repeat the following loop continuously. If a task hits a blocker or stop conditi
 
 1. Read this file and the current project state files listed above.
 2. Open `docs/TASK_QUEUE.md`.
-3. Select the highest-priority task with `Status: Ready` and no unmet dependencies.
-4. Implement that task fully in a small, coherent increment.
-5. Validate your changes.
-6. Update `docs/WORK_LOG.md` with what you changed, decisions made, validations run, blockers, and the recommended next task.
-7. Update `docs/TASK_QUEUE.md` to reflect completed work, newly unblocked tasks, status changes, or follow-on tasks.
-8. Commit the completed work as a small, coherent changeset with a task-scoped commit message.
-9. Push the current branch after the commit succeeds.
-10. If the current task cannot be completed cleanly, record the blocker, downgrade or split scope as needed, and select the next highest-priority task that is still actionable.
-11. Return to this file and begin the next cycle.
+3. Check the `Ready` section.
+4. If there are fewer than 3 `Ready` tasks, refill the queue before implementing:
+   - inspect the codebase, docs, placeholders, TODOs, incomplete flows, trust gaps, admin surfaces, validation gaps, persistence gaps, and recent work
+   - generate specific, implementation-ready tasks
+   - add them to `docs/TASK_QUEUE.md`
+   - then select the highest-priority actionable task from the refreshed queue in the same run
+5. Select the highest-priority task with `Status: Ready` and no unmet dependencies.
+6. Implement that task fully in a small, coherent increment.
+7. Validate your changes.
+8. Update `docs/WORK_LOG.md` with what you changed, decisions made, validations run, blockers, and the recommended next task.
+9. Update `docs/TASK_QUEUE.md` to reflect completed work, newly unblocked tasks, status changes, or follow-on tasks.
+10. Commit the completed work as a small, coherent changeset with a task-scoped commit message.
+11. Push the current branch after the commit succeeds.
+12. If the current task cannot be completed cleanly, record the blocker, downgrade or split scope as needed, and select the next highest-priority task that is still actionable.
+13. Return to this file and begin the next cycle.
+
+Do not stop just because the queue is thin. A thin queue means you must replenish it and keep going.
+
+## Queue refill rules
+
+When replenishing `docs/TASK_QUEUE.md`:
+
+- Add enough specific tasks to restore at least 3 actionable `Ready` tasks when safe to do so.
+- Prefer depth over breadth. Extend the most relevant existing flow instead of opening new surface area.
+- Convert obvious placeholders, stubs, manual summaries, or non-persistent flows into deterministic implementation tasks.
+- Prefer work that strengthens deterministic logic, persistence, validation, admin usefulness, and trust/source integrity.
+- Use recent work, open trust gaps, incomplete admin scaffolds, and validation blind spots to choose follow-on tasks.
+- Keep tasks small enough to finish in one coherent cycle when possible.
+- Do not invent immigration requirements, exceptions, or legal interpretations just to create work.
+- If source-backed product guidance is not available, create infrastructure, review, source-mapping, validation, or admin tasks instead.
 
 ## Task selection rules
 
@@ -136,7 +157,7 @@ Do not halt the overall work loop when one task is blocked. Instead:
    - if source-backed content is ambiguous, avoid publishing the disputed claim and continue with infrastructure, placeholders, or unaffected flows
    - if secrets or paid services are missing, build interfaces, mocks, local adapters, or docs-backed scaffolding that can be completed without them
    - if trust-sensitive content needs review, mark that content as pending review and continue with non-sensitive implementation
-5. Only treat the repository as globally blocked when no meaningful `Ready` work remains that can be advanced safely.
+5. Only treat the repository as globally blocked when no meaningful `Ready` work remains that can be advanced safely after attempting queue refill.
 
 ## Escalation conditions
 
