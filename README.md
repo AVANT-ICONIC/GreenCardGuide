@@ -76,6 +76,7 @@ Current state:
 - A bilingual documents overview route now exposes the seeded document set through the same trust-aware content layer.
 - A bilingual feedback route now defines the public feedback surface, while making its non-persistent placeholder state explicit.
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
+- `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.
 - The current queued work is exhausted again; add the next prioritized task to `docs/TASK_QUEUE.md` before the next autonomous cycle.
 
 ## Non-negotiables

@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:04 UTC — TASK-016
+
+Summary:
+- Added `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`.
+- Added shared admin section metadata and linked the admin landing page into the subsection routes.
+- Updated admin scaffolding docs so the landing page and subsection placeholders are both reflected in repo documentation.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/admin/README.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-home.tsx
+- src/components/admin-section-page.tsx
+- src/lib/admin/sections.ts
+
+Decisions:
+- Centralized admin section metadata so the landing page and subsection routes stay aligned instead of drifting into separate hardcoded definitions.
+- Kept each subsection truthful and descriptive, with no fake editing controls or dead downstream links.
+- Used static params for the admin subsections so the documented admin route set is explicit and build-verifiable.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-017
+
+---
+
 ### 2026-04-14 20:01 UTC — TASK-015
 
 Summary:

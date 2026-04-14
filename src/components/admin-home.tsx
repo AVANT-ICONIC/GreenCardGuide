@@ -1,29 +1,5 @@
-const adminSections = [
-  {
-    title: 'Content',
-    body:
-      'Manage guide, FAQ, glossary, and post hub content once structured editing tools exist.',
-    status: 'Planned surface',
-  },
-  {
-    title: 'Sources',
-    body:
-      'Review source references, placeholder trust attachments, and future source-change monitoring.',
-    status: 'Planned surface',
-  },
-  {
-    title: 'Rules',
-    body:
-      'Inspect deterministic checklist rules, question inputs, and grouped output logic as admin tooling expands.',
-    status: 'Planned surface',
-  },
-  {
-    title: 'Reviews',
-    body:
-      'Track last-reviewed dates, review queues, and verified-vs-placeholder state across content surfaces.',
-    status: 'Planned surface',
-  },
-] as const;
+import Link from 'next/link';
+import { adminSections } from '@/lib/admin/sections';
 
 export function AdminHome() {
   return (
@@ -53,6 +29,14 @@ export function AdminHome() {
               <h2>{section.title}</h2>
               <p>{section.body}</p>
               <p className="results-section__confidence">{section.status}</p>
+              <div className="hub-links">
+                <Link
+                  className="hero__button hero__button--secondary"
+                  href={`/admin/${section.slug}`}
+                >
+                  Open {section.title}
+                </Link>
+              </div>
             </article>
           ))}
         </div>

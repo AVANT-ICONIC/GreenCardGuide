@@ -1,0 +1,36 @@
+export const adminSections = [
+  {
+    slug: 'content',
+    title: 'Content',
+    body:
+      'Manage guide, FAQ, glossary, documents, and post hub content once structured editing tools exist.',
+    status: 'Planned surface',
+  },
+  {
+    slug: 'sources',
+    title: 'Sources',
+    body:
+      'Review source references, placeholder trust attachments, and future source-change monitoring.',
+    status: 'Planned surface',
+  },
+  {
+    slug: 'rules',
+    title: 'Rules',
+    body:
+      'Inspect deterministic checklist rules, question inputs, and grouped output logic as admin tooling expands.',
+    status: 'Planned surface',
+  },
+  {
+    slug: 'reviews',
+    title: 'Reviews',
+    body:
+      'Track last-reviewed dates, review queues, and verified-vs-placeholder state across content surfaces.',
+    status: 'Planned surface',
+  },
+] as const;
+
+export type AdminSectionSlug = (typeof adminSections)[number]['slug'];
+
+export function isAdminSectionSlug(value: string): value is AdminSectionSlug {
+  return adminSections.some((section) => section.slug === value);
+}

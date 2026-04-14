@@ -16,7 +16,23 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-017 — Add route smoke verification script
+Status: Ready
+Priority: P2
+Depends on: TASK-001, TASK-002, TASK-015
+
+Objective:
+Add a deterministic route smoke verification script for the key public and admin paths now present in the app.
+
+Deliverables:
+- script or command that verifies the expected route files or built paths
+- npm script entry for the smoke check
+- documented scope of what the smoke check does and does not verify
+
+Acceptance Criteria:
+- smoke check can be run locally
+- key routes are covered consistently
+- docs reflect the new validation step
 
 ## Blocked
 
@@ -127,6 +143,14 @@ Depends on: TASK-012
 
 Summary:
 Added `/admin` as a truthful landing scaffold for content, sources, rules, and review surfaces without implying unfinished tools already work.
+
+### TASK-016 — Add admin subsection route scaffolds
+Status: Done
+Priority: P2
+Depends on: TASK-015
+
+Summary:
+Added `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` as truthful subsection placeholders linked from the admin landing surface.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
