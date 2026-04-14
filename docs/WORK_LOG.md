@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:25 UTC — TASK-059
+
+Summary:
+- Added a dedicated `npm run validate:source-registry-order` smoke check for the current source registry ordering and governance-reference posture.
+- Locked in the current registry baseline: three governance references in deterministic order with stable titles and shared reviewed dates.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateSourceRegistryOrdering.ts
+
+Decisions:
+- Reused `loadSourceReferences()` directly so the validator stays aligned with the typed loader instead of duplicating seed parsing.
+- Kept this task distinct from `validate:source-references` by focusing on registry order and titles rather than the broader URL and note-shape contract.
+- Left the queued language-entry task separate because it validates a rendering seam rather than source metadata.
+
+Validation:
+- Ran `npm run validate:source-registry-order`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected source key order and titles.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-060
+
+---
+
 ### 2026-04-14 22:23 UTC — TASK-058
 
 Summary:

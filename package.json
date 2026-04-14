@@ -23,6 +23,7 @@
     "validate:guides": "tsx src/lib/content/validateGuidePages.ts",
     "validate:locale": "tsx src/lib/content/validateLocaleSupport.ts",
     "validate:source-mappings": "tsx src/lib/content/validateSourceMappings.ts",
+    "validate:source-registry-order": "tsx src/lib/content/validateSourceRegistryOrdering.ts",
     "validate:source-references": "tsx src/lib/content/validateSourceReferenceLoader.ts",
     "validate:publish": "tsx src/lib/admin/validatePublishReadiness.ts",
     "validate:rule-integrity": "tsx src/lib/rules/validateRuleDocumentIntegrity.ts",

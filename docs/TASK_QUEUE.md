@@ -383,7 +383,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:locale` now checks supported locale order, support guards, and language labels for the current bilingual surface.
 
 ### TASK-059 — Add source registry ordering validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -402,7 +402,7 @@ Validation:
 - `npm run build`
 - the new source-registry-order validation command
 Notes:
-- Keep the assertions tied to current source metadata, not future source expansion.
+- Completed 2026-04-14. `npm run validate:source-registry-order` now checks source registry ordering, titles, reviewed dates, and governance-reference-only posture through the typed loader.
 
 ### TASK-060 — Add language entry validation coverage
 Status: Ready
@@ -425,6 +425,28 @@ Validation:
 - the new language-entry validation command
 Notes:
 - Keep the assertions tightly scoped to the current bilingual language-entry surface.
+
+### TASK-061 — Add source dashboard component marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-043
+Objective:
+- Add a repeatable validation check for the admin sources component markers that expose source registry posture and mapped coverage to maintainers.
+Deliverables:
+- a lightweight validation script that exercises the key `/admin/sources` marker strings alongside the current source registry posture
+- assertions covering the current governance-reference-only state and mapped coverage framing
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source-dashboard component regressions can be caught without manually opening `/admin/sources`
+- the validation remains aligned with the existing source dashboard scaffold instead of duplicating broader loader validations
+- the check stays truthful about the current placeholder governance-reference posture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-dashboard-marker validation command
+Notes:
+- Keep the assertions tied to component markers and current registry posture, not future monitoring features.
 
 ## Blocked
 
