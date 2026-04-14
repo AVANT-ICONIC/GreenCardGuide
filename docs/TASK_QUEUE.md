@@ -24,14 +24,6 @@ Depends on: TASK-021
 Summary:
 Add a truthful admin scaffold for publish controls that explains planned publish states, review gates, and current non-functional boundaries without implying live publishing exists.
 
-### TASK-024 — Normalize stable bilingual content keys
-Status: Ready
-Priority: P2
-Depends on: TASK-022
-
-Summary:
-Normalize the FAQ and glossary locale keys so bilingual content diffs and future editorial workflows can compare stable identifiers instead of language-specific keys.
-
 ## Blocked
 
 None currently.
@@ -197,6 +189,14 @@ Depends on: TASK-021
 
 Summary:
 Extended `/admin/content` with a deterministic structural diff scaffold that compares current bilingual content shapes and flags FAQ/glossary key mismatches for future cleanup.
+
+### TASK-024 — Normalize stable bilingual content keys
+Status: Done
+Priority: P2
+Depends on: TASK-022
+
+Summary:
+Normalized FAQ and glossary locale keys so bilingual content diffs and future editorial workflows can compare stable identifiers instead of language-specific keys.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -83,6 +83,7 @@ Current state:
 - `/admin/rules` now exposes the current seeded checklist questions and requirement rules through a read-only audit scaffold.
 - `/admin/reviews` now summarizes current placeholder content surfaces in a queue-shaped review scaffold.
 - `/admin/content` now summarizes the current guide, FAQ, glossary, documents, and hub surfaces through a read-only content inventory and structural diff scaffold.
+- FAQ and glossary content now use stable bilingual identifiers so admin diffing can compare locale structures cleanly.
 
 ## Non-negotiables
 

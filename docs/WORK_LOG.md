@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:42 UTC — TASK-024
+
+Summary:
+- Normalized FAQ and glossary identifiers so both locales now share stable content keys.
+- Kept localized copy and tags intact while aligning the underlying bilingual comparison keys used by the admin diff scaffold.
+- Cleared the previously surfaced FAQ and glossary structural mismatches from future content diff comparisons.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/content/faq.ts
+- src/content/glossary.ts
+
+Decisions:
+- Changed only the stable identifiers and related glossary references, leaving user-facing bilingual copy untouched.
+- Treated glossary `related_terms` as key references, so the Spanish entries now point to the same stable identifiers as the English entries.
+- Kept this normalization separate from publish-control work so the content workflow foundation stays coherent and independently shippable.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all public and admin routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-023
+
+---
+
 ### 2026-04-14 20:40 UTC — TASK-022
 
 Summary:

@@ -20,14 +20,14 @@ const faqContent = {
   ],
   es: [
     {
-      key: 'para-que-sirve',
+      key: 'what-is-this-site',
       question: '¿Para qué sirve este sitio?',
       answer:
         'Este FAQ provisional explica la base actual del producto para la preparacion de entrevistas familiares en Ciudad Juarez. Todavia no es orientacion editorial respaldada por fuentes.',
       tags: ['alcance', 'confianza'],
     },
     {
-      key: 'es-asesoria-legal',
+      key: 'is-this-legal-advice',
       question: '¿Esto es asesoría legal?',
       answer:
         'No. El producto es una herramienta operativa de preparacion y no debe reemplazar instrucciones oficiales ni ayuda legal profesional cuando haga falta.',

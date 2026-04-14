@@ -20,18 +20,18 @@ const glossaryContent = {
   ],
   es: [
     {
-      term_key: 'peticionario',
+      term_key: 'petitioner',
       term: 'Peticionario o patrocinador',
       definition:
         'Termino provisional para la persona que presento la peticion de inmigrante en el caso.',
-      related_terms: ['beneficiario', 'patrocinio-economico'],
+      related_terms: ['beneficiary', 'affidavit-of-support'],
     },
     {
-      term_key: 'beneficiario',
+      term_key: 'beneficiary',
       term: 'Beneficiario',
       definition:
         'Termino provisional para la persona que busca recibir el beneficio de la visa de inmigrante.',
-      related_terms: ['peticionario'],
+      related_terms: ['petitioner'],
     },
   ],
 } as const;
