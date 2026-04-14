@@ -90,6 +90,10 @@ Good `Ready` tasks usually:
 - unlock the next meaningful step in checklist, documents, guides, or trust infrastructure
 - add validation only when it protects real feature work or unlocks deeper implementation
 
+In this repository, prefer work that makes the Ciudad Juárez spouse/family preparation path more real, more persistent, more source-backed, and more printable.
+
+When choosing between safe maintenance and product advancement, prefer the task that improves that user-facing preparation path.
+
 Bad refill behavior usually looks like:
 
 - chaining the next adjacent validator for a placeholder surface
@@ -110,7 +114,7 @@ When replenishing `docs/TASK_QUEUE.md`:
 - Keep tasks small enough to finish in one coherent cycle when possible.
 - Do not invent immigration requirements, exceptions, or legal interpretations just to create work.
 - If source-backed product guidance is not available, create infrastructure, review, source-mapping, validation, or admin tasks instead.
-- Do not create a validation-only follow-on task unless it directly protects recent feature work, unlocks the next implementation step, or no higher-value safe task is discoverable.
+- Do not create a validation-only follow-on task unless it directly unlocks, protects, or verifies the Ciudad Juárez spouse/family preparation path, or no higher-value safe task is discoverable.
 
 ## Task selection rules
 

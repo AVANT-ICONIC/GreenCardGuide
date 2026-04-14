@@ -31,6 +31,8 @@ Priority values:
 - Keep at least one `Ready` task focused on advancing a user-facing or core deterministic seam.
 - Keep validation tasks attached to feature work or real reliability risk; do not chain them as default refill behavior.
 - Prefer turning placeholders and read-only scaffolds into useful deterministic flows before adding more marker or audit coverage around them.
+- Prefer work that makes the Ciudad Juárez spouse/family preparation path more real, more persistent, more source-backed, and more printable.
+- Avoid new validation-only work unless it directly unlocks, protects, or verifies that path.
 
 ## Good Next Tasks
 
