@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-035 — Replace blanket placeholder source attachments with surface-specific mappings
-Status: Ready
-Priority: P1
-Depends on: TASK-012, TASK-018, TASK-020, TASK-025
-Objective:
-- Replace the current “attach every placeholder source to every surface” behavior with deterministic per-surface source mappings.
-Deliverables:
-- a typed source-mapping layer that assigns only relevant source keys to each public content surface
-- updates to the current content loaders and admin review queue so they use those mapped source keys instead of the blanket placeholder list
-- validation that fails if a surface references an unknown source key or is missing required mapping data
-Acceptance Criteria:
-- current guide, FAQ, glossary, documents, and Ciudad Juárez hub surfaces no longer default to the full placeholder source list
-- `/admin/reviews` and any affected public surfaces show the mapped source keys consistently
-- the change does not present placeholder references as official immigration guidance
-Validation:
-- `npm run validate:sources`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- It is acceptable to keep placeholder or governance references for now, but only when they are intentionally mapped to the specific surface that uses them.
-
 ### TASK-036 — Turn the review scaffold into a prioritized deterministic review queue
 Status: Ready
 Priority: P1
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Keep persistence local and explicit. Do not add external services or invent legal-content processing.
 
+### TASK-038 — Expose source-to-surface coverage in admin sources
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Make the source dashboard show which public surfaces each registered source currently supports.
+Deliverables:
+- a deterministic source-coverage summary derived from the current source mapping layer
+- `/admin/sources` updates that show mapped surface count and linked routes per source alongside the existing watchlist tasks
+- validation that the new coverage summary stays consistent with the source mapping registry
+Acceptance Criteria:
+- each registered source shows its mapped public surfaces without relying on manual notes
+- the admin sources surface distinguishes direct mapped coverage from the separate change-watchlist tasks
+- the coverage summary stays truthful for placeholder governance references and does not imply verified immigration guidance
+Validation:
+- `npm run validate:sources`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Reuse the `TASK-035` source mapping registry as the single source of truth instead of creating a second attachment list.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-035 — Replace blanket placeholder source attachments with surface-specific mappings
+Status: Done
+Priority: P1
+Depends on: TASK-012, TASK-018, TASK-020, TASK-025
+Objective:
+- Replace the current “attach every placeholder source to every surface” behavior with deterministic per-surface source mappings.
+Deliverables:
+- a typed source-mapping layer that assigns only relevant source keys to each public content surface
+- updates to the current content loaders and admin review queue so they use those mapped source keys instead of the blanket placeholder list
+- validation that fails if a surface references an unknown source key or is missing required mapping data
+Acceptance Criteria:
+- current guide, FAQ, glossary, documents, and Ciudad Juárez hub surfaces no longer default to the full placeholder source list
+- `/admin/reviews` and any affected public surfaces show the mapped source keys consistently
+- the change does not present placeholder references as official immigration guidance
+Validation:
+- `npm run validate:sources`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. Governance references remain placeholder-only where applicable, but they are now intentionally mapped per surface instead of attached globally.
 
 ### TASK-034 — Add checklist behavior smoke validation script
 Status: Done

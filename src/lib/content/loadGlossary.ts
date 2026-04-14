@@ -2,12 +2,14 @@ import { getGlossaryTerms } from '@/content/glossary';
 import type { GlossaryPageContent, GlossaryTermContent } from './types';
 import type { Language } from '@/lib/types/domain';
 import { loadContentReviewMetadata } from './loadContentReviewMetadata';
-import { getPlaceholderSourceReferenceKeys } from './loadSourceReferences';
+import { loadSourceReferenceKeysForSurface } from './sourceMappings';
 
 export function loadGlossaryTerms(language: Language): GlossaryTermContent[] {
+  const sourceReferences = loadSourceReferenceKeysForSurface('glossary');
+
   return getGlossaryTerms(language).map((term) => ({
     ...term,
-    source_references: getPlaceholderSourceReferenceKeys(),
+    source_references: sourceReferences,
   }));
 }
 

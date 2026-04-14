@@ -1,8 +1,9 @@
-import { guideSlugs, getGuideContent } from '@/content/guides';
-import { getFaqItems } from '@/content/faq';
-import { getGlossaryTerms } from '@/content/glossary';
-import { getPlaceholderSourceReferenceKeys } from '@/lib/content/loadSourceReferences';
+import { guideSlugs } from '@/content/guides';
+import { loadCiudadJuarezHubContent } from '@/lib/content/loadCiudadJuarezHubContent';
+import { loadFaqPage } from '@/lib/content/loadFaq';
+import { loadGlossaryPage } from '@/lib/content/loadGlossary';
 import { loadDocumentsOverview } from '@/lib/content/loadDocumentsOverview';
+import { loadGuidePage } from '@/lib/content/loadGuidePage';
 
 export interface ReviewQueueEntry {
   surface: string;
@@ -14,39 +15,39 @@ export interface ReviewQueueEntry {
 }
 
 export function loadReviewQueueEntries(): ReviewQueueEntry[] {
-  const placeholderSourceKeys = getPlaceholderSourceReferenceKeys();
   const guideEntries = guideSlugs.map((slug) => {
-    const page = getGuideContent('en', slug);
+    const page = loadGuidePage('en', slug);
 
     return {
       surface: `Guide: ${slug}`,
       route: `/[lang]/guides/${slug}`,
       review_status: page.review_status,
       confidence_label: page.confidence_label,
-      source_references: placeholderSourceKeys,
+      source_references: page.source_references,
       note: 'Localized guide scaffold still needs source-backed editorial review.',
     } satisfies ReviewQueueEntry;
   });
 
+  const faqPage = loadFaqPage('en');
   const faqEntries = [
     {
       surface: 'FAQ',
       route: '/[lang]/faq',
-      review_status: getFaqItems('en')[0]?.review_status ?? 'placeholder',
-      confidence_label: getFaqItems('en')[0]?.confidence_label ?? 'verify_with_official',
-      source_references: placeholderSourceKeys,
+      review_status: faqPage.review_status,
+      confidence_label: faqPage.confidence_label,
+      source_references: faqPage.source_references,
       note: 'FAQ surface exists, but entries remain placeholder scaffolding.',
     },
   ] satisfies ReviewQueueEntry[];
 
+  const glossaryPage = loadGlossaryPage('en');
   const glossaryEntries = [
     {
       surface: 'Glossary',
       route: '/[lang]/glossary',
-      review_status: getGlossaryTerms('en')[0]?.review_status ?? 'placeholder',
-      confidence_label:
-        getGlossaryTerms('en')[0]?.confidence_label ?? 'verify_with_official',
-      source_references: placeholderSourceKeys,
+      review_status: glossaryPage.review_status,
+      confidence_label: glossaryPage.confidence_label,
+      source_references: glossaryPage.source_references,
       note: 'Glossary terms exist, but definitions are not source-backed yet.',
     },
   ] satisfies ReviewQueueEntry[];
@@ -63,13 +64,14 @@ export function loadReviewQueueEntries(): ReviewQueueEntry[] {
     },
   ] satisfies ReviewQueueEntry[];
 
+  const hub = loadCiudadJuarezHubContent('en');
   const hubEntries = [
     {
       surface: 'Ciudad Juarez hub',
       route: '/[lang]/ciudad-juarez',
-      review_status: 'placeholder',
-      confidence_label: 'verify_with_official',
-      source_references: placeholderSourceKeys,
+      review_status: hub.review_status,
+      confidence_label: hub.confidence_label,
+      source_references: hub.source_references,
       note: 'Post hub links existing surfaces but still needs source-backed step summaries.',
     },
   ] satisfies ReviewQueueEntry[];

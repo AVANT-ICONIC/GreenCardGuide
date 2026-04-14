@@ -2,7 +2,7 @@ import { getGuideContent, guideSlugs, type GuideSlug } from '@/content/guides';
 import type { GuidePageContent } from './types';
 import type { Language } from '@/lib/types/domain';
 import { loadContentReviewMetadata } from './loadContentReviewMetadata';
-import { getPlaceholderSourceReferenceKeys } from './loadSourceReferences';
+import { loadSourceReferenceKeysForSurface } from './sourceMappings';
 
 export function isGuideSlug(value: string): value is GuideSlug {
   return guideSlugs.includes(value as GuideSlug);
@@ -15,7 +15,7 @@ export function loadGuidePage(
   return {
     ...getGuideContent(language, slug),
     last_reviewed_at: loadContentReviewMetadata(language, slug).last_reviewed_at,
-    source_references: getPlaceholderSourceReferenceKeys(),
+    source_references: loadSourceReferenceKeysForSurface(slug),
   };
 }
 

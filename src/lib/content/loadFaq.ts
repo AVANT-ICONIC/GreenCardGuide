@@ -2,12 +2,14 @@ import { getFaqItems } from '@/content/faq';
 import type { FaqItemContent, FaqPageContent } from './types';
 import type { Language } from '@/lib/types/domain';
 import { loadContentReviewMetadata } from './loadContentReviewMetadata';
-import { getPlaceholderSourceReferenceKeys } from './loadSourceReferences';
+import { loadSourceReferenceKeysForSurface } from './sourceMappings';
 
 export function loadFaqItems(language: Language): FaqItemContent[] {
+  const sourceReferences = loadSourceReferenceKeysForSurface('faq');
+
   return getFaqItems(language).map((item) => ({
     ...item,
-    source_references: getPlaceholderSourceReferenceKeys(),
+    source_references: sourceReferences,
   }));
 }
 

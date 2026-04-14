@@ -1,14 +1,17 @@
 import type { Language } from '@/lib/types/domain';
 
-export type ContentSurfaceKey =
-  | 'ciudad-juarez'
-  | 'documents'
-  | 'faq'
-  | 'glossary'
-  | 'what-to-bring'
-  | 'originals-vs-copies'
-  | 'interview-week-plan'
-  | 'common-mistakes';
+export const contentSurfaceKeys = [
+  'ciudad-juarez',
+  'documents',
+  'faq',
+  'glossary',
+  'what-to-bring',
+  'originals-vs-copies',
+  'interview-week-plan',
+  'common-mistakes',
+] as const;
+
+export type ContentSurfaceKey = (typeof contentSurfaceKeys)[number];
 
 interface ContentReviewMetadata {
   last_reviewed_at: string;

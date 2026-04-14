@@ -49,7 +49,3 @@ export function loadSourceReferences(): SourceReference[] {
     expectArray(sourceReferencesSeed, 'source-references').map(parseSourceReference),
   );
 }
-
-export function getPlaceholderSourceReferenceKeys(): string[] {
-  return loadSourceReferences().map((reference) => reference.source_key);
-}

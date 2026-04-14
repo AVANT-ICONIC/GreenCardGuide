@@ -29,6 +29,51 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:27 UTC — TASK-035
+
+Summary:
+- Replaced the blanket placeholder-source attachment behavior with a typed per-surface source mapping registry for the current public content surfaces.
+- Updated the guide, FAQ, glossary, documents, and Ciudad Juarez hub loaders plus `/admin/reviews` to consume the mapped source keys consistently.
+- Hardened `validate:sources` so it now fails if any mapped surface references an unknown source key, and reports the current surface-to-source map.
+- Updated developer-facing docs to reflect that governance references are now intentionally attached per surface rather than globally.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/lib/admin/loadReviewQueue.ts
+- src/lib/content/README.md
+- src/lib/content/loadCiudadJuarezHubContent.ts
+- src/lib/content/loadContentReviewMetadata.ts
+- src/lib/content/loadDocumentsOverview.ts
+- src/lib/content/loadFaq.ts
+- src/lib/content/loadGlossary.ts
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/loadSourceReferences.ts
+- src/lib/content/sourceMappings.ts
+- src/lib/content/validateSourceRegistry.ts
+
+Decisions:
+- Kept the current sources limited to repository governance references, but mapped them intentionally by surface so trust boundaries remain explicit without implying official immigration sourcing that does not exist yet.
+- Used the existing content-surface key list as the source of truth for required mappings so validation and loaders stay aligned.
+- Reworked review-queue source usage through the same loader outputs instead of maintaining a separate admin-only attachment list.
+- Ran the validation commands sequentially after an initial parallel run exposed a repo-level `.next/types` race between `typecheck` and `build`; this is an environment validation quirk, not a product blocker.
+
+Validation:
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the production build completed successfully and the mapped-surface summary was emitted by `validate:sources`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-036
+
+---
+
 ### 2026-04-14 21:17 UTC — TASK-LOOP-DOCS
 
 Summary:
