@@ -16,6 +16,8 @@
 - `/en`
 - `/es`
 - `/[lang]/ciudad-juarez`
+- `/[lang]/documents`
+- `/[lang]/documents/[slug]`
 - `/[lang]/guides/what-to-bring`
 - `/[lang]/guides/originals-vs-copies`
 - `/[lang]/guides/interview-week-plan`

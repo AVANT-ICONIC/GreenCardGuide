@@ -29,6 +29,48 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 00:08 UTC — TASK-081
+
+Summary:
+- Added bilingual seeded document detail routes so each document in the shared library now has a deterministic `/[lang]/documents/[slug]` surface.
+- Built the detail loader from existing document and rule seeds so the new page shows current checklist coverage conditions without inventing new immigration guidance.
+- Turned the documents overview into a navigation surface by linking each listed document into its detail page, and extended route plus documents validation to cover the new paths.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- docs/content/CONTENT_MODEL.md
+- docs/product/INFORMATION_ARCHITECTURE.md
+- src/app/README.md
+- src/app/[lang]/documents/[slug]/page.tsx
+- src/app/validateRoutes.ts
+- src/components/document-detail-page.tsx
+- src/components/documents-overview-page.tsx
+- src/lib/content/loadDocumentDetailPage.ts
+- src/lib/content/validateDocumentsOverview.ts
+
+Decisions:
+- Reused the existing `documents` review date and source-reference posture for document detail pages instead of inventing per-document editorial review state before the repo has that metadata model.
+- Derived document coverage from the active deterministic rules and localized checklist question/answer labels so the detail page stays grounded in current structured data rather than new prose requirements.
+- Left uncovered seeded documents visible with an explicit no-active-rule state because hiding them would make the shared document library less truthful than the current scaffold.
+
+Validation:
+- Ran `npm run validate:documents`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the Next build now prerenders the new `/[lang]/documents/[slug]` routes for the current seeded document set.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-082
+
+---
+
 ### 2026-04-14 23:52 UTC — TASK-079
 
 Summary:

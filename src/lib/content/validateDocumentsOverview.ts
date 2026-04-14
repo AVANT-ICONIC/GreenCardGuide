@@ -1,4 +1,5 @@
 import { loadDocumentsOverview } from './loadDocumentsOverview';
+import { loadDocumentDetailPage } from './loadDocumentDetailPage';
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) {
@@ -85,6 +86,46 @@ function main() {
     `Unexpected documents overview slug order: ${englishSlugs.join(',')}`,
   );
 
+  const englishPassport = loadDocumentDetailPage('en', 'passport');
+  const spanishPassport = loadDocumentDetailPage('es', 'passport');
+  const englishAppointmentLetter = loadDocumentDetailPage('en', 'appointment-letter');
+
+  assert(
+    englishPassport.document.slug === 'passport' && spanishPassport.document.slug === 'passport',
+    'Expected the passport detail loader to resolve the passport document in both locales',
+  );
+  assert(
+    englishPassport.category_title === 'Identity documents' &&
+      spanishPassport.category_title === 'Documentos de identidad',
+    'Expected localized category titles for the passport detail page',
+  );
+  assert(
+    englishPassport.review_status === 'placeholder' &&
+      spanishPassport.review_status === 'placeholder',
+    'Expected document detail pages to keep the placeholder trust posture',
+  );
+  assert(
+    englishPassport.source_references.join(',') === english.source_references.join(',') &&
+      spanishPassport.source_references.join(',') === spanish.source_references.join(','),
+    'Expected document detail pages to inherit the documents surface source references',
+  );
+  assert(
+    englishPassport.references.length === 1 &&
+      englishPassport.references[0]?.rule_key === 'base-cdj-family-documents',
+    `Expected passport detail coverage from the base required-document rule, received ${englishPassport.references.map((reference) => reference.rule_key).join(',')}`,
+  );
+  assert(
+    englishPassport.references[0]?.conditions
+      .map((condition) => `${condition.label}:${condition.value}`)
+      .join(',') ===
+      'Where is the interview?:Ciudad Juarez,What kind of immigrant visa case is this?:Family-based immigrant visa',
+    `Unexpected localized passport conditions: ${englishPassport.references[0]?.conditions.map((condition) => `${condition.label}:${condition.value}`).join(',')}`,
+  );
+  assert(
+    englishAppointmentLetter.references.length === 0,
+    `Expected appointment-letter detail coverage to remain empty, received ${englishAppointmentLetter.references.length}`,
+  );
+
   console.log(
     JSON.stringify(
       {
@@ -100,6 +141,11 @@ function main() {
           count: section.documents.length,
         })),
         documentSlugs: englishSlugs,
+        detailCoverage: {
+          passportRuleKeys: englishPassport.references.map((reference) => reference.rule_key),
+          uncoveredDocument: englishAppointmentLetter.document.slug,
+          uncoveredReferenceCount: englishAppointmentLetter.references.length,
+        },
       },
       null,
       2,

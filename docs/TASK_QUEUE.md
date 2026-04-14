@@ -855,6 +855,54 @@ Validation:
 Notes:
 - Keep the scope on checked-in ignore markers, not generated file content or bundling behavior.
 
+### TASK-081 — Add bilingual document detail routes from seeded data
+Status: Done
+Priority: P1
+Depends on: none
+Objective:
+- Add a deterministic document-detail surface so users can drill into each seeded document from the existing documents overview.
+Deliverables:
+- a new `/[lang]/documents/[slug]` route for the current seeded document set
+- a shared loader that combines seeded document metadata with the current deterministic rule references for that document
+- document overview updates that link each seeded document into its detail route
+- docs and route-validation updates for the new surface
+Acceptance Criteria:
+- every seeded document renders a bilingual detail page without inventing new immigration requirements beyond the current structured seeds
+- each detail page clearly shows the current placeholder trust posture plus the checklist rules that reference the document today
+- the documents overview becomes a useful navigation layer instead of a dead-end grouped list
+Validation:
+- `npm run validate:documents`
+- `npm run validate:routes`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the copy conservative and derived from the current document and rule seeds; do not add unreviewed document guidance.
+- Completed 2026-04-15. The app now serves bilingual `/[lang]/documents/[slug]` routes for every seeded document, links into them from the documents overview, and validates both covered and currently-uncovered document detail states through `npm run validate:documents`.
+
+### TASK-082 — Link checklist document items to seeded document detail routes
+Status: Ready
+Priority: P1
+Depends on: TASK-081
+Objective:
+- Let checklist result and print surfaces drill into the new document-detail route whenever an item represents a seeded document.
+Deliverables:
+- checklist result updates so document-backed items link to `/${lang}/documents/[slug]`
+- print-view updates that preserve readable document references while still pointing back to the same seeded detail surface
+- any small loader or component cleanup needed to avoid duplicating route construction logic
+Acceptance Criteria:
+- document-backed checklist items no longer strand users on label-only output when a seeded detail page exists
+- non-document checklist items such as risk flags or verify-with-official items remain plain text and do not get misleading links
+- the change stays within the current deterministic product scope and does not imply verified editorial copy beyond the seeded scaffolds
+Validation:
+- `npm run validate:checklist`
+- `npm run validate:documents`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on navigation and deterministic document context, not broader checklist redesign.
+
 ## Blocked
 
 None currently.

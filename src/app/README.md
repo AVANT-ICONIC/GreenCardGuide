@@ -3,10 +3,12 @@
 Suggested initial routes:
 - /[lang]
 - /[lang]/ciudad-juarez
+- /[lang]/documents
 - /[lang]/checklist/start
 - /[lang]/checklist/questions
 - /[lang]/checklist/results
 - /[lang]/checklist/print
+- /[lang]/documents/[slug]
 - /admin
 
 Validation note:

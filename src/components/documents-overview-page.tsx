@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { DocumentsOverviewContent } from '@/lib/content/loadDocumentsOverview';
 
 const metaCopy = {
@@ -6,6 +7,7 @@ const metaCopy = {
     lastReviewed: 'Last reviewed',
     confidence: 'Confidence',
     sources: 'Sources',
+    openDetail: 'Open detail',
     placeholderNote:
       'This page reflects seeded document structure and placeholder trust framing. Verify case-specific requirements with official instructions.',
   },
@@ -14,6 +16,7 @@ const metaCopy = {
     lastReviewed: 'Ultima revision',
     confidence: 'Confianza',
     sources: 'Fuentes',
+    openDetail: 'Ver detalle',
     placeholderNote:
       'Esta pagina refleja la estructura semilla de documentos y una capa provisional de confianza. Verifique los requisitos de su caso con instrucciones oficiales.',
   },
@@ -56,11 +59,18 @@ export function DocumentsOverviewPage({
               {section.documents.map((document) => (
                 <li key={document.slug}>
                   <strong>
-                    {content.language === 'en'
-                      ? document.label_en
-                      : document.label_es}
+                    <Link href={`/${content.language}/documents/${document.slug}`}>
+                      {content.language === 'en'
+                        ? document.label_en
+                        : document.label_es}
+                    </Link>
                   </strong>
                   <p>{document.slug}</p>
+                  <p>
+                    <Link href={`/${content.language}/documents/${document.slug}`}>
+                      {copy.openDetail}
+                    </Link>
+                  </p>
                 </li>
               ))}
             </ul>

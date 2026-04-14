@@ -35,6 +35,7 @@ Fields:
 - common mistakes
 - alternatives/notes
 - source references
+- initial route scaffold: `/[lang]/documents/[slug]`
 
 ### 3. FAQ item
 Fields:
