@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { Language } from '@/lib/types/domain';
+import type { CiudadJuarezHubContent } from '@/lib/content/loadCiudadJuarezHubContent';
 
 const hubContent = {
   en: {
@@ -8,6 +8,10 @@ const hubContent = {
     lede:
       'This post hub gathers the current deterministic checklist path and bilingual guide scaffolds for family-based interview prep. It is an orientation layer, not final verified guidance.',
     statusTitle: 'Current trust status',
+    reviewStatus: 'Review status',
+    lastReviewed: 'Last reviewed',
+    confidence: 'Confidence',
+    sources: 'Sources',
     statusBody:
       'This hub is placeholder scaffolding. It points to current product surfaces while source-backed editorial content and review dates are still being attached.',
     sections: [
@@ -43,6 +47,10 @@ const hubContent = {
     lede:
       'Este centro del consulado reune la ruta determinista actual de la lista y las guias bilingues provisionales para la preparacion familiar. Es una capa de orientacion, no una guia final verificada.',
     statusTitle: 'Estado actual de confianza',
+    reviewStatus: 'Estado de revision',
+    lastReviewed: 'Ultima revision',
+    confidence: 'Confianza',
+    sources: 'Fuentes',
     statusBody:
       'Este centro es estructura provisional. Apunta a las superficies actuales del producto mientras se agregan contenido editorial respaldado por fuentes y fechas de revision.',
     sections: [
@@ -74,22 +82,38 @@ const hubContent = {
   },
 } as const;
 
-export function CiudadJuarezHub({ language }: { language: Language }) {
-  const content = hubContent[language];
+export function CiudadJuarezHub({
+  content,
+}: {
+  content: CiudadJuarezHubContent;
+}) {
+  const copy = hubContent[content.language];
 
   return (
     <section className="hero">
-      <p className="hero__eyebrow">{content.eyebrow}</p>
-      <h1>{content.title}</h1>
-      <p className="hero__lede">{content.lede}</p>
+      <p className="hero__eyebrow">{copy.eyebrow}</p>
+      <h1>{copy.title}</h1>
+      <p className="hero__lede">{copy.lede}</p>
 
       <article className="hero__card content-meta">
-        <h2>{content.statusTitle}</h2>
-        <p>{content.statusBody}</p>
+        <h2>{copy.statusTitle}</h2>
+        <p>{copy.statusBody}</p>
+        <p>
+          <strong>{copy.reviewStatus}:</strong> {content.review_status}
+        </p>
+        <p>
+          <strong>{copy.lastReviewed}:</strong> {content.last_reviewed_at}
+        </p>
+        <p>
+          <strong>{copy.confidence}:</strong> {content.confidence_label}
+        </p>
+        <p>
+          <strong>{copy.sources}:</strong> {content.source_references.join(', ')}
+        </p>
       </article>
 
       <div className="guide-sections">
-        {content.sections.map((section) => (
+        {copy.sections.map((section) => (
           <article key={section.title} className="hero__card">
             <h2>{section.title}</h2>
             <p>{section.body}</p>
@@ -99,7 +123,7 @@ export function CiudadJuarezHub({ language }: { language: Language }) {
                   <Link
                     key={link.href}
                     className="hero__button hero__button--secondary"
-                    href={`/${language}${link.href}`}
+                    href={`/${content.language}${link.href}`}
                   >
                     {link.label}
                   </Link>

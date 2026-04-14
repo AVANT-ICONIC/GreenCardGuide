@@ -1,5 +1,4 @@
-import type { FaqItemContent } from '@/lib/content/types';
-import type { Language } from '@/lib/types/domain';
+import type { FaqPageContent } from '@/lib/content/types';
 
 const pageCopy = {
   en: {
@@ -7,25 +6,25 @@ const pageCopy = {
     title: 'Frequently asked questions',
     lede:
       'Placeholder FAQ content for the current bilingual prep shell. Entries remain explicitly unverified until source references are attached.',
-    status: 'Placeholder content. Verify with official instructions.',
+    reviewStatus: 'Review status',
+    lastReviewed: 'Last reviewed',
+    confidence: 'Confidence',
+    sources: 'Sources',
   },
   es: {
     eyebrow: 'Preguntas frecuentes',
     title: 'Preguntas frecuentes',
     lede:
       'Contenido provisional de preguntas frecuentes para la base bilingue actual. Las entradas siguen sin verificarse hasta adjuntar referencias de fuentes.',
-    status: 'Contenido provisional. Verifique con instrucciones oficiales.',
+    reviewStatus: 'Estado de revision',
+    lastReviewed: 'Ultima revision',
+    confidence: 'Confianza',
+    sources: 'Fuentes',
   },
 } as const;
 
-export function FaqPage({
-  items,
-  language,
-}: {
-  items: FaqItemContent[];
-  language: Language;
-}) {
-  const copy = pageCopy[language];
+export function FaqPage({ page }: { page: FaqPageContent }) {
+  const copy = pageCopy[page.language];
 
   return (
     <section className="hero">
@@ -34,11 +33,22 @@ export function FaqPage({
       <p className="hero__lede">{copy.lede}</p>
 
       <article className="hero__card content-meta">
-        <p>{copy.status}</p>
+        <p>
+          <strong>{copy.reviewStatus}:</strong> {page.review_status}
+        </p>
+        <p>
+          <strong>{copy.lastReviewed}:</strong> {page.last_reviewed_at}
+        </p>
+        <p>
+          <strong>{copy.confidence}:</strong> {page.confidence_label}
+        </p>
+        <p>
+          <strong>{copy.sources}:</strong> {page.source_references.join(', ')}
+        </p>
       </article>
 
       <div className="guide-sections">
-        {items.map((item) => (
+        {page.items.map((item) => (
           <article key={item.key} className="hero__card">
             <h2>{item.question}</h2>
             <p>{item.answer}</p>

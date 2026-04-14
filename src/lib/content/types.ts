@@ -30,6 +30,15 @@ export interface FaqItemContent {
   source_references: string[];
 }
 
+export interface FaqPageContent {
+  language: Language;
+  review_status: ContentReviewStatus;
+  confidence_label: ConfidenceLabel;
+  last_reviewed_at: string;
+  source_references: string[];
+  items: FaqItemContent[];
+}
+
 export interface GlossaryTermContent {
   term_key: string;
   language: Language;
@@ -39,4 +48,13 @@ export interface GlossaryTermContent {
   confidence_label: ConfidenceLabel;
   review_status: ContentReviewStatus;
   source_references: string[];
+}
+
+export interface GlossaryPageContent {
+  language: Language;
+  review_status: ContentReviewStatus;
+  confidence_label: ConfidenceLabel;
+  last_reviewed_at: string;
+  source_references: string[];
+  terms: GlossaryTermContent[];
 }

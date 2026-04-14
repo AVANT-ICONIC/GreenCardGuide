@@ -34,7 +34,9 @@ export function loadPublishControlsSummary(): PublishControlsSummary {
       blockers.push('No source references attached');
     }
 
-    blockers.push('No last-reviewed date is tracked for this surface yet');
+    if (!item.last_reviewed_at) {
+      blockers.push('No last-reviewed date is tracked for this surface yet');
+    }
 
     return {
       surface: item.surface,

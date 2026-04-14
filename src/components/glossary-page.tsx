@@ -1,5 +1,4 @@
-import type { GlossaryTermContent } from '@/lib/content/types';
-import type { Language } from '@/lib/types/domain';
+import type { GlossaryPageContent } from '@/lib/content/types';
 
 const pageCopy = {
   en: {
@@ -7,25 +6,25 @@ const pageCopy = {
     title: 'Plain-language glossary',
     lede:
       'Placeholder glossary terms for the bilingual prep shell. Definitions are route scaffolding until source-backed editorial review is added.',
-    status: 'Placeholder definitions. Verify with official instructions.',
+    reviewStatus: 'Review status',
+    lastReviewed: 'Last reviewed',
+    confidence: 'Confidence',
+    sources: 'Sources',
   },
   es: {
     eyebrow: 'Glosario',
     title: 'Glosario en lenguaje claro',
     lede:
       'Terminos provisionales del glosario para la base bilingue. Las definiciones son estructura de ruta hasta agregar revision editorial respaldada por fuentes.',
-    status: 'Definiciones provisionales. Verifique con instrucciones oficiales.',
+    reviewStatus: 'Estado de revision',
+    lastReviewed: 'Ultima revision',
+    confidence: 'Confianza',
+    sources: 'Fuentes',
   },
 } as const;
 
-export function GlossaryPage({
-  terms,
-  language,
-}: {
-  terms: GlossaryTermContent[];
-  language: Language;
-}) {
-  const copy = pageCopy[language];
+export function GlossaryPage({ page }: { page: GlossaryPageContent }) {
+  const copy = pageCopy[page.language];
 
   return (
     <section className="hero">
@@ -34,11 +33,22 @@ export function GlossaryPage({
       <p className="hero__lede">{copy.lede}</p>
 
       <article className="hero__card content-meta">
-        <p>{copy.status}</p>
+        <p>
+          <strong>{copy.reviewStatus}:</strong> {page.review_status}
+        </p>
+        <p>
+          <strong>{copy.lastReviewed}:</strong> {page.last_reviewed_at}
+        </p>
+        <p>
+          <strong>{copy.confidence}:</strong> {page.confidence_label}
+        </p>
+        <p>
+          <strong>{copy.sources}:</strong> {page.source_references.join(', ')}
+        </p>
       </article>
 
       <div className="guide-sections">
-        {terms.map((term) => (
+        {page.terms.map((term) => (
           <article key={term.term_key} className="hero__card">
             <h2>{term.term}</h2>
             <p>{term.definition}</p>

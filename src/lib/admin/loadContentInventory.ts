@@ -1,5 +1,6 @@
 import { guideSlugs } from '@/content/guides';
 import { loadDocumentsOverview } from '@/lib/content/loadDocumentsOverview';
+import { loadContentReviewMetadata } from '@/lib/content/loadContentReviewMetadata';
 import { loadFaqItems } from '@/lib/content/loadFaq';
 import { loadGlossaryTerms } from '@/lib/content/loadGlossary';
 import { loadGuidePage } from '@/lib/content/loadGuidePage';
@@ -12,6 +13,7 @@ export interface ContentInventoryItem {
   locales: Language[];
   review_status: 'placeholder' | 'verified';
   confidence_label: ConfidenceLabel;
+  last_reviewed_at?: string;
   source_references: string[];
   entry_count: number;
   note: string;
@@ -43,6 +45,7 @@ export function loadContentInventory(): ContentInventorySummary {
       locales: mergeLocales([english.language], [spanish.language]),
       review_status: english.review_status,
       confidence_label: english.confidence_label,
+      last_reviewed_at: english.last_reviewed_at,
       source_references: english.source_references,
       entry_count: english.sections.length + spanish.sections.length,
       note: 'Guide route is live in both locales, but editorial copy is still placeholder-only.',
@@ -67,6 +70,7 @@ export function loadContentInventory(): ContentInventorySummary {
       ),
       review_status: faqEn[0]?.review_status ?? 'placeholder',
       confidence_label: faqEn[0]?.confidence_label ?? 'verify_with_official',
+      last_reviewed_at: loadContentReviewMetadata('en', 'faq').last_reviewed_at,
       source_references: faqEn[0]?.source_references ?? [],
       entry_count: faqEn.length + faqEs.length,
       note: 'FAQ entries exist in both locales, but they are still trust-boundary placeholder copy.',
@@ -82,6 +86,7 @@ export function loadContentInventory(): ContentInventorySummary {
       review_status: glossaryEn[0]?.review_status ?? 'placeholder',
       confidence_label:
         glossaryEn[0]?.confidence_label ?? 'verify_with_official',
+      last_reviewed_at: loadContentReviewMetadata('en', 'glossary').last_reviewed_at,
       source_references: glossaryEn[0]?.source_references ?? [],
       entry_count: glossaryEn.length + glossaryEs.length,
       note: 'Glossary terms are typed and bilingual, but still need reviewed definitions and source mapping.',
@@ -93,6 +98,7 @@ export function loadContentInventory(): ContentInventorySummary {
       locales: mergeLocales([documentsEn.language], [documentsEs.language]),
       review_status: documentsEn.review_status,
       confidence_label: documentsEn.confidence_label,
+      last_reviewed_at: documentsEn.last_reviewed_at,
       source_references: documentsEn.source_references,
       entry_count:
         documentsEn.sections.reduce(
@@ -112,6 +118,7 @@ export function loadContentInventory(): ContentInventorySummary {
       locales: ['en', 'es'],
       review_status: 'placeholder',
       confidence_label: 'verify_with_official',
+      last_reviewed_at: loadContentReviewMetadata('en', 'ciudad-juarez').last_reviewed_at,
       source_references: documentsEn.source_references,
       entry_count: 2,
       note: 'Post hub exists for both locales, but its step framing and practical guidance still need source-backed editorial work.',

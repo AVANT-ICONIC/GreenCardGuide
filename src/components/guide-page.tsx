@@ -3,12 +3,14 @@ import type { GuidePageContent } from '@/lib/content/types';
 const guideMetaCopy = {
   en: {
     reviewStatus: 'Review status',
+    lastReviewed: 'Last reviewed',
     confidence: 'Confidence',
     sources: 'Sources',
     placeholderSources: 'Placeholder only. Source references not attached yet.',
   },
   es: {
     reviewStatus: 'Estado de revision',
+    lastReviewed: 'Ultima revision',
     confidence: 'Confianza',
     sources: 'Fuentes',
     placeholderSources:
@@ -28,6 +30,9 @@ export function GuidePage({ page }: { page: GuidePageContent }) {
       <article className="hero__card content-meta">
         <p>
           <strong>{copy.reviewStatus}:</strong> {page.review_status}
+        </p>
+        <p>
+          <strong>{copy.lastReviewed}:</strong> {page.last_reviewed_at}
         </p>
         <p>
           <strong>{copy.confidence}:</strong> {page.confidence_label}

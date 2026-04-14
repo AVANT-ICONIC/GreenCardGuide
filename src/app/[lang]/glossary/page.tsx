@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { GlossaryPage } from '@/components/glossary-page';
 import { isSupportedLanguage } from '@/lib/content/locale';
-import { loadGlossaryTerms } from '@/lib/content/loadGlossary';
+import { loadGlossaryPage } from '@/lib/content/loadGlossary';
 
 export default async function GlossaryRoute({
   params,
@@ -14,5 +14,5 @@ export default async function GlossaryRoute({
     notFound();
   }
 
-  return <GlossaryPage language={lang} terms={loadGlossaryTerms(lang)} />;
+  return <GlossaryPage page={loadGlossaryPage(lang)} />;
 }

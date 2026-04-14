@@ -58,6 +58,10 @@ export function AdminContentPage({
                   <strong>Review status:</strong> {item.review_status}
                 </li>
                 <li>
+                  <strong>Last reviewed:</strong>{' '}
+                  {item.last_reviewed_at ?? 'not tracked yet'}
+                </li>
+                <li>
                   <strong>Entries tracked:</strong> {item.entry_count}
                 </li>
                 <li>

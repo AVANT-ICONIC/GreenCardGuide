@@ -1,4 +1,5 @@
 import { loadDocuments } from '@/lib/seed/loadSeedData';
+import { loadContentReviewMetadata } from './loadContentReviewMetadata';
 import { getPlaceholderSourceReferenceKeys } from './loadSourceReferences';
 import type { DocumentDefinition, Language } from '@/lib/types/domain';
 
@@ -14,6 +15,7 @@ export interface DocumentsOverviewContent {
   summary: string;
   review_status: 'placeholder';
   confidence_label: 'verify_with_official';
+  last_reviewed_at: string;
   source_references: string[];
   sections: DocumentsOverviewSection[];
 }
@@ -76,6 +78,7 @@ export function loadDocumentsOverview(
     summary: pageCopy[language].summary,
     review_status: 'placeholder',
     confidence_label: 'verify_with_official',
+    last_reviewed_at: loadContentReviewMetadata(language, 'documents').last_reviewed_at,
     source_references: getPlaceholderSourceReferenceKeys(),
     sections: groupDocumentsByCategory(language, loadDocuments()),
   };

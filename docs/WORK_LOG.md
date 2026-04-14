@@ -29,6 +29,58 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:51 UTC — TASK-025
+
+Summary:
+- Added a shared content-review metadata loader that assigns explicit last-reviewed dates to the current guide, FAQ, glossary, documents, and Ciudad Juarez hub surfaces.
+- Updated the public content routes to display review status, last-reviewed date, confidence, and source references more consistently.
+- Updated the admin content inventory and publish-readiness scaffold to use actual tracked review dates instead of assuming every surface was missing one.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/ciudad-juarez/page.tsx
+- src/app/[lang]/faq/page.tsx
+- src/app/[lang]/glossary/page.tsx
+- src/components/admin-content-page.tsx
+- src/components/ciudad-juarez-hub.tsx
+- src/components/documents-overview-page.tsx
+- src/components/faq-page.tsx
+- src/components/glossary-page.tsx
+- src/components/guide-page.tsx
+- src/lib/admin/loadContentInventory.ts
+- src/lib/admin/loadPublishControlsScaffold.ts
+- src/lib/content/loadCiudadJuarezHubContent.ts
+- src/lib/content/loadContentReviewMetadata.ts
+- src/lib/content/loadDocumentsOverview.ts
+- src/lib/content/loadFaq.ts
+- src/lib/content/loadGlossary.ts
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/types.ts
+
+Decisions:
+- Centralized review dates in a shared loader so the current placeholder surfaces stay consistent and future reviewed content can replace the metadata in one place.
+- Treated the dates as review recency for the current scaffold state, not as a claim that the placeholder content is source-verified guidance.
+- Extended existing page loaders instead of inventing a larger CMS shape, which keeps the increment small while satisfying the trust requirement that every content page carry review recency metadata.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current public and admin routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-026
+
+---
+
 ### 2026-04-14 20:43 UTC — TASK-023
 
 Summary:

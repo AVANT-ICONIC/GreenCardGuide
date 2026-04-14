@@ -3,6 +3,7 @@ import type { DocumentsOverviewContent } from '@/lib/content/loadDocumentsOvervi
 const metaCopy = {
   en: {
     reviewStatus: 'Review status',
+    lastReviewed: 'Last reviewed',
     confidence: 'Confidence',
     sources: 'Sources',
     placeholderNote:
@@ -10,6 +11,7 @@ const metaCopy = {
   },
   es: {
     reviewStatus: 'Estado de revision',
+    lastReviewed: 'Ultima revision',
     confidence: 'Confianza',
     sources: 'Fuentes',
     placeholderNote:
@@ -33,6 +35,9 @@ export function DocumentsOverviewPage({
       <article className="hero__card content-meta">
         <p>
           <strong>{copy.reviewStatus}:</strong> {content.review_status}
+        </p>
+        <p>
+          <strong>{copy.lastReviewed}:</strong> {content.last_reviewed_at}
         </p>
         <p>
           <strong>{copy.confidence}:</strong> {content.confidence_label}

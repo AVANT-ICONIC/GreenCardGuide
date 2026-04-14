@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import { FaqPage } from '@/components/faq-page';
 import { isSupportedLanguage } from '@/lib/content/locale';
-import { loadFaqItems } from '@/lib/content/loadFaq';
+import { loadFaqPage } from '@/lib/content/loadFaq';
 
 export default async function FaqRoute({
   params,
@@ -14,5 +14,5 @@ export default async function FaqRoute({
     notFound();
   }
 
-  return <FaqPage items={loadFaqItems(lang)} language={lang} />;
+  return <FaqPage page={loadFaqPage(lang)} />;
 }

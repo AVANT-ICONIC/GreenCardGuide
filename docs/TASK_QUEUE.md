@@ -16,7 +16,13 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-026 — Add source-change review task scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-012, TASK-018, TASK-020
+
+Summary:
+Add a deterministic scaffold for source-change review tasks so the trust/update layer can represent how source updates would create follow-up review work before live monitoring exists.
 
 ## Blocked
 
@@ -199,6 +205,14 @@ Depends on: TASK-021
 
 Summary:
 Extended `/admin/content` with a truthful publish-readiness scaffold that explains the current review gates and shows why no existing surface is publish-ready yet.
+
+### TASK-025 — Add last-reviewed metadata scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-007, TASK-013, TASK-021, TASK-023
+
+Summary:
+Added shared last-reviewed metadata for the current public content surfaces so each page can show review recency and the admin publish-readiness scaffold can evaluate a real date field.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
