@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:39 UTC — TASK-006
+
+Summary:
+- Added a dedicated localized print route at `/[lang]/checklist/print`.
+- Added compact grouped checklist presentation and print-focused controls linked from the checklist results page.
+- Added print media styles so the checklist can be reviewed as a night-before packing sheet without the normal app chrome.
+
+Files changed:
+- README.md
+- src/app/[lang]/checklist/print/page.tsx
+- src/app/[lang]/checklist/results/page.tsx
+- src/app/globals.css
+- src/components/checklist-results.tsx
+- src/components/print-checklist.tsx
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Used a dedicated print route instead of a mode toggle so the route map stays aligned with the information architecture and print output remains linkable.
+- Reused the existing checklist assembler to keep results and print output on the same deterministic data contract.
+- Filtered the print sheet to sections that actually contain items so the printed output stays compact and useful for travel-night review.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en` and `/es` print routes.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-007
+
+---
+
 ### 2026-04-14 19:37 UTC — TASK-004
 
 Summary:

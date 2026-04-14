@@ -16,22 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-006 — Add print-view checklist scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-004, TASK-005
-
-Objective:
-Create a print-friendly structure for checklist outputs.
-
-Deliverables:
-- print route or print mode scaffold
-- compact grouped checklist presentation
-
-Acceptance Criteria:
-- output is clearly printable
-- structure is optimized for night-before packing review
-
 ### TASK-007 — Add content-loading scaffold for product pages
 Status: Ready
 Priority: P2
@@ -93,6 +77,14 @@ Depends on: TASK-001, TASK-002, TASK-003
 
 Summary:
 Added localized checklist start, questions, and results routes with a deterministic multi-step question renderer, URL-backed answer state, and a progress indicator structured for future branching.
+
+### TASK-006 — Add print-view checklist scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-004, TASK-005
+
+Summary:
+Added a dedicated `/[lang]/checklist/print` route with compact grouped checklist output, print-focused controls, and print media styles for night-before packing review.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

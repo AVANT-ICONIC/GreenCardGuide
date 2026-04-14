@@ -53,10 +53,12 @@ export function ChecklistResults({
   language,
   result,
   editHref,
+  printHref,
 }: {
   language: Language;
   result: ChecklistResult;
   editHref: string;
+  printHref: string;
 }) {
   const copy = resultsCopy[language];
 
@@ -100,9 +102,14 @@ export function ChecklistResults({
         ))}
       </div>
 
-      <Link className="hero__button hero__button--primary" href={editHref}>
-        {copy.restart}
-      </Link>
+      <div className="hero__actions">
+        <Link className="hero__button hero__button--secondary" href={editHref}>
+          {copy.restart}
+        </Link>
+        <Link className="hero__button hero__button--primary" href={printHref}>
+          {language === 'en' ? 'Print view' : 'Vista imprimible'}
+        </Link>
+      </div>
     </section>
   );
 }
