@@ -15,6 +15,15 @@ const printCopy = {
     back: 'Back to results',
     print: 'Print this page',
     answers: 'Case answers',
+    roleTitle: 'Checklist focus',
+    roleDescriptions: {
+      'principal-applicant':
+        'Print this version with the applicant packet in mind: interview identity, civil documents, and travel-ready items.',
+      'derivative-applicant':
+        'Print this version for the derivative applicant packet and keep it coordinated with the main family case.',
+      'sponsor-helper':
+        'Print this version to review sponsor-side financial papers, print items, and packet support documents.',
+    },
   },
   es: {
     eyebrow: 'Lista para imprimir',
@@ -25,6 +34,15 @@ const printCopy = {
     back: 'Volver a resultados',
     print: 'Imprimir esta pagina',
     answers: 'Respuestas del caso',
+    roleTitle: 'Enfoque de la lista',
+    roleDescriptions: {
+      'principal-applicant':
+        'Imprima esta version pensando en el paquete del solicitante: identidad para entrevista, documentos civiles y elementos listos para viajar.',
+      'derivative-applicant':
+        'Imprima esta version para el paquete del solicitante derivado y mantengala coordinada con el caso familiar principal.',
+      'sponsor-helper':
+        'Imprima esta version para revisar documentos financieros del patrocinador, elementos para imprimir y documentos de apoyo del paquete.',
+    },
   },
 } as const;
 
@@ -65,6 +83,13 @@ export function PrintChecklist({
   resultsHref: string;
 }) {
   const copy = printCopy[language];
+  const applicantRole = result.answers.applicant_role;
+  const roleDescription =
+    typeof applicantRole === 'string'
+      ? copy.roleDescriptions[
+          applicantRole as keyof typeof copy.roleDescriptions
+        ]
+      : undefined;
   const visibleSections = result.sections.filter((section) => section.items.length > 0);
 
   return (
@@ -103,6 +128,22 @@ export function PrintChecklist({
             ))}
         </ul>
       </article>
+
+      {roleDescription ? (
+        <article className="hero__card">
+          <h2>{copy.roleTitle}</h2>
+          <p>
+            <strong>
+              {getChecklistAnswerLabel(
+                questions.find((question) => question.key === 'applicant_role')!,
+                applicantRole,
+                language,
+              )}
+            </strong>
+          </p>
+          <p>{roleDescription}</p>
+        </article>
+      ) : null}
 
       <div className="print-sections">
         {visibleSections.map((section) => (

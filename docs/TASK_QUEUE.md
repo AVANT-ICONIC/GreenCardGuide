@@ -16,13 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-031 — Add role-aware checklist framing
-Status: Ready
-Priority: P1
-Depends on: TASK-030
-
-Summary:
-Use `applicant_role` to add role-aware framing on the checklist results and print views so sponsor/helpers and derivative applicants see context that matches the selected mode.
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -253,6 +247,14 @@ Depends on: TASK-004
 
 Summary:
 Replaced raw checklist keys and option values in the flow and answer summaries with localized human-readable labels so the guided experience no longer exposes internal slugs.
+
+### TASK-031 — Add role-aware checklist framing
+Status: Done
+Priority: P1
+Depends on: TASK-030
+
+Summary:
+Used `applicant_role` to add role-aware framing on the checklist results and print views so sponsor/helpers and derivative applicants see context that matches the selected mode.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

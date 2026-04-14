@@ -17,8 +17,17 @@ const resultsCopy = {
     lede:
       'This is the first grouped result scaffold generated from the current seed rules. It is intentionally conservative and ready for future print and trust layers.',
     answers: 'Current answers',
+    roleTitle: 'Checklist focus',
     empty: 'No items in this section for the current answers.',
     restart: 'Edit answers',
+    roleDescriptions: {
+      'principal-applicant':
+        'This checklist is centered on the applicant travel packet, interview documents, and practical readiness items.',
+      'derivative-applicant':
+        'This checklist is framed for a derivative applicant. Keep the personal civil-document packet aligned with the main family case.',
+      'sponsor-helper':
+        'This checklist is framed for the sponsor or family helper. Focus on financial support documents, print items, and supporting packet completeness.',
+    },
   },
   es: {
     eyebrow: 'Resultados de la lista',
@@ -26,8 +35,17 @@ const resultsCopy = {
     lede:
       'Este es el primer resultado agrupado generado con las reglas semilla actuales. Es intencionalmente conservador y queda listo para futuras capas de impresion y confianza.',
     answers: 'Respuestas actuales',
+    roleTitle: 'Enfoque de la lista',
     empty: 'No hay elementos en esta seccion para las respuestas actuales.',
     restart: 'Editar respuestas',
+    roleDescriptions: {
+      'principal-applicant':
+        'Esta lista se centra en el paquete de viaje del solicitante, los documentos de entrevista y los puntos practicos de preparacion.',
+      'derivative-applicant':
+        'Esta lista esta enfocada para un solicitante derivado. Mantenga el paquete personal de documentos civiles alineado con el caso familiar principal.',
+      'sponsor-helper':
+        'Esta lista esta enfocada para el patrocinador o familiar de apoyo. Priorice los documentos financieros, los elementos para imprimir y la integridad del paquete de apoyo.',
+    },
   },
 } as const;
 
@@ -72,6 +90,13 @@ export function ChecklistResults({
   printHref: string;
 }) {
   const copy = resultsCopy[language];
+  const applicantRole = result.answers.applicant_role;
+  const roleDescription =
+    typeof applicantRole === 'string'
+      ? copy.roleDescriptions[
+          applicantRole as keyof typeof copy.roleDescriptions
+        ]
+      : undefined;
 
   return (
     <section className="hero">
@@ -96,6 +121,20 @@ export function ChecklistResults({
             ))}
         </ul>
       </article>
+
+      {roleDescription ? (
+        <article className="hero__card content-meta">
+          <p>
+            <strong>{copy.roleTitle}:</strong>{' '}
+            {getChecklistAnswerLabel(
+              questions.find((question) => question.key === 'applicant_role')!,
+              applicantRole,
+              language,
+            )}
+          </p>
+          <p>{roleDescription}</p>
+        </article>
+      ) : null}
 
       <div className="results-grid">
         {result.sections.map((section) => (

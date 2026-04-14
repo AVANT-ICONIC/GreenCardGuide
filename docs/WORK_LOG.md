@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:05 UTC — TASK-031
+
+Summary:
+- Added role-aware framing cards to the checklist results and print views.
+- Used the existing `applicant_role` answer to tailor the summary emphasis for principal applicants, derivative applicants, and sponsor/helpers.
+- Kept the framing operational and conservative, without adding new requirement logic or unsupported legal guidance.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/checklist-results.tsx
+- src/components/print-checklist.tsx
+
+Decisions:
+- Implemented the role-aware text at the view layer rather than the rules layer because this task is about framing and emphasis, not new deterministic checklist outputs.
+- Reused the localized answer-label helper so the framing cards show the human-readable selected role consistently.
+- Limited the role-specific copy to practical focus guidance that can be inferred from the existing product segments in the PRD.
+
+Validation:
+- Ran a direct role-label smoke check and confirmed localized `applicant_role` labels still resolve correctly.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for all current routes.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 21:03 UTC — TASK-030
 
 Summary:
