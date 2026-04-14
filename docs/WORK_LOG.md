@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:50 UTC — TASK-068
+
+Summary:
+- Added a dedicated `npm run validate:admin-section-registry` smoke check for the shared admin section registry.
+- Locked in the current registry posture: four admin section slugs, shared static params derived from that slug list, and route/home consumers wired to the same registry seam.
+- Updated the queue after a mid-cycle clarification that the Cloudflare Workers setup is intentional, so the follow-on task now focuses on stabilizing that integration instead of stripping it back out.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateAdminSectionRegistry.ts
+
+Decisions:
+- Reused `adminSections`, `adminSectionSlugs`, `getAdminSectionStaticParams()`, and `isAdminSectionSlug()` directly so the validator covers the actual shared registry exports instead of re-declaring test fixtures.
+- Checked both live consumers by source: the admin home still maps over `adminSections`, and the admin subsection route now calls `getAdminSectionStaticParams()` and the shared slug guard.
+- After the user clarified that the Cloudflare additions are intentional, deferred that platform work into `TASK-070` and kept this cycle focused on admin registry validation only.
+
+Validation:
+- Ran `npm run validate:admin-section-registry`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected slug order and static param list for the four current admin subsections.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-070
+
+---
+
 ### 2026-04-14 22:50 UTC — TASK-067
 
 Summary:

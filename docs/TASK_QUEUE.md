@@ -585,7 +585,7 @@ Notes:
 - Completed 2026-04-14. The admin subsection route now derives static params from the shared admin section registry instead of carrying a separate hardcoded slug list.
 
 ### TASK-068 — Add admin section registry validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-067
 Objective:
@@ -605,20 +605,21 @@ Validation:
 - the new admin-section-registry validation command
 Notes:
 - Keep the assertions tied to the shared registry and current admin section framing, not future workflow features.
+- Completed 2026-04-14. `npm run validate:admin-section-registry` now checks the shared admin section registry, exported static params, slug guard, and the current route/home consumers without duplicating the broader admin route validation.
 
-### TASK-070 — Normalize Next build lockfile churn
+### TASK-070 — Stabilize intentional Cloudflare build integration
 Status: Ready
 Priority: P2
 Depends on: none
 Objective:
-- Stop `npm run build` from mutating repository files with generated SWC and Cloudflare scaffolding noise during routine validation.
+- Turn the intentional OpenNext Cloudflare setup into a stable, explicit repo configuration instead of letting builds rewrite manifests and config opportunistically.
 Deliverables:
-- the minimum package-manager or config change needed so the current Next.js build completes without rewriting tracked manifests or generating unrelated deployment scaffolding
-- cleanup of any tracked build artifacts or package metadata that are only appearing because of the current environment patch behavior
-- docs updates if the local validation workflow changes for maintainers
+- the checked-in package, lockfile, and config state needed for the current Cloudflare Workers target
+- cleanup of any repeated build-side mutation so routine validation stops rewriting tracked files unpredictably
+- docs updates that explain the intentional Cloudflare deployment posture and required maintainer workflow
 Acceptance Criteria:
-- `npm run build` succeeds without modifying tracked files such as `package.json`, `package-lock.json`, or unrelated deployment config
-- the fix does not add a deployment platform commitment that is not already present in repo docs
+- `npm run build` succeeds without opportunistically rewriting tracked files after the intentional Cloudflare setup is checked in
+- the repo keeps the intentional Cloudflare Workers posture explicit instead of half-generated in the worktree
 - routine autonomous validation can run without leaving noisy generated files behind in the worktree
 Validation:
 - `npm install`
@@ -626,7 +627,7 @@ Validation:
 - `npm run typecheck`
 - `npm run build`
 Notes:
-- Keep the scope on build-environment stability and repo cleanliness, not new hosting or deployment features.
+- Keep the scope on stabilizing the intentional Cloudflare setup, not inventing new hosting platforms.
 
 ### TASK-071 — Remove unreachable generic admin subsection fallback
 Status: Ready
@@ -649,6 +650,28 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on unreachable-route cleanup, not new admin surface creation.
+
+### TASK-072 — Use admin section slugs as stable home-card keys
+Status: Ready
+Priority: P3
+Depends on: TASK-067
+Objective:
+- Tie the admin home card list to the canonical section slug so React identity follows the shared admin registry instead of display titles.
+Deliverables:
+- `src/components/admin-home.tsx` updated to use `section.slug` as the card key
+- any nearby cleanup needed to keep the admin home component aligned with the shared section registry
+- docs updates if the implementation materially changes maintainer-facing behavior
+Acceptance Criteria:
+- the admin home list keys are driven by the shared section slug rather than the current display title
+- the current four admin cards still render in the same order with the same copy and links
+- the change does not imply new admin sections or workflow features
+Validation:
+- `npm run validate:admin-home-markers`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on stable registry identity, not visual or copy changes.
 
 ## Blocked
 
