@@ -66,6 +66,7 @@ npm run validate:ciudad-juarez
 npm run validate:content-diff
 npm run validate:content-inventory
 npm run validate:content-review-metadata
+npm run validate:content-surfaces
 npm run validate:documents
 npm run validate:feedback
 npm run validate:feedback-summary
@@ -111,6 +112,7 @@ Current state:
 - `npm run validate:content-diff` now checks content diff counts, per-surface alignment posture, and key `/admin/content` diff markers.
 - `npm run validate:content-inventory` now checks tracked-surface counts, bilingual inventory metadata, and key `/admin/content` inventory markers.
 - `npm run validate:content-review-metadata` now checks the shared content review-date registry across all current public surfaces in both locales.
+- `npm run validate:content-surfaces` now checks the shared content surface registry and its alignment with guide slugs plus source-mapping order.
 - `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping.
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.

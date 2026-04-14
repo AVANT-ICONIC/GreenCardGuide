@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:18 UTC — TASK-055
+
+Summary:
+- Added a dedicated `npm run validate:content-surfaces` smoke check for the shared content surface registry.
+- Locked in the current registry baseline: four shared surfaces plus four guide slugs, with source-mapping order matching the registry exactly.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateContentSurfaceRegistry.ts
+
+Decisions:
+- Reused `contentSurfaceKeys`, `guideSlugs`, and `listSourceReferenceMappings()` directly so the validator stays aligned with the shared registry and mapping infrastructure instead of duplicating route knowledge in page-level code.
+- Focused the assertions on registry completeness and order because this layer underpins multiple loaders and admin surfaces.
+- Kept the task scoped to infrastructure validation rather than bundling in source-key content checks that belong to the separate source-mapping task.
+
+Validation:
+- Ran `npm run validate:content-surfaces`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected shared surfaces, guide slugs, and mapping order.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-056
+
+---
+
 ### 2026-04-14 22:16 UTC — TASK-054
 
 Summary:

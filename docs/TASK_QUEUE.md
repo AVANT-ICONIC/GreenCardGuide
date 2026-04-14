@@ -295,7 +295,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:content-review-metadata` now checks the shared review-date registry across all current content surface keys in both locales.
 
 ### TASK-055 — Add content surface registry validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-035
 Objective:
@@ -314,7 +314,7 @@ Validation:
 - `npm run build`
 - the new content-surface validation command
 Notes:
-- Keep the assertions tied to the current route surface set and shared metadata infrastructure.
+- Completed 2026-04-14. `npm run validate:content-surfaces` now checks shared surface-key completeness and alignment with guide slugs plus source-mapping order.
 
 ### TASK-056 — Add source mapping registry validation coverage
 Status: Ready
