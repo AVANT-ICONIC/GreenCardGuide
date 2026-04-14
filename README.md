@@ -59,6 +59,7 @@ npm run dev
 Validation:
 
 ```bash
+npm run validate:seed
 npm run lint
 npm run typecheck
 npm run build

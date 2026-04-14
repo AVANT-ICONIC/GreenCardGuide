@@ -34,24 +34,6 @@ Acceptance Criteria:
 - shared layout exists
 - bilingual expansion path is obvious in code
 
-### TASK-003 — Normalize seed domain data and validators
-Status: Ready
-Priority: P0
-Depends on: none
-
-Objective:
-Define typed loaders and basic validation for the existing seed JSON data.
-
-Deliverables:
-- typed seed loaders
-- validation helpers
-- documented assumptions for the current seed structure
-
-Acceptance Criteria:
-- existing seed files can be loaded through typed helpers
-- invalid seed shapes fail clearly
-- domain types remain aligned with docs
-
 ### TASK-004 — Build checklist question flow
 Status: Ready
 Priority: P1
@@ -133,6 +115,14 @@ Depends on: none
 
 Summary:
 Added a runnable Next.js App Router scaffold with strict TypeScript and ESLint config, a minimal landing shell, a basic `.gitignore`, and README run/validation instructions.
+
+### TASK-003 — Normalize seed domain data and validators
+Status: Done
+Priority: P0
+Depends on: none
+
+Summary:
+Added typed seed entities, path-aware validation helpers, JSON-backed loaders for questions/documents/rules, a runnable `validate:seed` script, and documented assumptions for the current seed structure.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

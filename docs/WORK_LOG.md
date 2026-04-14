@@ -29,6 +29,47 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:21 UTC — TASK-003
+
+Summary:
+- Added typed domain interfaces for seed-backed checklist questions, documents, and requirement rules.
+- Added explicit seed validation helpers and JSON loaders for the existing seed files.
+- Added a runnable `validate:seed` script and documented current seed shape assumptions in `data/seed/README.md`.
+
+Files changed:
+- README.md
+- package.json
+- package-lock.json
+- src/lib/types/domain.ts
+- src/lib/seed/validators.ts
+- src/lib/seed/loadSeedData.ts
+- src/lib/seed/validateSeedData.ts
+- data/seed/README.md
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Kept validation dependency-light with explicit helper functions instead of introducing a larger schema library at this stage.
+- Limited recognized condition keys to the current `ChecklistAnswers` contract so new seed fields fail fast until the domain model is expanded intentionally.
+- Added uniqueness checks for question keys, document slugs, and rule keys to catch deterministic data collisions early.
+
+Validation:
+- Ran `npm install`.
+- Ran `npm run validate:seed`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- The seed validation script completed successfully and reported 8 checklist questions, 9 documents, and 5 requirement rules.
+- The production build still succeeded with the same non-fatal Next.js SWC lockfile patch warning seen in the prior cycle.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-002
+
+---
+
 ### 2026-04-14 19:17 UTC — TASK-001
 
 Summary:

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "next typegen && tsc --noEmit"
+    "typecheck": "next typegen && tsc --noEmit",
+    "validate:seed": "tsx src/lib/seed/validateSeedData.ts"
   },
   "dependencies": {
     "next": "^15",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^15",
+    "tsx": "^4",
     "typescript": "^5"
   }
 }
