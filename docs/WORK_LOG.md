@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:01 UTC — TASK-015
+
+Summary:
+- Added `/admin` as the first internal maintenance route scaffold.
+- Added an admin landing page that maps content, sources, rules, and reviews as planned surfaces.
+- Updated the local admin README so the route and its current limitations are documented alongside the code scaffold.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/admin/README.md
+- src/app/admin/page.tsx
+- src/components/admin-home.tsx
+
+Decisions:
+- Kept the admin page as a truthful orientation surface rather than adding dead links to `/admin/content` or other routes that do not exist yet.
+- Mirrored the documented operations areas from the system overview and admin README so the route reinforces the existing repo architecture instead of inventing a new ops model.
+- Left the admin route unlocalized because the documented admin surface is internal operations tooling, not a public bilingual user-facing surface.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/admin`.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 19:59 UTC — TASK-014
 
 Summary:

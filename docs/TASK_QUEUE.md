@@ -16,23 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-015 — Add admin route scaffold
-Status: Ready
-Priority: P2
-Depends on: TASK-012
-
-Objective:
-Create the initial `/admin` route scaffold that orients maintainers to content, sources, rules, and review surfaces.
-
-Deliverables:
-- `/admin` page scaffold
-- links or sections for content, sources, rules, and reviews
-- explicit note that these are maintenance scaffolds
-
-Acceptance Criteria:
-- admin landing route exists
-- page reflects the documented operations surface without claiming functionality that is not built yet
-- structure is ready for later internal tooling expansion
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -135,6 +119,14 @@ Depends on: TASK-002
 
 Summary:
 Added bilingual `/[lang]/feedback` with explicit feedback guidance, a placeholder submission form, and a clear non-persistent state message.
+
+### TASK-015 — Add admin route scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-012
+
+Summary:
+Added `/admin` as a truthful landing scaffold for content, sources, rules, and review surfaces without implying unfinished tools already work.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done
