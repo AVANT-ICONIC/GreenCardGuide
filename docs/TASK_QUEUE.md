@@ -745,7 +745,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:generated-artifacts` now checks that `.open-next`, `.wrangler`, and `cloudflare-env.d.ts` stay ignored in both `.gitignore` and ESLint.
 
 ### TASK-076 — Validate Cloudflare deploy trigger posture
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-073
 Objective:
@@ -765,6 +765,29 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on checked-in workflow trigger posture, not external GitHub settings.
+- Completed 2026-04-14. `npm run validate:cloudflare` now also checks the `push` to `main` and `workflow_dispatch` trigger markers plus the matching README deploy-trigger note.
+
+### TASK-077 — Validate Cloudflare workflow runtime posture
+Status: Ready
+Priority: P2
+Depends on: TASK-073
+Objective:
+- Extend the Cloudflare integration validation so the checked-in GitHub Actions runtime and install posture stay aligned with the repo’s Node 20 and `npm ci` expectations.
+Deliverables:
+- updates to `src/lib/admin/validateCloudflareIntegration.ts` that assert the workflow still uses `actions/setup-node`, `node-version: 20`, and `npm ci`
+- assertions covering the current local-development README requirement that the repo targets Node.js 20+
+- docs updates if the validation surface materially changes
+Acceptance Criteria:
+- Cloudflare workflow runtime regressions can be caught without manually re-reading the workflow file or README
+- the validation stays aligned with the current checked-in CI posture and does not imply hosted-runner guarantees outside the repo
+- the check remains about repo config and maintainer docs, not live GitHub Actions execution
+Validation:
+- `npm run validate:cloudflare`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on checked-in runtime and install markers, not broader CI policy.
 
 ## Blocked
 

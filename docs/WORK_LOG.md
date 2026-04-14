@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:30 UTC — TASK-076
+
+Summary:
+- Extended `npm run validate:cloudflare` so it now covers the checked-in deploy workflow trigger posture in addition to the existing Workers integration markers.
+- Locked in the current deployment contract: GitHub Actions runs on `push` to `main`, supports `workflow_dispatch`, and the README describes that same automatic deploy behavior.
+- The next cycle will need another queue refill before implementation because only two `Ready` tasks remain after this completion.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/lib/admin/validateCloudflareIntegration.ts
+
+Decisions:
+- Extended the existing Cloudflare validator instead of creating another command so there is still one canonical structural check for the checked-in Workers deployment posture.
+- Kept the assertions on repo-local trigger markers and README copy rather than attempting to infer branch protection, Actions permissions, or remote GitHub state.
+- Left workflow runtime/install checks for a separate follow-on task because this cycle is specifically about deploy triggers and documentation alignment.
+
+Validation:
+- Ran `npm run validate:cloudflare`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validator output now reports the expected `push:main` and `workflow_dispatch` trigger markers alongside the existing script, worker entrypoint, asset binding, and secret checks.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-077
+
+---
+
 ### 2026-04-14 23:23 UTC — TASK-075
 
 Summary:

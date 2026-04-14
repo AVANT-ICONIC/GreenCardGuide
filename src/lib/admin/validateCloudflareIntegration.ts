@@ -73,6 +73,14 @@ function main() {
     'Expected deployment workflow to run npm run deploy',
   );
   assert(
+    workflowSource.includes('push:') && workflowSource.includes('- main'),
+    'Expected deployment workflow to trigger on pushes to main',
+  );
+  assert(
+    workflowSource.includes('workflow_dispatch:'),
+    'Expected deployment workflow to support manual workflow_dispatch runs',
+  );
+  assert(
     workflowSource.includes('CLOUDFLARE_ACCOUNT_ID'),
     'Expected deployment workflow to reference CLOUDFLARE_ACCOUNT_ID',
   );
@@ -99,6 +107,10 @@ function main() {
       readmeSource.includes('CLOUDFLARE_API_TOKEN'),
     'Expected README to document the required Cloudflare GitHub Actions secrets',
   );
+  assert(
+    readmeSource.includes('Pushes to `main` will lint, typecheck, and deploy automatically.'),
+    'Expected README to document the main-branch deploy trigger posture',
+  );
 
   console.log(
     JSON.stringify(
@@ -111,6 +123,7 @@ function main() {
         },
         workerEntrypoint: '.open-next/worker.js',
         assetBinding: 'ASSETS',
+        workflowTriggers: ['push:main', 'workflow_dispatch'],
         workflowSecrets: ['CLOUDFLARE_ACCOUNT_ID', 'CLOUDFLARE_API_TOKEN'],
       },
       null,
