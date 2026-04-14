@@ -1,0 +1,29 @@
+[
+  {
+    "source_key": "trust-and-safety-policy",
+    "title": "Trust and Safety Policy",
+    "url": "https://github.com/NovaRagnarok/GreenCardGuide/blob/main/docs/ops/TRUST_AND_SAFETY.md",
+    "publisher": "GreenCardGuide repository",
+    "language": "en",
+    "reviewed_at": "2026-04-14",
+    "note": "Project policy reference for trust posture and statement classes."
+  },
+  {
+    "source_key": "maintained-source-policy",
+    "title": "Maintained Source Policy",
+    "url": "https://github.com/NovaRagnarok/GreenCardGuide/blob/main/MAINTAINED_SOURCE_POLICY.md",
+    "publisher": "GreenCardGuide repository",
+    "language": "en",
+    "reviewed_at": "2026-04-14",
+    "note": "Project governance reference for how canonical source-backed content should be maintained."
+  },
+  {
+    "source_key": "repo-disclaimer",
+    "title": "Repository Disclaimer",
+    "url": "https://github.com/NovaRagnarok/GreenCardGuide/blob/main/DISCLAIMER.md",
+    "publisher": "GreenCardGuide repository",
+    "language": "en",
+    "reviewed_at": "2026-04-14",
+    "note": "Project disclaimer reference that reinforces the non-legal-advice boundary."
+  }
+]

@@ -16,23 +16,7 @@ Priority values:
 
 ## Ready
 
-### TASK-012 — Add source registry stub data surface
-Status: Ready
-Priority: P2
-Depends on: TASK-003, TASK-007
-
-Objective:
-Create the first structured source registry stub for future trust and review tooling.
-
-Deliverables:
-- source reference seed file or typed registry
-- loader and validation for source entries
-- documented assumptions for placeholder source mapping
-
-Acceptance Criteria:
-- source entries can be loaded through typed helpers
-- content surfaces can attach placeholder source references consistently
-- trust scaffolding remains explicit about what is and is not verified
+None currently. Add the next queued work item before starting another autonomous cycle.
 
 ## Blocked
 
@@ -111,6 +95,14 @@ Depends on: TASK-007
 
 Summary:
 Added bilingual `/[lang]/faq` and `/[lang]/glossary` routes backed by typed placeholder content loaders and explicit placeholder-vs-verified trust states.
+
+### TASK-012 — Add source registry stub data surface
+Status: Done
+Priority: P2
+Depends on: TASK-003, TASK-007
+
+Summary:
+Added a typed source registry stub, validation for source entries, and consistent placeholder source-reference attachment across current content loaders.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

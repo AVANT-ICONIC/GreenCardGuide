@@ -60,6 +60,7 @@ Validation:
 
 ```bash
 npm run validate:seed
+npm run validate:sources
 npm run lint
 npm run typecheck
 npm run build
@@ -71,7 +72,8 @@ Current state:
 - A repeatable content-loading scaffold now powers bilingual placeholder guide pages.
 - A post-specific Ciudad Juarez hub route now links the checklist and guide surfaces from one bilingual entry point.
 - FAQ and glossary route scaffolds now exist for both locales using the same placeholder-vs-verified content model.
-- The initial queued foundation work is complete; follow-on tasks should be added to `docs/TASK_QUEUE.md` before the next autonomous cycle.
+- A typed source-registry stub now supports consistent placeholder source attachment across content surfaces.
+- The current queued work is exhausted again; add the next prioritized task to `docs/TASK_QUEUE.md` before the next autonomous cycle.
 
 ## Non-negotiables
 

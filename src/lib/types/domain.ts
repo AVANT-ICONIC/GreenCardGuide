@@ -80,6 +80,16 @@ export interface RequirementRule {
   is_active: boolean;
 }
 
+export interface SourceReference {
+  source_key: string;
+  title: string;
+  url: string;
+  publisher: string;
+  language: Language;
+  reviewed_at?: string;
+  note?: string;
+}
+
 export interface ChecklistResultItem {
   rule_key: string;
   output_type: RequirementOutputType;

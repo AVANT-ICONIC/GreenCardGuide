@@ -29,6 +29,49 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:50 UTC — TASK-012
+
+Summary:
+- Added the first typed source registry stub in `data/sources/source-references.json`.
+- Added source registry loaders and validation.
+- Updated current content loaders to attach consistent placeholder source references from the registry.
+
+Files changed:
+- README.md
+- data/sources/README.md
+- data/sources/source-references.json
+- package.json
+- src/lib/content/README.md
+- src/lib/content/loadFaq.ts
+- src/lib/content/loadGlossary.ts
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/loadSourceReferences.ts
+- src/lib/content/validateSourceRegistry.ts
+- src/lib/types/domain.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Used project governance references for the first source registry entries so placeholder content can point to explicit trust-policy documents without pretending to be source-backed immigration guidance.
+- Kept the source registry typed and validated with the existing lightweight validator approach instead of introducing a separate schema stack.
+- Attached placeholder source references in the loader layer rather than the page layer so trust metadata remains centralized and deterministic.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- The source registry validator completed successfully and reported 3 source references.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 19:48 UTC — TASK-011
 
 Summary:

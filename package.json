@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
-    "validate:seed": "tsx src/lib/seed/validateSeedData.ts"
+    "validate:seed": "tsx src/lib/seed/validateSeedData.ts",
+    "validate:sources": "tsx src/lib/content/validateSourceRegistry.ts"
   },
   "dependencies": {
     "next": "^15",
