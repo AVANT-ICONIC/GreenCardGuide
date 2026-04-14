@@ -29,6 +29,41 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:35 UTC — TASK-063
+
+Summary:
+- Added a dedicated `npm run validate:review-queue-markers` smoke check for the `/admin/reviews` component markers.
+- Locked in the current reviews surface posture: eight tracked placeholder surfaces, eight under-sourced surfaces, and the current local feedback inbox summary framing.
+- Tightened one over-specific source-string assertion after the first task-specific validation run, then reran the task command and the full repo validation set against the final file state.
+- Refilled the queue with one adjacent admin marker-validation follow-on task after completion so the repo kept at least three actionable `Ready` tasks.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateReviewQueueMarkers.ts
+
+Decisions:
+- Reused `loadReviewQueueSummary()`, `loadStoredFeedbackSubmissions()`, and `loadFeedbackSummary()` directly so the validator stays aligned with the live queue and feedback posture instead of freezing exact inbox counts into the check.
+- Kept the assertions focused on component markers, blocker/action framing, and local-feedback-only limitations because the broader queue ordering and summary logic already have separate validation coverage.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:review-queue-markers` once, fixed one over-specific assertion, then reran it successfully.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the final validation output included the expected tracked-surface, placeholder, under-sourced, and stored-feedback counts.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-064
+
+---
+
 ### 2026-04-14 22:33 UTC — TASK-062
 
 Summary:

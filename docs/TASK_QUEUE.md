@@ -471,7 +471,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:locale-layout` now checks the shared `[lang]` layout markers, bilingual navigation labels, and locale-switcher framing without duplicating route behavior.
 
 ### TASK-063 — Add review queue component marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-036, TASK-042
 Objective:
@@ -490,7 +490,7 @@ Validation:
 - `npm run build`
 - the new review-queue-marker validation command
 Notes:
-- Keep the assertions tied to component markers and current review/feedback framing, not future moderation features.
+- Completed 2026-04-14. `npm run validate:review-queue-markers` now checks the `/admin/reviews` component markers, deterministic queue framing, and local-feedback-only posture without duplicating the broader review-queue loader validation.
 
 ### TASK-064 — Add content inventory component marker validation coverage
 Status: Ready
@@ -535,6 +535,28 @@ Validation:
 - the new rules-audit-marker validation command
 Notes:
 - Keep the assertions tied to component markers and the current seeded rules audit framing, not future editing workflows.
+
+### TASK-066 — Add admin home component marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Add a repeatable validation check for the admin landing component markers that expose the current maintenance-surface posture and section-link framing to maintainers.
+Deliverables:
+- a lightweight validation script that exercises the key `/admin` marker strings alongside the current admin section registry posture
+- assertions covering the current navigation-only status, non-functional-workflow limitation copy, and section link markers
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin home component regressions can be caught without manually opening `/admin`
+- the validation remains aligned with the existing admin landing scaffold instead of duplicating broader route validations
+- the check stays truthful about the current navigation-only posture and does not imply editing or publishing tooling exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin-home-marker validation command
+Notes:
+- Keep the assertions tied to component markers and current admin-section framing, not future workflow features.
 
 ## Blocked
 

@@ -81,6 +81,7 @@ npm run validate:source-references
 npm run validate:publish
 npm run validate:rule-integrity
 npm run validate:rules
+npm run validate:review-queue-markers
 npm run validate:reviews
 npm run validate:source-dashboard
 npm run validate:source-dashboard-markers
@@ -135,6 +136,7 @@ Current state:
 - `npm run validate:source-dashboard-markers` now checks the `/admin/sources` component markers, mapped-coverage framing, and governance-reference-only posture without duplicating the broader source dashboard loader validation.
 - `npm run validate:publish` now checks publish-readiness counts, required gates, blocker assembly, and key `/admin/content` publish markers.
 - `npm run validate:rule-integrity` now checks that seeded rule document references resolve and that the assembled checklist output still lands in the expected deterministic sections.
+- `npm run validate:review-queue-markers` now checks the `/admin/reviews` component markers, deterministic queue framing, and local-feedback-only posture without duplicating the broader review-queue loader validation.
 - `npm run validate:source-dashboard` now validates source coverage counts and watchlist route linkage for the admin sources surface.
 - The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
 - `/admin/reviews` now summarizes stored feedback by report type and most-reported routes before the detailed inbox list.
