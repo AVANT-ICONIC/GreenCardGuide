@@ -29,6 +29,39 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 23:01 UTC — TASK-071
+
+Summary:
+- Removed the dead generic admin subsection fallback from `/admin/[section]`.
+- Deleted the unused `AdminSectionPage` component so the route now only serves the four documented admin surfaces or 404s unsupported values.
+- Refilled the queue with an admin subsection exhaustiveness validator follow-on so the repo kept at least three actionable `Ready` tasks after this cleanup cycle.
+
+Files changed:
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-section-page.tsx
+
+Decisions:
+- Kept the unsupported-section behavior in one place by reusing the existing `notFound()` guard instead of replacing the removed fallback with another placeholder.
+- Removed the unused component outright because the route no longer references it anywhere and the repo’s current admin posture is already represented by the explicit subsection pages.
+- Left admin section copy and registry data untouched because this cycle is about dead-path cleanup, not content or navigation changes.
+
+Validation:
+- Ran `npm run validate:admin`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the admin operations validation still passed against the current admin route files and supporting summary loaders.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-073
+
+---
+
 ### 2026-04-14 22:59 UTC — TASK-070
 
 Summary:

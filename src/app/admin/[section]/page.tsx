@@ -4,7 +4,6 @@ import { AdminRulesPage } from '@/components/admin-rules-page';
 import { AdminReviewsPage } from '@/components/admin-reviews-page';
 import { AdminSourcesPage } from '@/components/admin-sources-page';
 import { loadContentDiffSummary } from '@/lib/admin/loadContentDiffScaffold';
-import { AdminSectionPage } from '@/components/admin-section-page';
 import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadFeedbackSummary } from '@/lib/admin/loadFeedbackSummary';
 import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
@@ -70,5 +69,5 @@ export default async function AdminSubsectionPage({
     );
   }
 
-  return <AdminSectionPage slug={section} />;
+  notFound();
 }

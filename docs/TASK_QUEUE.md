@@ -631,7 +631,7 @@ Notes:
 - Completed 2026-04-14. The intentional Cloudflare Workers setup now keeps `@next/swc-*` optional dependencies explicit at the repo level, and lint ignores OpenNext/Wrangler build artifacts so routine validation no longer rewrites tracked files.
 
 ### TASK-071 — Remove unreachable generic admin subsection fallback
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-067
 Objective:
@@ -651,6 +651,7 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on unreachable-route cleanup, not new admin surface creation.
+- Completed 2026-04-14. The admin subsection route now falls through to `notFound()` instead of an unreachable generic placeholder, and the unused `AdminSectionPage` component has been removed.
 
 ### TASK-072 — Use admin section slugs as stable home-card keys
 Status: Ready
@@ -695,6 +696,28 @@ Validation:
 - the new Cloudflare integration validation command
 Notes:
 - Keep the scope on checked-in integration structure, not remote Cloudflare account state.
+
+### TASK-074 — Add admin subsection exhaustiveness validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-071
+Objective:
+- Add a repeatable validation check that `/admin/[section]` only serves the documented admin surfaces and no generic fallback branch is reintroduced.
+Deliverables:
+- a lightweight validation script that exercises the explicit admin subsection branches and the current `notFound()` fallback posture by source
+- assertions covering the current `content`, `sources`, `rules`, and `reviews` route handling plus the absence of the removed generic subsection component
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin subsection fallback regressions can be caught without manually re-reading the route file
+- the validation stays aligned with the documented four admin surfaces and the current `notFound()` posture
+- the check does not imply new admin sections or route behavior beyond what the repo already serves
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin-subsection validation command
+Notes:
+- Keep the scope on route exhaustiveness and dead-path prevention, not new admin UX.
 
 ## Blocked
 
