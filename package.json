@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "validate:seed": "tsx src/lib/seed/validateSeedData.ts",
     "validate:admin": "tsx src/lib/admin/validateAdminOperations.ts",
-    "validate:admin-section-registry": "tsx src/lib/admin/validateAdminSectionRegistry.ts",
     "validate:checklist": "tsx src/lib/checklist/validateChecklistBehavior.ts",
+    "validate:admin-section-registry": "tsx src/lib/admin/validateAdminSectionRegistry.ts",
     "validate:content-diff": "tsx src/lib/admin/validateContentDiff.ts",
     "validate:admin-home-markers": "tsx src/lib/admin/validateAdminHomeMarkers.ts",
     "validate:content-inventory-markers": "tsx src/lib/admin/validateContentInventoryMarkers.ts",
@@ -42,9 +45,20 @@
     "validate:routes": "tsx src/app/validateRoutes.ts"
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.19.1",
     "next": "^15",
     "react": "^19",
     "react-dom": "^19"
+  },
+  "optionalDependencies": {
+    "@next/swc-darwin-arm64": "15.5.15",
+    "@next/swc-darwin-x64": "15.5.15",
+    "@next/swc-linux-arm64-gnu": "15.5.15",
+    "@next/swc-linux-arm64-musl": "15.5.15",
+    "@next/swc-linux-x64-gnu": "15.5.15",
+    "@next/swc-linux-x64-musl": "15.5.15",
+    "@next/swc-win32-arm64-msvc": "15.5.15",
+    "@next/swc-win32-x64-msvc": "15.5.15"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -54,6 +68,7 @@
     "eslint": "^9",
     "eslint-config-next": "^15",
     "tsx": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.82.2"
   }
 }

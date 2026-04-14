@@ -608,7 +608,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:admin-section-registry` now checks the shared admin section registry, exported static params, slug guard, and the current route/home consumers without duplicating the broader admin route validation.
 
 ### TASK-070 — Stabilize intentional Cloudflare build integration
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: none
 Objective:
@@ -628,9 +628,10 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on stabilizing the intentional Cloudflare setup, not inventing new hosting platforms.
+- Completed 2026-04-14. The intentional Cloudflare Workers setup now keeps `@next/swc-*` optional dependencies explicit at the repo level, and lint ignores OpenNext/Wrangler build artifacts so routine validation no longer rewrites tracked files.
 
 ### TASK-071 — Remove unreachable generic admin subsection fallback
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-067
 Objective:
@@ -650,6 +651,7 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on unreachable-route cleanup, not new admin surface creation.
+- Completed 2026-04-14. The admin subsection route now falls through to `notFound()` instead of an unreachable generic placeholder, and the unused `AdminSectionPage` component has been removed.
 
 ### TASK-072 — Use admin section slugs as stable home-card keys
 Status: Ready
@@ -672,6 +674,50 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on stable registry identity, not visual or copy changes.
+
+### TASK-073 — Add Cloudflare integration validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-070
+Objective:
+- Add a repeatable validation check that the intentional Cloudflare Workers integration stays structurally aligned with the repo’s package scripts, config files, and deploy workflow.
+Deliverables:
+- a lightweight validation script that exercises the required Cloudflare package scripts, `open-next.config.ts`, `wrangler.jsonc`, and deployment workflow markers
+- assertions covering the current worker entrypoint, asset binding, and required GitHub Actions secret names
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- Cloudflare integration regressions can be caught without manually re-reading the config files
+- the validation stays aligned with the intentional Workers posture already documented in the repo
+- the check remains about deterministic integration structure, not live deployment or secret validation
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new Cloudflare integration validation command
+Notes:
+- Keep the scope on checked-in integration structure, not remote Cloudflare account state.
+
+### TASK-074 — Add admin subsection exhaustiveness validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-071
+Objective:
+- Add a repeatable validation check that `/admin/[section]` only serves the documented admin surfaces and no generic fallback branch is reintroduced.
+Deliverables:
+- a lightweight validation script that exercises the explicit admin subsection branches and the current `notFound()` fallback posture by source
+- assertions covering the current `content`, `sources`, `rules`, and `reviews` route handling plus the absence of the removed generic subsection component
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin subsection fallback regressions can be caught without manually re-reading the route file
+- the validation stays aligned with the documented four admin surfaces and the current `notFound()` posture
+- the check does not imply new admin sections or route behavior beyond what the repo already serves
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin-subsection validation command
+Notes:
+- Keep the scope on route exhaustiveness and dead-path prevention, not new admin UX.
 
 ## Blocked
 

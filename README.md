@@ -56,6 +56,27 @@ npm install
 npm run dev
 ```
 
+## Cloudflare deployment
+
+This repository is configured for **Cloudflare Workers** via `@opennextjs/cloudflare`.
+For this SSR Next.js app, that is the correct Cloudflare target instead of a plain static Pages deploy.
+
+Local Cloudflare commands:
+
+```bash
+npm run preview
+npm run deploy
+```
+
+Automatic deploys:
+
+- The repository includes `.github/workflows/deploy-cloudflare-workers.yml`.
+- Add `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` as GitHub Actions secrets.
+- Pushes to `main` will lint, typecheck, and deploy automatically.
+- If you want a different worker name, update `name` in `wrangler.jsonc` before the first production deploy.
+
+If you prefer Cloudflare-hosted Git integration instead of GitHub Actions, import the repo into **Workers Builds** and use the same repo config already checked in here.
+
 Validation:
 
 ```bash
