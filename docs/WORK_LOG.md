@@ -29,6 +29,36 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 18:24 UTC — TASK-009
+
+Summary:
+- Updated the autonomous loop to require a commit and push after each completed work cycle.
+- Added git handling rules for task-scoped commits, unrelated local changes, and safe push failure handling.
+- Updated the README operator prompt so the repo-level instructions match the loop behavior.
+
+Files changed:
+- docs/AGENT_LOOP.md
+- README.md
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Chose per-cycle commit and push instead of optional git checkpoints so remote history tracks the loop one coherent increment at a time.
+- Required non-destructive handling of unrelated local changes to avoid sweeping user work into autonomous commits.
+- Allowed push exceptions only when unsafe or impossible, with explicit logging requirements.
+
+Validation:
+- Reviewed the loop, output expectations, and README prompt to ensure commit/push behavior is explicitly required.
+- No runtime validation was needed because this was an operations-doc change only.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-001
+
+---
+
 ### 2026-04-14 18:20 UTC — TASK-008
 
 Summary:

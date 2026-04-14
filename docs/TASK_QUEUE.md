@@ -146,6 +146,14 @@ None currently.
 
 ## Done
 
+### TASK-009 — Require per-cycle commit and push
+Status: Done
+Priority: P0
+Depends on: none
+
+Summary:
+Updated the autonomous loop and README prompt so each completed work cycle now requires a small task-scoped commit and a push of the current branch.
+
 ### TASK-008 — Make autonomous loop blocker-resilient
 Status: Done
 Priority: P0

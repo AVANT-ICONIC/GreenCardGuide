@@ -58,8 +58,10 @@ Repeat the following loop continuously. If a task hits a blocker or stop conditi
 5. Validate your changes.
 6. Update `docs/WORK_LOG.md` with what you changed, decisions made, validations run, blockers, and the recommended next task.
 7. Update `docs/TASK_QUEUE.md` to reflect completed work, newly unblocked tasks, status changes, or follow-on tasks.
-8. If the current task cannot be completed cleanly, record the blocker, downgrade or split scope as needed, and select the next highest-priority task that is still actionable.
-9. Return to this file and begin the next cycle.
+8. Commit the completed work as a small, coherent changeset with a task-scoped commit message.
+9. Push the current branch after the commit succeeds.
+10. If the current task cannot be completed cleanly, record the blocker, downgrade or split scope as needed, and select the next highest-priority task that is still actionable.
+11. Return to this file and begin the next cycle.
 
 ## Task selection rules
 
@@ -93,6 +95,16 @@ Run the strongest available checks relevant to the task. Examples:
 - manual sanity checks for generated structures
 
 If the repository is not yet wired with a runnable app, validate changed files as directly as possible and record what was and was not verifiable in `docs/WORK_LOG.md`.
+
+## Git rules
+
+- After each completed work cycle, create a local commit before starting the next cycle.
+- Push the current branch after each successful cycle commit.
+- Keep commits small and task-scoped; do not batch unrelated completed tasks into one commit unless they were completed as one coherent cycle.
+- Before committing, review the worktree so you do not accidentally include unrelated changes.
+- If unrelated user changes are present, commit only the files that belong to the completed task and leave unrelated changes untouched.
+- If push fails because of a remote divergence, reconcile non-destructively when safe, then push again.
+- If push cannot be completed safely, record the issue in `docs/WORK_LOG.md`, keep the local commit, and continue with other non-destructive work if possible.
 
 ## Documentation update rules
 
@@ -142,7 +154,7 @@ If one of these conditions affects only part of the backlog, quarantine that par
 
 At the end of each cycle:
 
-- code and docs should be committed-ready
+- code and docs should be committed and pushed when safe
 - task state should be current
 - the work log should explain what happened
 - the next recommended task should be identified
