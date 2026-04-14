@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:06 UTC — TASK-017
+
+Summary:
+- Added a deterministic route smoke verification script at `npm run validate:routes`.
+- Documented the scope of the route smoke check in the app README and top-level validation instructions.
+- Used the new smoke check in the validation chain alongside seed, source, lint, typecheck, and build checks.
+
+Files changed:
+- README.md
+- package.json
+- src/app/README.md
+- src/app/validateRoutes.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Implemented the smoke check as a file-and-route contract verifier rather than a browser test so it stays fast, deterministic, and aligned with the repo’s current validation maturity.
+- Checked both expected route files and the intended route patterns so the validation output is useful even before a heavier end-to-end harness exists.
+- Kept the script narrow and explicit about what it does not verify, avoiding any false claim that it covers interaction or rendering behavior.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- The route smoke check completed successfully and reported 14 expected route files and route patterns.
+
+Blockers:
+- No code blocker, but the queue has no remaining `Ready` tasks after this cycle.
+
+Recommended next task:
+- none currently queued; add the next prioritized task to `docs/TASK_QUEUE.md`
+
+---
+
 ### 2026-04-14 20:04 UTC — TASK-016
 
 Summary:

@@ -61,6 +61,7 @@ Validation:
 ```bash
 npm run validate:seed
 npm run validate:sources
+npm run validate:routes
 npm run lint
 npm run typecheck
 npm run build
@@ -77,6 +78,7 @@ Current state:
 - A bilingual feedback route now defines the public feedback surface, while making its non-persistent placeholder state explicit.
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
 - `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.
+- A deterministic `validate:routes` script now checks that the expected route files and route patterns exist.
 - The current queued work is exhausted again; add the next prioritized task to `docs/TASK_QUEUE.md` before the next autonomous cycle.
 
 ## Non-negotiables

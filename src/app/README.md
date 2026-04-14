@@ -8,3 +8,7 @@ Suggested initial routes:
 - /[lang]/checklist/results
 - /[lang]/checklist/print
 - /admin
+
+Validation note:
+- `npm run validate:routes` checks that the current expected route files exist.
+- It does not perform browser navigation or user-interaction testing.

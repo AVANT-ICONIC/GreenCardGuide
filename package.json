@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
     "validate:seed": "tsx src/lib/seed/validateSeedData.ts",
-    "validate:sources": "tsx src/lib/content/validateSourceRegistry.ts"
+    "validate:sources": "tsx src/lib/content/validateSourceRegistry.ts",
+    "validate:routes": "tsx src/app/validateRoutes.ts"
   },
   "dependencies": {
     "next": "^15",
