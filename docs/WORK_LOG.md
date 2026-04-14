@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:23 UTC — TASK-058
+
+Summary:
+- Added a dedicated `npm run validate:locale` smoke check for the shared locale helper layer.
+- Locked in the current bilingual locale baseline: `en` and `es` only, with `English` and `Español` labels and unsupported-locale guards intact.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateLocaleSupport.ts
+
+Decisions:
+- Reused `supportedLanguages`, `isSupportedLanguage()`, and `getLanguageLabel()` directly so the validator stays aligned with the shared locale helper rather than duplicating route-level assumptions.
+- Kept the assertions tightly scoped to the current bilingual surface and explicitly rejected unsupported locale values instead of implying broader locale support.
+- Left the queued language-entry task separate because the component rendering layer is a different seam from the locale helper itself.
+
+Validation:
+- Ran `npm run validate:locale`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected supported locales and labels.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-059
+
+---
+
 ### 2026-04-14 22:22 UTC — TASK-057
 
 Summary:

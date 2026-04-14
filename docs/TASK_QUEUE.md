@@ -361,7 +361,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:source-references` now checks source keys, reviewed dates, repository publishers, and governance-reference URL posture through the typed loader.
 
 ### TASK-058 — Add locale support validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: none
 Objective:
@@ -380,7 +380,7 @@ Validation:
 - `npm run build`
 - the new locale validation command
 Notes:
-- Keep assertions tightly scoped to the current bilingual product surface.
+- Completed 2026-04-14. `npm run validate:locale` now checks supported locale order, support guards, and language labels for the current bilingual surface.
 
 ### TASK-059 — Add source registry ordering validation coverage
 Status: Ready
@@ -403,6 +403,28 @@ Validation:
 - the new source-registry-order validation command
 Notes:
 - Keep the assertions tied to current source metadata, not future source expansion.
+
+### TASK-060 — Add language entry validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-058
+Objective:
+- Add a repeatable validation check for the shared language-entry surface that exposes the supported locale choices to users.
+Deliverables:
+- a lightweight validation script that exercises the language-entry component markers and the supported-language labels it renders
+- assertions covering the current `en` and `es` posture only
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- language-entry regressions can be caught without manually opening the public language selection surfaces
+- the validation remains aligned with the shared locale helper and language-entry component instead of duplicating route logic
+- the check does not imply support for locales beyond the current repo scope
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new language-entry validation command
+Notes:
+- Keep the assertions tightly scoped to the current bilingual language-entry surface.
 
 ## Blocked
 
