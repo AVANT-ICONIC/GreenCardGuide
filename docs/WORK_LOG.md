@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:51 UTC — TASK-043
+
+Summary:
+- Added a dedicated `npm run validate:source-dashboard` smoke check for the admin sources coverage and watchlist state.
+- Covered mapped-source counts, total source-to-surface links, per-source affected routes, and watchlist alignment.
+- Kept the validation lightweight by exercising the existing source coverage and change-watchlist loaders directly.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateSourceDashboard.ts
+
+Decisions:
+- Reused the current source coverage and watchlist loaders so the validation stays aligned with the live admin sources surface.
+- Asserted the current mapped-route posture explicitly, including the FAQ-only `repo-disclaimer` source mapping, so routing regressions are caught early.
+- Added a dedicated validation command instead of folding these assertions into `validate:sources`, keeping source-registry checks and admin-surface checks distinct.
+
+Validation:
+- Ran `npm run validate:source-dashboard`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included mapped source counts, affected routes, and watchlist totals.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-044
+
+---
+
 ### 2026-04-14 21:49 UTC — TASK-042
 
 Summary:

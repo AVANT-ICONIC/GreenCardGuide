@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-043 — Add deterministic source dashboard validation coverage
-Status: Ready
-Priority: P2
-Depends on: TASK-038
-Objective:
-- Add a repeatable validation check for the source coverage summary and watchlist task assembly.
-Deliverables:
-- a lightweight validation script that exercises source coverage counts, mapped routes, and watchlist task relationships
-- assertions covering current mapped-source counts and affected-route linkage
-- package wiring and docs updates if a new validation command is added
-Acceptance Criteria:
-- source dashboard regressions can be caught without manually opening `/admin/sources`
-- the validation proves direct mapped coverage and change-watchlist tasks stay consistent with the current source registry
-- the check remains aligned with the current placeholder governance-reference posture
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- the new source-dashboard validation command
-Notes:
-- Reuse the existing source coverage and watchlist loaders instead of duplicating route-derivation logic.
-
 ### TASK-044 — Add deterministic rules audit validation coverage
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Reuse the shared feedback summary helper instead of duplicating counting logic in the script.
 
+### TASK-046 — Add publish-readiness validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041
+Objective:
+- Add a repeatable validation check for the admin content publish-readiness summary and blocker assembly.
+Deliverables:
+- a lightweight validation script that exercises publish-ready counts, blocked counts, and blocker generation
+- assertions covering alignment with the current content inventory and placeholder trust posture
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- publish-readiness regressions can be caught without manually opening `/admin/content`
+- the validation remains aligned with the current read-only planning scaffold
+- the check avoids browser automation and reuses existing admin loaders
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new publish validation command
+Notes:
+- Keep the assertions tied to deterministic current-state gates such as review status, source references, and last-reviewed dates.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-043 — Add deterministic source dashboard validation coverage
+Status: Done
+Priority: P2
+Depends on: TASK-038
+Objective:
+- Add a repeatable validation check for the source coverage summary and watchlist task assembly.
+Deliverables:
+- a lightweight validation script that exercises source coverage counts, mapped routes, and watchlist task relationships
+- assertions covering current mapped-source counts and affected-route linkage
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- source dashboard regressions can be caught without manually opening `/admin/sources`
+- the validation proves direct mapped coverage and change-watchlist tasks stay consistent with the current source registry
+- the check remains aligned with the current placeholder governance-reference posture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new source-dashboard validation command
+Notes:
+- Completed 2026-04-14. `npm run validate:source-dashboard` now checks mapped source counts, linked routes, and watchlist alignment.
 
 ### TASK-042 — Surface feedback summary counts in admin reviews
 Status: Done
