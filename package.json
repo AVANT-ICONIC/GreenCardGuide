@@ -16,6 +16,7 @@
     "validate:feedback": "tsx src/lib/feedback/validateFeedbackInbox.ts",
     "validate:feedback-summary": "tsx src/lib/admin/validateFeedbackSummary.ts",
     "validate:publish": "tsx src/lib/admin/validatePublishReadiness.ts",
+    "validate:rule-integrity": "tsx src/lib/rules/validateRuleDocumentIntegrity.ts",
     "validate:rules": "tsx src/lib/admin/validateRulesAudit.ts",
     "validate:reviews": "tsx src/lib/admin/validateReviewQueue.ts",
     "validate:source-dashboard": "tsx src/lib/admin/validateSourceDashboard.ts",

@@ -163,7 +163,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:content-inventory` now checks tracked-surface counts, bilingual route metadata, entry counts, and required `/admin/content` inventory markers against the shared content registry.
 
 ### TASK-049 — Add rules-to-document integrity validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-044
 Objective:
@@ -182,7 +182,7 @@ Validation:
 - `npm run build`
 - the new rule-integrity validation command
 Notes:
-- Focus on structural integrity and current output posture, not on expanding the seeded requirement set.
+- Completed 2026-04-14. `npm run validate:rule-integrity` now checks seeded rule document references, matched-rule output sections, and the current conservative verify-with-official posture through the shared checklist assembly path.
 
 ### TASK-050 — Add documents overview validation coverage
 Status: Ready

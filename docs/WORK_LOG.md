@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:05 UTC — TASK-049
+
+Summary:
+- Added a dedicated `npm run validate:rule-integrity` smoke check for the seeded requirement-rule, document-definition, and checklist-result assembly path.
+- Proved that every current rule-backed document slug resolves against `documents.json` and that the seeded complete answer set still produces the expected deterministic section distribution.
+- Locked in the current conservative output posture for required documents, conditional documents, print items, risk flags, and verify-with-official items.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/rules/validateRuleDocumentIntegrity.ts
+
+Decisions:
+- Reused `parseChecklistAnswers()` and `assembleChecklistResults()` so the validator exercises the same parsing and result-assembly path as the live checklist flow instead of duplicating rule evaluation.
+- Asserted exact seeded section outputs for the current complete answer fixture to catch structural regressions without inventing new case branches.
+- Kept empty-section assertions for `backup_documents`, `prep_steps`, and `do_not_bring` so the validator reflects the current intentionally narrow requirement set.
+
+Validation:
+- Ran `npm run validate:rule-integrity`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included referenced document slugs, matched rule keys, and the expected section item breakdown.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-050
+
+---
+
 ### 2026-04-14 22:03 UTC — TASK-048
 
 Summary:
