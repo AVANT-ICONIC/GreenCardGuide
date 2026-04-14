@@ -405,7 +405,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:source-registry-order` now checks source registry ordering, titles, reviewed dates, and governance-reference-only posture through the typed loader.
 
 ### TASK-060 — Add language entry validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-058
 Objective:
@@ -424,7 +424,7 @@ Validation:
 - `npm run build`
 - the new language-entry validation command
 Notes:
-- Keep the assertions tightly scoped to the current bilingual language-entry surface.
+- Completed 2026-04-14. `npm run validate:language-entry` now checks language-entry markers and the rendered bilingual locale labels through the shared locale helper.
 
 ### TASK-061 — Add source dashboard component marker validation coverage
 Status: Ready
@@ -447,6 +447,28 @@ Validation:
 - the new source-dashboard-marker validation command
 Notes:
 - Keep the assertions tied to component markers and current registry posture, not future monitoring features.
+
+### TASK-062 — Add locale layout marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-058
+Objective:
+- Add a repeatable validation check for the shared `[lang]` layout markers that expose locale switching across public routes.
+Deliverables:
+- a lightweight validation script that exercises key layout marker strings and supported-language labels used in the locale switcher
+- assertions covering the current `en` and `es` posture only
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- locale layout regressions can be caught without manually opening public routes
+- the validation remains aligned with the shared locale helper and layout component instead of duplicating route behavior
+- the check does not imply support for locales beyond the current repo scope
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new locale-layout validation command
+Notes:
+- Keep the assertions tightly scoped to the current bilingual layout surface.
 
 ## Blocked
 

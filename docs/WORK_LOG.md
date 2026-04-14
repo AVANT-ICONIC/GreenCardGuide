@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:27 UTC — TASK-060
+
+Summary:
+- Added a dedicated `npm run validate:language-entry` smoke check for the shared language-entry surface.
+- Locked in the current bilingual entry posture: `English` and `Español` labels rendered from the shared locale helper plus the current entry-point marker copy.
+- Fixed one over-strict validator assertion to use stable JSX substrings instead of a single long wrapped sentence.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateLanguageEntry.ts
+
+Decisions:
+- Reused `supportedLanguages` and `getLanguageLabel()` directly so the validator stays aligned with the locale helper instead of duplicating language labels.
+- Validated component markers from source because this task targets the rendered language-entry seam rather than route behavior.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:language-entry`.
+- Ran `npm run lint`.
+- Ran `npm run build`.
+- Ran `npm run typecheck`.
+- Confirmed the validation output included the expected supported languages and labels.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-061
+
+---
+
 ### 2026-04-14 22:25 UTC — TASK-059
 
 Summary:
