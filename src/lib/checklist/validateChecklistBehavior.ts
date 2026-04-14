@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import {
   hasCanonicalChecklistSearchParams,
   parseChecklistAnswers,
@@ -8,6 +10,7 @@ import {
   getResumeQuestionIndex,
   hasCompleteChecklistAnswers,
 } from './progress';
+import { getDocumentDetailHref } from '../content/loadDocumentDetailPage';
 import { assembleChecklistResults } from '../rules/assembleChecklistResults';
 import { loadChecklistQuestions } from '../seed/loadSeedData';
 
@@ -139,6 +142,40 @@ function main() {
     'Expected the court-record caution in verify-with-official items',
   );
 
+  assert(
+    getDocumentDetailHref('en', 'passport') === '/en/documents/passport',
+    'Expected the shared document-detail href helper to build the English passport route',
+  );
+  assert(
+    getDocumentDetailHref('es', 'i-864') === '/es/documents/i-864',
+    'Expected the shared document-detail href helper to build the Spanish I-864 route',
+  );
+
+  const checklistResultsPath = resolve(process.cwd(), 'src/components/checklist-results.tsx');
+  const printChecklistPath = resolve(process.cwd(), 'src/components/print-checklist.tsx');
+  assert(existsSync(checklistResultsPath), 'Expected checklist results component to exist');
+  assert(existsSync(printChecklistPath), 'Expected print checklist component to exist');
+
+  const checklistResultsSource = readFileSync(checklistResultsPath, 'utf8');
+  const printChecklistSource = readFileSync(printChecklistPath, 'utf8');
+
+  assert(
+    checklistResultsSource.includes("import { getDocumentDetailHref } from '@/lib/content/loadDocumentDetailPage';"),
+    'Expected checklist results to use the shared document detail href helper',
+  );
+  assert(
+    checklistResultsSource.includes('href={getDocumentDetailHref(language, item.document.slug)}'),
+    'Expected checklist results to link document-backed items into the document detail route',
+  );
+  assert(
+    printChecklistSource.includes("import { getDocumentDetailHref } from '@/lib/content/loadDocumentDetailPage';"),
+    'Expected print checklist to use the shared document detail href helper',
+  );
+  assert(
+    printChecklistSource.includes('href={getDocumentDetailHref(language, item.document.slug)}'),
+    'Expected print checklist to link document-backed items into the document detail route',
+  );
+
   console.log(
     JSON.stringify(
       {
@@ -158,6 +195,10 @@ function main() {
           conditionalDocuments,
           riskFlags,
           verifyItems,
+        },
+        documentDetailLinks: {
+          passport: getDocumentDetailHref('en', 'passport'),
+          i864: getDocumentDetailHref('es', 'i-864'),
         },
       },
       null,

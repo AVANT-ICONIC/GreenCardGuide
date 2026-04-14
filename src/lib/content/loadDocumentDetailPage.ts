@@ -156,6 +156,10 @@ export function isDocumentSlug(value: string): boolean {
   return listDocumentSlugs().includes(value);
 }
 
+export function getDocumentDetailHref(language: Language, slug: string): string {
+  return `/${language}/documents/${slug}`;
+}
+
 export function loadDocumentDetailPage(
   language: Language,
   slug: string,

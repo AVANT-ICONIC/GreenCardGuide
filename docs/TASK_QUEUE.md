@@ -881,7 +881,7 @@ Notes:
 - Completed 2026-04-15. The app now serves bilingual `/[lang]/documents/[slug]` routes for every seeded document, links into them from the documents overview, and validates both covered and currently-uncovered document detail states through `npm run validate:documents`.
 
 ### TASK-082 — Link checklist document items to seeded document detail routes
-Status: Ready
+Status: Done
 Priority: P1
 Depends on: TASK-081
 Objective:
@@ -902,6 +902,51 @@ Validation:
 - `npm run build`
 Notes:
 - Keep the scope on navigation and deterministic document context, not broader checklist redesign.
+- Completed 2026-04-15. Checklist results and print now link document-backed items to the seeded detail route through a shared href helper, and `npm run validate:checklist` now asserts that both surfaces keep using that route contract.
+
+### TASK-083 — Surface document coverage summaries in the documents overview
+Status: Ready
+Priority: P1
+Depends on: none
+Objective:
+- Make the documents overview show which seeded documents are currently referenced by active checklist rules versus still uncovered.
+Deliverables:
+- loader updates that derive per-document coverage counts and current output-type summaries from the active deterministic rules
+- documents overview UI updates that show each document’s current rule coverage at a glance without requiring a click into the detail page
+- validation updates that lock in both covered and uncovered document overview states
+Acceptance Criteria:
+- maintainers and users can tell from `/[lang]/documents` whether a seeded document is already surfaced by the current checklist rules
+- uncovered seeded documents remain visible and explicitly labeled instead of disappearing from the overview
+- the summary stays derived from active structured rules rather than ad hoc page copy
+Validation:
+- `npm run validate:documents`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the copy conservative and structural; do not imply that uncovered documents are irrelevant or verified final guidance.
+
+### TASK-084 — Expose seeded document coverage gaps in admin rules
+Status: Ready
+Priority: P2
+Depends on: TASK-083
+Objective:
+- Extend the rules audit surface so maintainers can see which seeded documents are referenced by active rules and which remain uncovered.
+Deliverables:
+- a shared document-coverage summary that can be reused by the rules audit layer
+- `/admin/rules` updates that show covered versus uncovered seeded document slugs alongside the existing rule inventory
+- validation updates that lock in the current document-coverage summary on the admin rules surface
+Acceptance Criteria:
+- the admin rules surface can reveal deterministic document coverage gaps without manual cross-referencing between seeds and rules
+- the summary stays grounded in the current active-rule set and shared document library
+- the change does not imply rule editing or publishing workflows already exist
+Validation:
+- `npm run validate:rules`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on visibility of deterministic coverage gaps, not rule editing UX.
 
 ## Blocked
 

@@ -29,6 +29,44 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 00:20 UTC — TASK-082
+
+Summary:
+- Linked checklist result and print document-backed items into the seeded `/[lang]/documents/[slug]` detail routes added in the prior cycle.
+- Added a shared document-detail href helper so the documents overview, checklist results, and print view all follow one route contract.
+- Extended `npm run validate:checklist` so it now asserts both checklist surfaces keep importing and using the shared document-detail helper.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/checklist-results.tsx
+- src/components/documents-overview-page.tsx
+- src/components/print-checklist.tsx
+- src/lib/checklist/validateChecklistBehavior.ts
+- src/lib/content/loadDocumentDetailPage.ts
+
+Decisions:
+- Kept links conditional on `item.document` so risk flags, print reminders, and verify-with-official items remain plain text instead of pointing to misleading document routes.
+- Reused the same helper on the overview page too so document routing does not drift across surfaces as the document library grows.
+- Validated the navigation contract by helper output plus source-marker assertions in the checklist components, which is the strongest direct check available without browser automation in this repo.
+
+Validation:
+- Ran `npm run validate:checklist`.
+- Ran `npm run validate:documents`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the build still prerenders the bilingual checklist and document-detail routes successfully after the new link wiring.
+
+Blockers:
+- none
+
+Recommended next task:
+- queue refill required before the next implementation cycle
+
+---
+
 ### 2026-04-15 00:08 UTC — TASK-081
 
 Summary:

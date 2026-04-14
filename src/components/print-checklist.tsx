@@ -1,8 +1,10 @@
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import {
   getChecklistAnswerLabel,
   getChecklistQuestionLabel,
 } from '@/lib/checklist/labels';
+import { getDocumentDetailHref } from '@/lib/content/loadDocumentDetailPage';
 import type { ChecklistQuestion, ChecklistResult, Language } from '@/lib/types/domain';
 
 const printCopy = {
@@ -69,6 +71,23 @@ function getItemNotes(
   language: Language,
 ) {
   return language === 'en' ? item.notes_en : item.notes_es;
+}
+
+function renderItemTitle(
+  item: ChecklistResult['sections'][number]['items'][number],
+  language: Language,
+): ReactNode {
+  const title = getItemTitle(item, language);
+
+  if (item.document) {
+    return (
+      <Link href={getDocumentDetailHref(language, item.document.slug)}>
+        {title}
+      </Link>
+    );
+  }
+
+  return title;
 }
 
 export function PrintChecklist({
@@ -158,7 +177,7 @@ export function PrintChecklist({
               <ul className="print-section__list">
                 {section.items.map((item) => (
                   <li key={item.rule_key}>
-                    <strong>{getItemTitle(item, language)}</strong>
+                    <strong>{renderItemTitle(item, language)}</strong>
                     {getItemNotes(item, language) ? (
                       <p>{getItemNotes(item, language)}</p>
                     ) : null}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getDocumentDetailHref } from '@/lib/content/loadDocumentDetailPage';
 import type { DocumentsOverviewContent } from '@/lib/content/loadDocumentsOverview';
 
 const metaCopy = {
@@ -59,7 +60,7 @@ export function DocumentsOverviewPage({
               {section.documents.map((document) => (
                 <li key={document.slug}>
                   <strong>
-                    <Link href={`/${content.language}/documents/${document.slug}`}>
+                    <Link href={getDocumentDetailHref(content.language, document.slug)}>
                       {content.language === 'en'
                         ? document.label_en
                         : document.label_es}
@@ -67,7 +68,7 @@ export function DocumentsOverviewPage({
                   </strong>
                   <p>{document.slug}</p>
                   <p>
-                    <Link href={`/${content.language}/documents/${document.slug}`}>
+                    <Link href={getDocumentDetailHref(content.language, document.slug)}>
                       {copy.openDetail}
                     </Link>
                   </p>
