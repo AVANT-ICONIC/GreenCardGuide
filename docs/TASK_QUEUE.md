@@ -449,7 +449,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:source-dashboard-markers` now checks the `/admin/sources` component markers, mapped-coverage framing, and governance-reference-only posture without duplicating the broader source dashboard loader validation.
 
 ### TASK-062 — Add locale layout marker validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-058
 Objective:
@@ -468,7 +468,7 @@ Validation:
 - `npm run build`
 - the new locale-layout validation command
 Notes:
-- Keep the assertions tightly scoped to the current bilingual layout surface.
+- Completed 2026-04-14. `npm run validate:locale-layout` now checks the shared `[lang]` layout markers, bilingual navigation labels, and locale-switcher framing without duplicating route behavior.
 
 ### TASK-063 — Add review queue component marker validation coverage
 Status: Ready
@@ -513,6 +513,28 @@ Validation:
 - the new content-inventory-marker validation command
 Notes:
 - Keep the assertions tied to component markers and current inventory/diff/publish framing, not future editing workflows.
+
+### TASK-065 — Add rules audit component marker validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-041, TASK-044
+Objective:
+- Add a repeatable validation check for the admin rules component markers that expose the seeded question inventory and deterministic rule audit framing to maintainers.
+Deliverables:
+- a lightweight validation script that exercises the key `/admin/rules` marker strings alongside the current rules audit summary posture
+- assertions covering the current read-only audit framing, question-key inventory markers, and rule-output inventory markers
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin rules component regressions can be caught without manually opening `/admin/rules`
+- the validation remains aligned with the existing rules audit scaffold instead of duplicating broader loader validations
+- the check stays truthful about the current read-only audit posture and does not imply rule editing exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new rules-audit-marker validation command
+Notes:
+- Keep the assertions tied to component markers and the current seeded rules audit framing, not future editing workflows.
 
 ## Blocked
 

@@ -73,6 +73,7 @@ npm run validate:feedback-summary
 npm run validate:faq-glossary
 npm run validate:guides
 npm run validate:language-entry
+npm run validate:locale-layout
 npm run validate:locale
 npm run validate:source-mappings
 npm run validate:source-registry-order
@@ -126,6 +127,7 @@ Current state:
 - `npm run validate:faq-glossary` now checks bilingual FAQ and glossary keys, review metadata, and mapped source posture through the shared loaders.
 - `npm run validate:guides` now checks guide slugs, bilingual guide structure, shared review metadata, and mapped source posture across the current guide routes.
 - `npm run validate:language-entry` now checks the language-entry surface markers and the rendered `English` / `Español` labels.
+- `npm run validate:locale-layout` now checks the shared `[lang]` layout markers, bilingual navigation labels, and locale-switcher framing without duplicating route behavior.
 - `npm run validate:locale` now checks the shared locale helper for the current bilingual `en` and `es` product posture.
 - `npm run validate:source-mappings` now checks the shared source-mapping registry, including per-surface key assignments and mapping order.
 - `npm run validate:source-registry-order` now checks source registry ordering, titles, reviewed dates, and governance-reference-only posture through the typed loader.

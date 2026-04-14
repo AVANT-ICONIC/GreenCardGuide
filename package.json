@@ -22,6 +22,7 @@
     "validate:faq-glossary": "tsx src/lib/content/validateFaqGlossaryPages.ts",
     "validate:guides": "tsx src/lib/content/validateGuidePages.ts",
     "validate:language-entry": "tsx src/lib/content/validateLanguageEntry.ts",
+    "validate:locale-layout": "tsx src/lib/content/validateLocaleLayout.ts",
     "validate:locale": "tsx src/lib/content/validateLocaleSupport.ts",
     "validate:source-mappings": "tsx src/lib/content/validateSourceMappings.ts",
     "validate:source-registry-order": "tsx src/lib/content/validateSourceRegistryOrdering.ts",

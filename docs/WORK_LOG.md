@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:33 UTC — TASK-062
+
+Summary:
+- Added a dedicated `npm run validate:locale-layout` smoke check for the shared `[lang]` layout component.
+- Locked in the current bilingual layout posture: `en` and `es` only, shared locale-switcher framing, and the current English/Spanish navigation labels rendered from the shared layout.
+- Refilled the queue with one adjacent admin marker-validation follow-on task after completion so the repo kept at least three actionable `Ready` tasks.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/content/validateLocaleLayout.ts
+
+Decisions:
+- Reused `supportedLanguages` and `getLanguageLabel()` directly so the validator stays aligned with the shared locale helper instead of duplicating bilingual labels.
+- Kept the assertions on layout markers, switcher structure, and nav-label framing because route-level behavior is already covered by existing validation.
+- Left the unrelated local edit in `docs/AGENT_LOOP.md` untouched and out of the task scope.
+
+Validation:
+- Ran `npm run validate:locale-layout`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected supported languages and rendered locale labels.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-063
+
+---
+
 ### 2026-04-14 22:31 UTC — TASK-061
 
 Summary:
