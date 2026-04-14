@@ -16,7 +16,41 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-014 — Add feedback route scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-002
+
+Objective:
+Create the first public feedback route aligned with the information architecture.
+
+Deliverables:
+- `/[lang]/feedback` route scaffold
+- bilingual feedback framing and placeholder submission state
+- clear note about what feedback is for
+
+Acceptance Criteria:
+- route exists for both locales
+- feedback surface is clearly scoped and non-functional areas are explicit
+- route fits the current app shell and trust posture
+
+### TASK-015 — Add admin route scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-012
+
+Objective:
+Create the initial `/admin` route scaffold that orients maintainers to content, sources, rules, and review surfaces.
+
+Deliverables:
+- `/admin` page scaffold
+- links or sections for content, sources, rules, and reviews
+- explicit note that these are maintenance scaffolds
+
+Acceptance Criteria:
+- admin landing route exists
+- page reflects the documented operations surface without claiming functionality that is not built yet
+- structure is ready for later internal tooling expansion
 
 ## Blocked
 
@@ -103,6 +137,14 @@ Depends on: TASK-003, TASK-007
 
 Summary:
 Added a typed source registry stub, validation for source entries, and consistent placeholder source-reference attachment across current content loaders.
+
+### TASK-013 — Add documents overview route scaffold
+Status: Done
+Priority: P1
+Depends on: TASK-003, TASK-007
+
+Summary:
+Added bilingual `/[lang]/documents` backed by a typed documents overview loader that groups the seeded document set and frames it as placeholder, trust-aware content.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

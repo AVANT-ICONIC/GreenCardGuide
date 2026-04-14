@@ -29,6 +29,43 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:58 UTC — TASK-013
+
+Summary:
+- Added a typed documents overview loader on top of the seeded document definitions.
+- Added bilingual `/[lang]/documents` route scaffolds.
+- Updated the shared locale nav so the documents route is reachable from the main public shell.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/[lang]/documents/page.tsx
+- src/app/[lang]/layout.tsx
+- src/components/documents-overview-page.tsx
+- src/lib/content/loadDocumentsOverview.ts
+
+Decisions:
+- Built the documents route from the seeded data model rather than standalone page copy so future document explainer work can extend the same typed base.
+- Grouped documents by category for a compact overview without implying that the current seeded set is a complete verified checklist for every case.
+- Reused the source-registry placeholder references so the documents surface stays aligned with the rest of the trust scaffolding.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and statically generated `/en/documents` and `/es/documents`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-014
+
+---
+
 ### 2026-04-14 19:50 UTC — TASK-012
 
 Summary:
