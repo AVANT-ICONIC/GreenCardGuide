@@ -141,7 +141,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:content-diff` now checks aligned versus flagged diff counts, current locale-shape details, and required `/admin/content` diff markers against the structural-diff scaffold.
 
 ### TASK-048 — Add content inventory validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -160,7 +160,7 @@ Validation:
 - `npm run build`
 - the new content-inventory validation command
 Notes:
-- Keep the assertions anchored to the current deterministic content registry and bilingual route posture.
+- Completed 2026-04-14. `npm run validate:content-inventory` now checks tracked-surface counts, bilingual route metadata, entry counts, and required `/admin/content` inventory markers against the shared content registry.
 
 ### TASK-049 — Add rules-to-document integrity validation coverage
 Status: Ready
@@ -183,6 +183,50 @@ Validation:
 - the new rule-integrity validation command
 Notes:
 - Focus on structural integrity and current output posture, not on expanding the seeded requirement set.
+
+### TASK-050 — Add documents overview validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-038
+Objective:
+- Add a repeatable validation check for the bilingual documents overview loader and seeded category grouping.
+Deliverables:
+- a lightweight validation script that exercises localized page copy, category grouping, source mapping, and review metadata for the documents overview
+- assertions covering the current seeded document categories and bilingual route posture
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- documents overview regressions can be caught without manually opening `/[lang]/documents`
+- the validation remains truthful about the current placeholder trust posture and seeded document scope
+- the check reuses the shared documents overview loader instead of duplicating document grouping logic
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new documents overview validation command
+Notes:
+- Keep assertions focused on deterministic seeded structure, source mapping, and bilingual scaffolding rather than expanding document requirements.
+
+### TASK-051 — Add guide loader validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Add a repeatable validation check for the bilingual guide loader structure and mapped source posture across current guide routes.
+Deliverables:
+- a lightweight validation script that exercises guide slugs, section counts, review metadata, and source references in both locales
+- assertions covering the current four guide routes and their shared placeholder trust posture
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- guide-loader regressions can be caught without manually opening each guide route
+- the validation remains aligned with the current placeholder guide scaffold and mapped source registry
+- the check reuses the shared guide loader instead of duplicating guide assembly logic
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new guide validation command
+Notes:
+- Keep the assertions tied to the current route set, section structure, and source mapping instead of future editorial copy changes.
 
 ## Blocked
 

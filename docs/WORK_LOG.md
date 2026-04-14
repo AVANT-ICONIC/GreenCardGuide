@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:03 UTC — TASK-048
+
+Summary:
+- Added a dedicated `npm run validate:content-inventory` smoke check for the `/admin/content` inventory scaffold.
+- Locked in the current inventory baseline: eight tracked surfaces, all bilingual, all placeholder, with the documents overview carrying the largest seeded entry count.
+- Covered tracked-surface counts, route metadata, source posture, and the inventory markers rendered by the admin content page.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validateContentInventory.ts
+
+Decisions:
+- Reused `loadContentInventory()` directly so the validator stays aligned with the live content inventory instead of duplicating route assembly logic.
+- Asserted concrete source-reference posture for the FAQ and glossary surfaces so trust-boundary mapping drift is caught early.
+- Kept the validation focused on structural metadata and current placeholder state, not on editorial text that is expected to evolve later.
+
+Validation:
+- Ran `npm run validate:content-inventory`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected route counts, entry counts, and source mappings.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-049
+
+---
+
 ### 2026-04-14 22:01 UTC — TASK-047
 
 Summary:
