@@ -9,6 +9,7 @@ import { loadContentInventory } from '@/lib/admin/loadContentInventory';
 import { loadPublishControlsSummary } from '@/lib/admin/loadPublishControlsScaffold';
 import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
+import { loadSourceCoverageSummary } from '@/lib/admin/loadSourceCoverageSummary';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
 import { loadStoredFeedbackSubmissions } from '@/lib/feedback/storage';
@@ -44,6 +45,7 @@ export default async function AdminSubsectionPage({
   if (section === 'sources') {
     return (
       <AdminSourcesPage
+        coverageSummary={loadSourceCoverageSummary()}
         references={loadSourceReferences()}
         tasks={loadSourceChangeReviewTasks()}
       />

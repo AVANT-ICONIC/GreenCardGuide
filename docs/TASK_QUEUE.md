@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-038 — Expose source-to-surface coverage in admin sources
-Status: Ready
-Priority: P2
-Depends on: TASK-035
-Objective:
-- Make the source dashboard show which public surfaces each registered source currently supports.
-Deliverables:
-- a deterministic source-coverage summary derived from the current source mapping layer
-- `/admin/sources` updates that show mapped surface count and linked routes per source alongside the existing watchlist tasks
-- validation that the new coverage summary stays consistent with the source mapping registry
-Acceptance Criteria:
-- each registered source shows its mapped public surfaces without relying on manual notes
-- the admin sources surface distinguishes direct mapped coverage from the separate change-watchlist tasks
-- the coverage summary stays truthful for placeholder governance references and does not imply verified immigration guidance
-Validation:
-- `npm run validate:sources`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- Reuse the `TASK-035` source mapping registry as the single source of truth instead of creating a second attachment list.
-
 ### TASK-039 — Add deterministic review-queue validation coverage
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Reuse the shared feedback storage helpers instead of duplicating validation logic in the script.
 
+### TASK-041 — Add admin operations route smoke validation
+Status: Ready
+Priority: P2
+Depends on: TASK-036, TASK-037, TASK-038
+Objective:
+- Add a repeatable smoke check for the current admin operations routes and their key rendered markers.
+Deliverables:
+- a lightweight validation script or route-check extension that verifies `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews`
+- assertions covering the latest deterministic metadata now exposed on the sources and reviews pages
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- admin surface regressions can be caught without manual browser checks
+- the smoke check confirms the presence of the latest review-queue, feedback-inbox, and source-coverage markers
+- the validation remains lightweight and truthful about the current scaffold state
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new admin route smoke validation command
+Notes:
+- Prefer extending the existing route validation posture rather than building browser automation.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-038 — Expose source-to-surface coverage in admin sources
+Status: Done
+Priority: P2
+Depends on: TASK-035
+Objective:
+- Make the source dashboard show which public surfaces each registered source currently supports.
+Deliverables:
+- a deterministic source-coverage summary derived from the current source mapping layer
+- `/admin/sources` updates that show mapped surface count and linked routes per source alongside the existing watchlist tasks
+- validation that the new coverage summary stays consistent with the source mapping registry
+Acceptance Criteria:
+- each registered source shows its mapped public surfaces without relying on manual notes
+- the admin sources surface distinguishes direct mapped coverage from the separate change-watchlist tasks
+- the coverage summary stays truthful for placeholder governance references and does not imply verified immigration guidance
+Validation:
+- `npm run validate:sources`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-14. The sources page now separates direct mapped coverage from change-watchlist tasks without claiming automated source monitoring exists.
 
 ### TASK-037 — Persist public feedback submissions into a deterministic review inbox
 Status: Done

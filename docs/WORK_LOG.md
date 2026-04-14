@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:38 UTC — TASK-038
+
+Summary:
+- Added a deterministic source-coverage summary that maps each registered source to the current public surfaces and routes that use it.
+- Updated `/admin/sources` so each source now shows direct mapped coverage counts and routes separately from the change-watchlist tasks.
+- Extended `validate:sources` to emit the per-source coverage summary, keeping the admin coverage view aligned with the source mapping registry.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-sources-page.tsx
+- src/lib/admin/loadSourceCoverageSummary.ts
+- src/lib/content/validateSourceRegistry.ts
+
+Decisions:
+- Derived coverage from the existing content inventory and source mappings so the sources page can show human-meaningful surface labels and routes without introducing a second mapping registry.
+- Kept coverage and watchlist tasks as two separate admin concepts: one answers where a source is used today, the other answers what should be reviewed if that source changes.
+- Reused the existing `validate:sources` command for coverage validation instead of adding another standalone script in this cycle.
+
+Validation:
+- Ran `npm run validate:sources`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output now includes per-source mapped surface counts and route lists.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-039
+
+---
+
 ### 2026-04-14 21:36 UTC — TASK-037
 
 Summary:

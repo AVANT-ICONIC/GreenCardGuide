@@ -1,14 +1,21 @@
 import Link from 'next/link';
+import type { SourceCoverageSummary } from '@/lib/admin/loadSourceCoverageSummary';
 import type { SourceChangeReviewTask } from '@/lib/admin/loadSourceChangeReviewTasks';
 import type { SourceReference } from '@/lib/types/domain';
 
 export function AdminSourcesPage({
+  coverageSummary,
   references,
   tasks,
 }: {
+  coverageSummary: SourceCoverageSummary;
   references: SourceReference[];
   tasks: SourceChangeReviewTask[];
 }) {
+  const coverageBySourceKey = new Map(
+    coverageSummary.entries.map((entry) => [entry.source_key, entry]),
+  );
+
   return (
     <main className="app-shell">
       <section className="hero">
@@ -27,7 +34,11 @@ export function AdminSourcesPage({
             <strong>Source-change tasks:</strong> {tasks.length}
           </p>
           <p>
-            <strong>Status:</strong> Read-only scaffold
+            <strong>Sources with mapped coverage:</strong>{' '}
+            {coverageSummary.mappedSourceCount}
+          </p>
+          <p>
+            <strong>Mapped surface links:</strong> {coverageSummary.mappedSurfaceLinks}
           </p>
           <p>
             <strong>Current limitation:</strong> Source editing, snapshots,
@@ -36,8 +47,11 @@ export function AdminSourcesPage({
         </article>
 
         <div className="guide-sections">
-          {references.map((reference) => (
-            <article key={reference.source_key} className="hero__card">
+          {references.map((reference) => {
+            const coverage = coverageBySourceKey.get(reference.source_key);
+
+            return (
+              <article key={reference.source_key} className="hero__card">
               <h2>{reference.title}</h2>
               <p>{reference.note ?? 'No note provided.'}</p>
               <p className="results-section__confidence">
@@ -54,6 +68,15 @@ export function AdminSourcesPage({
                   <strong>Reviewed:</strong>{' '}
                   {reference.reviewed_at ?? 'Not recorded'}
                 </li>
+                <li>
+                  <strong>Mapped surfaces:</strong>{' '}
+                  {coverage?.mapped_surface_count ?? 0}
+                </li>
+                <li>
+                  <strong>Coverage routes:</strong>{' '}
+                  {coverage?.mapped_surfaces.map((item) => item.route).join(', ') ??
+                    'none'}
+                </li>
               </ul>
               <div className="hub-links">
                 <a
@@ -65,17 +88,22 @@ export function AdminSourcesPage({
                   Open reference
                 </a>
               </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         <article className="hero__card content-meta">
           <p>
-            <strong>Task posture:</strong> Deterministic watchlist only
+            <strong>Coverage posture:</strong> Direct mapped usage only
           </p>
           <p>
-            <strong>Current limitation:</strong> No automated source snapshots
-            or change alerts exist yet.
+            <strong>Task posture:</strong> Change-watchlist only
+          </p>
+          <p>
+            <strong>Current limitation:</strong> Coverage shows where sources are
+            attached today, while separate watchlist tasks show what to review if
+            those sources change.
           </p>
         </article>
 

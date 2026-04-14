@@ -1,3 +1,4 @@
+import { loadSourceCoverageSummary } from '@/lib/admin/loadSourceCoverageSummary';
 import { loadSourceReferences } from './loadSourceReferences';
 import {
   listSourceReferenceMappings,
@@ -15,6 +16,7 @@ function main() {
         sourceReferences: references.length,
         sourceKeys: references.map((reference) => reference.source_key),
         mappedSurfaces: listSourceReferenceMappings(),
+        sourceCoverage: loadSourceCoverageSummary(),
       },
       null,
       2,
