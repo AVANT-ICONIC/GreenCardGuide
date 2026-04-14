@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 22:00 UTC — TASK-046
+
+Summary:
+- Added a dedicated `npm run validate:publish` smoke check for the `/admin/content` publish-readiness scaffold.
+- Locked in the current deterministic publish posture: eight tracked surfaces, zero publish-ready routes, and placeholder-only blockers across the current inventory.
+- Covered required publish gates, per-route blocker assembly, and the key publish markers rendered by the admin content page.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- package.json
+- src/lib/admin/validatePublishReadiness.ts
+
+Decisions:
+- Reused `loadPublishControlsSummary()` and `loadContentInventory()` directly so the validator stays aligned with the live admin content surface instead of duplicating publish-gate assembly logic.
+- Asserted the current single-blocker posture for every surface because review dates and source references are already present; placeholder review state is the only remaining deterministic gate today.
+- Kept the check lightweight and server-free by reading the component file for publish markers instead of adding route rendering or browser automation.
+
+Validation:
+- Ran `npm run validate:publish`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the validation output included the expected blocked routes and required publish gates.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-047
+
+---
+
 ### 2026-04-14 21:58 UTC — TASK-045
 
 Summary:

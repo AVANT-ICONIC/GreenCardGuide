@@ -97,7 +97,7 @@ Notes:
 - Completed 2026-04-14. `npm run validate:feedback-summary` now checks shared feedback-summary totals, per-type counts, most-reported route ordering, and required `/admin/reviews` summary markers without touching the real inbox file.
 
 ### TASK-046 — Add publish-readiness validation coverage
-Status: Ready
+Status: Done
 Priority: P2
 Depends on: TASK-041
 Objective:
@@ -116,7 +116,7 @@ Validation:
 - `npm run build`
 - the new publish validation command
 Notes:
-- Keep the assertions tied to deterministic current-state gates such as review status, source references, and last-reviewed dates.
+- Completed 2026-04-14. `npm run validate:publish` now checks publish-readiness counts, required gates, blocked-route posture, and required `/admin/content` publish markers against the current read-only scaffold.
 
 ### TASK-047 — Add content diff validation coverage
 Status: Ready
