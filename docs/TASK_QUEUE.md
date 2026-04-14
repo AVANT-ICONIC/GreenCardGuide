@@ -35,23 +35,6 @@ Acceptance Criteria:
 - flow is structured for conditional branching
 - implementation remains locale-ready
 
-### TASK-005 — Build checklist result assembler
-Status: Ready
-Priority: P1
-Depends on: TASK-003
-
-Objective:
-Expand rule evaluation so the app can output grouped checklist results.
-
-Deliverables:
-- enriched rules evaluator
-- output grouping types
-- confidence labels and section grouping
-
-Acceptance Criteria:
-- deterministic checklist output can be generated from seeded inputs
-- result sections map to documented product needs
-
 ### TASK-006 — Add print-view checklist scaffold
 Status: Ready
 Priority: P2
@@ -113,6 +96,14 @@ Depends on: TASK-001
 
 Summary:
 Added `/en` and `/es` route scaffolding with a shared localized layout, language switcher, bilingual home placeholders, and a root language entry page.
+
+### TASK-005 — Build checklist result assembler
+Status: Done
+Priority: P1
+Depends on: TASK-003
+
+Summary:
+Added grouped checklist result assembly over the seeded rules, including stable section types, conservative confidence labels, and document metadata joins for rule outputs.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

@@ -1,7 +1,11 @@
-import type { ChecklistAnswers, RequirementRule } from '../types/domain';
+import type {
+  ChecklistAnswers,
+  RequirementConditions,
+  RequirementRule,
+} from '../types/domain';
 
 function matchesConditions(
-  conditions: Record<string, unknown>,
+  conditions: RequirementConditions,
   answers: ChecklistAnswers,
 ): boolean {
   return Object.entries(conditions).every(([key, value]) => {

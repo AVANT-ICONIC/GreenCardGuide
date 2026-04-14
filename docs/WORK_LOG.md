@@ -29,6 +29,40 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:26 UTC — TASK-005
+
+Summary:
+- Added deterministic checklist result assembly on top of the seeded rule evaluator.
+- Added stable result section and item types, section-level confidence labels, and document metadata joins for document-backed outputs.
+- Validated the assembler directly with seeded Ciudad Juarez family-based answers.
+
+Files changed:
+- src/lib/rules/evaluateRules.ts
+- src/lib/rules/assembleChecklistResults.ts
+- src/lib/types/domain.ts
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Kept the assembler as a pure library layer so future question flow, result UI, and print routes can all consume the same deterministic output shape.
+- Joined `document_slug` references to seeded document metadata during assembly so presentation layers do not need to repeat lookup logic.
+- Mapped output types to conservative confidence labels at the section level, treating risk and explicit verification outputs as `verify_with_official`.
+
+Validation:
+- Ran a direct assembler smoke check with `npx tsx -e ...` using seeded answers for Ciudad Juarez family-based prep.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- The assembler smoke check produced grouped required, conditional, and print sections from seeded rules as expected.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-004
+
+---
+
 ### 2026-04-14 19:24 UTC — TASK-002
 
 Summary:

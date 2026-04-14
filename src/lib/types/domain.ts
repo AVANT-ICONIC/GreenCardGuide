@@ -18,6 +18,16 @@ export type RequirementOutputType =
   | 'do_not_bring'
   | 'verify_with_official';
 
+export type ChecklistResultSectionKey =
+  | 'required_documents'
+  | 'conditional_documents'
+  | 'backup_documents'
+  | 'print_items'
+  | 'risk_flags'
+  | 'prep_steps'
+  | 'do_not_bring'
+  | 'verify_with_official';
+
 export interface ChecklistAnswers {
   post?: string;
   case_family?: string;
@@ -68,4 +78,30 @@ export interface RequirementRule {
   output_payload: RequirementOutputPayload;
   priority: number;
   is_active: boolean;
+}
+
+export interface ChecklistResultItem {
+  rule_key: string;
+  output_type: RequirementOutputType;
+  confidence_label: ConfidenceLabel;
+  document?: DocumentDefinition;
+  document_slug?: string;
+  item_key?: string;
+  strength?: string;
+  notes_en?: string;
+  notes_es?: string;
+}
+
+export interface ChecklistResultSection {
+  key: ChecklistResultSectionKey;
+  title_en: string;
+  title_es: string;
+  confidence_label: ConfidenceLabel;
+  items: ChecklistResultItem[];
+}
+
+export interface ChecklistResult {
+  answers: ChecklistAnswers;
+  matched_rules: RequirementRule[];
+  sections: ChecklistResultSection[];
 }
