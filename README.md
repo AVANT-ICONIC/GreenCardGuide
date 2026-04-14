@@ -79,6 +79,7 @@ Current state:
 - An `/admin` landing scaffold now maps the planned internal maintenance surface without claiming unfinished tooling is functional.
 - `/admin/content`, `/admin/sources`, `/admin/rules`, and `/admin/reviews` now exist as truthful subsection scaffolds.
 - A deterministic `validate:routes` script now checks that the expected route files and route patterns exist.
+- `/admin/sources` now exposes the current typed source registry through a truthful review-dashboard scaffold.
 - The current queued work is exhausted again; add the next prioritized task to `docs/TASK_QUEUE.md` before the next autonomous cycle.
 
 ## Non-negotiables

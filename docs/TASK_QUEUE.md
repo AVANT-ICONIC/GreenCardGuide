@@ -16,7 +16,41 @@ Priority values:
 
 ## Ready
 
-None currently. Add the next queued work item before starting another autonomous cycle.
+### TASK-019 — Add rules audit view scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-003, TASK-005, TASK-016
+
+Objective:
+Create the first admin rules audit scaffold using the seeded checklist questions and requirement rules.
+
+Deliverables:
+- `/admin/rules` upgraded from a generic placeholder to a rules-oriented audit page
+- counts or grouped summaries for questions and rules
+- deterministic references to existing seed-backed rule data
+
+Acceptance Criteria:
+- rules surface exposes current deterministic rule assets
+- page does not imply inline rule editing exists yet
+- structure is ready for later rule audit tooling
+
+### TASK-020 — Add review queue scaffold
+Status: Ready
+Priority: P2
+Depends on: TASK-007, TASK-012, TASK-016
+
+Objective:
+Create the first admin reviews scaffold that summarizes placeholder versus verified content surfaces and future review work.
+
+Deliverables:
+- `/admin/reviews` upgraded from a generic placeholder to a review-oriented page
+- structured list of current content surfaces and their review states
+- explicit note about future queue and handoff workflows
+
+Acceptance Criteria:
+- review surface exposes current placeholder/verified state consistently
+- page remains truthful about the lack of actual queue tooling
+- structure is ready for later review-event and queue features
 
 ## Blocked
 
@@ -143,6 +177,14 @@ Depends on: TASK-001, TASK-002, TASK-015
 
 Summary:
 Added `npm run validate:routes`, a deterministic route smoke check that verifies the expected route files and documented route patterns currently present in the app.
+
+### TASK-018 — Add source review dashboard scaffold
+Status: Done
+Priority: P2
+Depends on: TASK-012, TASK-016
+
+Summary:
+Upgraded `/admin/sources` into a source-oriented dashboard scaffold that displays the current typed source registry and preserves an explicit read-only trust posture.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

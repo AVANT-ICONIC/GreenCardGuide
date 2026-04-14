@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 20:26 UTC — TASK-018
+
+Summary:
+- Upgraded `/admin/sources` from a generic placeholder to a source review dashboard scaffold.
+- Exposed the current typed source registry on the admin sources surface.
+- Kept the page explicitly read-only and truthful about missing editing, snapshots, and monitoring workflows.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/components/admin-sources-page.tsx
+
+Decisions:
+- Rendered the typed source registry directly in the admin page instead of duplicating source metadata in a second dashboard-specific data shape.
+- Kept outbound links as plain reference opens rather than inventing internal source detail routes that the repo has not documented yet.
+- Preserved the generic admin subsection scaffold for the other sections while specializing only `/admin/sources`, which is the smallest coherent increment for the current task.
+
+Validation:
+- Ran `npm run validate:seed`.
+- Ran `npm run validate:sources`.
+- Ran `npm run validate:routes`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and retained static generation for `/admin/sources`.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-019
+
+---
+
 ### 2026-04-14 20:06 UTC — TASK-017
 
 Summary:
