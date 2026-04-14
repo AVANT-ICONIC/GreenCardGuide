@@ -1,0 +1,136 @@
+:root {
+  color-scheme: light;
+  --background: #f5efe3;
+  --surface: #fffaf2;
+  --surface-strong: #fffdf8;
+  --border: #d6c8b3;
+  --text: #1f2421;
+  --muted: #5a625c;
+  --accent: #1d5c4f;
+  --accent-soft: #dcece4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Georgia, "Times New Roman", serif;
+  background: radial-gradient(circle at top, #fffdf8 0%, var(--background) 58%);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.hero {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 5rem;
+}
+
+.hero__eyebrow {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(2.75rem, 8vw, 5.5rem);
+  line-height: 0.95;
+}
+
+.hero__lede {
+  max-width: 42rem;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.hero__grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.hero__card {
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, var(--surface-strong), var(--surface));
+}
+
+.hero__card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.hero__card p,
+.hero__card li {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.hero__card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero__button--primary {
+  background: var(--accent);
+  color: #f6f5ef;
+}
+
+.hero__button--secondary {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@media (min-width: 48rem) {
+  .hero {
+    padding-top: 5rem;
+  }
+
+  .hero__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

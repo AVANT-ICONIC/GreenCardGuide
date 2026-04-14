@@ -43,6 +43,31 @@ This repository is a **repo seed**: product direction, information architecture,
 - Deterministic rules engine for checklist generation
 - Internal admin/CMS for source-backed content maintenance
 
+## Local development
+
+Requirements:
+- Node.js 20+
+- npm 10+
+
+Commands:
+
+```bash
+npm install
+npm run dev
+```
+
+Validation:
+
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
+
+Current state:
+- The repository now includes a runnable Next.js App Router scaffold.
+- Locale-aware routes, checklist flow, and content loaders are still tracked as separate backlog tasks.
+
 ## Non-negotiables
 
 - Official-source anchored

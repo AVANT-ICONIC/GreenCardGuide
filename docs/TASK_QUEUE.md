@@ -16,26 +16,6 @@ Priority values:
 
 ## Ready
 
-### TASK-001 — Create runnable web app scaffold
-Status: Ready
-Priority: P0
-Depends on: none
-
-Objective:
-Create the initial runnable application scaffold for the repository, aligned with the documented architecture.
-
-Deliverables:
-- package manifest
-- tsconfig
-- next config or equivalent app scaffold
-- base app entry structure
-- lint/typecheck script placeholders where practical
-
-Acceptance Criteria:
-- repository has a clear runnable app skeleton
-- app structure matches documented product direction
-- README includes basic local run instructions or clearly labels remaining gaps
-
 ### TASK-002 — Add locale-aware routing shell
 Status: Ready
 Priority: P0
@@ -145,6 +125,14 @@ Acceptance Criteria:
 None currently.
 
 ## Done
+
+### TASK-001 — Create runnable web app scaffold
+Status: Done
+Priority: P0
+Depends on: none
+
+Summary:
+Added a runnable Next.js App Router scaffold with strict TypeScript and ESLint config, a minimal landing shell, a basic `.gitignore`, and README run/validation instructions.
 
 ### TASK-009 — Require per-cycle commit and push
 Status: Done

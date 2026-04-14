@@ -29,6 +29,50 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 19:17 UTC — TASK-001
+
+Summary:
+- Added the first runnable Next.js App Router scaffold for the repository.
+- Wired strict TypeScript, Next-aware ESLint, build/dev scripts, and the generated app env/type files needed for a working baseline.
+- Created a minimal landing shell that reflects the product mission without pre-empting locale routing or checklist logic.
+- Added README local run instructions and a `.gitignore` for app/build artifacts.
+
+Files changed:
+- .gitignore
+- README.md
+- package.json
+- package-lock.json
+- tsconfig.json
+- next.config.mjs
+- eslint.config.mjs
+- next-env.d.ts
+- src/app/globals.css
+- src/app/layout.tsx
+- src/app/page.tsx
+- src/components/app-shell.tsx
+- docs/WORK_LOG.md
+- docs/TASK_QUEUE.md
+
+Decisions:
+- Used Next.js App Router with a minimal root page so `TASK-001` stays focused on runnable infrastructure instead of locale-aware routing, which remains isolated in `TASK-002`.
+- Switched the `typecheck` script to `next typegen && tsc --noEmit` so route/layout types are generated deterministically instead of depending on a prior build side effect.
+- Kept styling lightweight and self-contained in CSS rather than introducing more tooling before the public route structure exists.
+
+Validation:
+- Ran `npm install`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Production build succeeded and generated the root route, but Next.js 15.5.15 still emitted a non-fatal warning that it was patching SWC lockfile entries even after reinstall. The app remains runnable; this should be revisited if it persists on later cycles.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-003
+
+---
+
 ### 2026-04-14 18:24 UTC — TASK-009
 
 Summary:
