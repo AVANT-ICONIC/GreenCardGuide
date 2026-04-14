@@ -52,28 +52,6 @@ Notes:
 
 ## Ready
 
-### TASK-037 — Persist public feedback submissions into a deterministic review inbox
-Status: Ready
-Priority: P1
-Depends on: TASK-014, TASK-020
-Objective:
-- Replace the current non-persistent feedback placeholder with validated local persistence that feeds the review workflow.
-Deliverables:
-- a typed feedback submission schema and storage path for local submissions
-- feedback route handling that validates and persists submissions instead of only showing placeholder success text
-- admin review integration so stored feedback appears as actionable maintenance input rather than disappearing after submit
-Acceptance Criteria:
-- valid feedback submissions are stored deterministically and survive refreshes
-- invalid feedback is rejected safely with clear user-facing errors
-- admin review tooling can see stored feedback items without implying moderation or publishing tooling already exists
-Validation:
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-- direct submission smoke check covering one valid and one invalid payload
-Notes:
-- Keep persistence local and explicit. Do not add external services or invent legal-content processing.
-
 ### TASK-038 — Expose source-to-surface coverage in admin sources
 Status: Ready
 Priority: P2
@@ -118,6 +96,28 @@ Validation:
 Notes:
 - Prefer the lightweight script pattern already used for other repo validation commands.
 
+### TASK-040 — Add deterministic feedback inbox validation coverage
+Status: Ready
+Priority: P2
+Depends on: TASK-037
+Objective:
+- Add a repeatable validation check for feedback submission validation, persistence, and inbox loading.
+Deliverables:
+- a lightweight validation script that exercises one valid and one invalid feedback submission against the shared storage helpers
+- assertions covering stored field shape, newest-first inbox ordering, and validation-error handling
+- package wiring and docs updates if a new validation command is added
+Acceptance Criteria:
+- feedback inbox regressions can be caught without manual browser submission
+- the validation does not require network access or a running Next.js server
+- the check stays isolated from real local inbox data by using a temporary storage path or fixture
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- the new feedback validation command
+Notes:
+- Reuse the shared feedback storage helpers instead of duplicating validation logic in the script.
+
 ## Blocked
 
 None currently.
@@ -125,6 +125,28 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-037 — Persist public feedback submissions into a deterministic review inbox
+Status: Done
+Priority: P1
+Depends on: TASK-014, TASK-020
+Objective:
+- Replace the current non-persistent feedback placeholder with validated local persistence that feeds the review workflow.
+Deliverables:
+- a typed feedback submission schema and storage path for local submissions
+- feedback route handling that validates and persists submissions instead of only showing placeholder success text
+- admin review integration so stored feedback appears as actionable maintenance input rather than disappearing after submit
+Acceptance Criteria:
+- valid feedback submissions are stored deterministically and survive refreshes
+- invalid feedback is rejected safely with clear user-facing errors
+- admin review tooling can see stored feedback items without implying moderation or publishing tooling already exists
+Validation:
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+- direct submission smoke check covering one valid and one invalid payload
+Notes:
+- Completed 2026-04-14. Feedback storage remains local repo data only; no moderation or publishing workflow is implied.
 
 ### TASK-036 — Turn the review scaffold into a prioritized deterministic review queue
 Status: Done

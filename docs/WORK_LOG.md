@@ -29,6 +29,48 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-14 21:36 UTC — TASK-037
+
+Summary:
+- Replaced the client-only feedback placeholder with a validated local submission flow backed by `data/feedback/submissions.json`.
+- Added a shared feedback storage helper for validation, persistence, and inbox loading plus a new `/api/feedback` route for server-side submission handling.
+- Updated the public feedback page to show validation errors and persisted-success feedback instead of fake placeholder confirmation text.
+- Integrated stored feedback reports into `/admin/reviews` as a local maintenance inbox so submissions become actionable review input.
+
+Files changed:
+- README.md
+- data/feedback/.gitignore
+- data/feedback/README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/app/admin/[section]/page.tsx
+- src/app/api/feedback/route.ts
+- src/components/admin-reviews-page.tsx
+- src/components/feedback-page.tsx
+- src/lib/feedback/storage.ts
+
+Decisions:
+- Kept persistence local to a git-ignored JSON file in `data/feedback/` so submissions survive refreshes without introducing an external service or polluting the repository history.
+- Put validation and persistence in shared server-side helpers, then reused them from the API route and admin inbox integration instead of splitting logic across multiple layers.
+- Fed stored submissions into `/admin/reviews` rather than inventing a separate admin page, because the task calls for review-workflow integration and the existing review surface is already the operational maintenance queue.
+- Left moderation, assignment, and publishing workflows out of scope; the new inbox is explicitly local maintainer input only.
+
+Validation:
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Ran a valid submission smoke check with `curl -X POST http://127.0.0.1:3000/api/feedback ...` and confirmed a stored `201` response.
+- Ran an invalid submission smoke check with a bad route and too-short message and confirmed a `400` response with field errors.
+- Confirmed `/admin/reviews` rendered the stored feedback report in the local inbox section.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-038
+
+---
+
 ### 2026-04-14 21:31 UTC — TASK-036
 
 Summary:

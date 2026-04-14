@@ -1,10 +1,13 @@
 import Link from 'next/link';
+import type { StoredFeedbackSubmission } from '@/lib/feedback/storage';
 import type { ReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 
 export function AdminReviewsPage({
   summary,
+  feedbackItems,
 }: {
   summary: ReviewQueueSummary;
+  feedbackItems: StoredFeedbackSubmission[];
 }) {
   const placeholderCount = summary.entries.filter(
     (entry) => entry.review_status === 'placeholder',
@@ -42,6 +45,9 @@ export function AdminReviewsPage({
           </p>
           <p>
             <strong>Stale reviews:</strong> {summary.staleCount}
+          </p>
+          <p>
+            <strong>Stored feedback reports:</strong> {feedbackItems.length}
           </p>
         </article>
 
@@ -89,6 +95,44 @@ export function AdminReviewsPage({
               </ul>
             </article>
           ))}
+        </div>
+
+        <article className="hero__card content-meta">
+          <p>
+            <strong>Feedback inbox posture:</strong> Local review input only
+          </p>
+          <p>
+            <strong>Current limitation:</strong> Submissions are stored locally
+            for maintainer review. No moderation or publish tooling exists yet.
+          </p>
+        </article>
+
+        <div className="guide-sections">
+          {feedbackItems.length === 0 ? (
+            <article className="hero__card">
+              <h2>Feedback inbox</h2>
+              <p>No stored feedback submissions yet.</p>
+            </article>
+          ) : (
+            feedbackItems.map((item) => (
+              <article key={item.id} className="hero__card">
+                <h2>{item.page_slug}</h2>
+                <p>{item.message}</p>
+                <p className="results-section__confidence">{item.report_type}</p>
+                <ul className="results-list">
+                  <li>
+                    <strong>Submission ID:</strong> {item.id}
+                  </li>
+                  <li>
+                    <strong>Language:</strong> {item.language}
+                  </li>
+                  <li>
+                    <strong>Created:</strong> {item.created_at}
+                  </li>
+                </ul>
+              </article>
+            ))
+          )}
         </div>
 
         <div className="hero__actions">

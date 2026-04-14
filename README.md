@@ -90,6 +90,7 @@ Current state:
 - `/admin/sources` now includes a deterministic source-change review task watchlist that maps registered sources to affected content surfaces.
 - Public content surfaces and `/admin/reviews` now use deterministic per-surface source mappings instead of attaching the full placeholder source registry everywhere.
 - `/admin/reviews` now assembles a deterministic priority queue with explicit blocker reasons, source-coverage state, and recommended next actions for each tracked surface.
+- The public feedback route now validates and persists local submissions into a repo-backed review inbox, and `/admin/reviews` exposes those stored reports as actionable maintenance input.
 - The checklist seed now surfaces the base sponsor financial packet through the existing `i-864` document for family-based Ciudad Juarez cases.
 - The checklist now surfaces a deterministic risk flag when the applicant does not have a current passport ready.
 - The checklist now routes arrest or court-record scenarios into a conservative `verify with official instructions` output instead of leaving that answer unused.
@@ -120,6 +121,7 @@ Current state:
 │   ├── content/
 │   └── ops/
 ├── data/
+│   ├── feedback/
 │   ├── seed/
 │   └── sources/
 ├── src/

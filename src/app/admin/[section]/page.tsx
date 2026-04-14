@@ -11,6 +11,7 @@ import { loadReviewQueueSummary } from '@/lib/admin/loadReviewQueue';
 import { loadSourceChangeReviewTasks } from '@/lib/admin/loadSourceChangeReviewTasks';
 import { isAdminSectionSlug } from '@/lib/admin/sections';
 import { loadSourceReferences } from '@/lib/content/loadSourceReferences';
+import { loadStoredFeedbackSubmissions } from '@/lib/feedback/storage';
 import { loadChecklistQuestions, loadRequirementRules } from '@/lib/seed/loadSeedData';
 
 export function generateStaticParams() {
@@ -59,7 +60,12 @@ export default async function AdminSubsectionPage({
   }
 
   if (section === 'reviews') {
-    return <AdminReviewsPage summary={loadReviewQueueSummary()} />;
+    return (
+      <AdminReviewsPage
+        summary={loadReviewQueueSummary()}
+        feedbackItems={await loadStoredFeedbackSubmissions()}
+      />
+    );
   }
 
   return <AdminSectionPage slug={section} />;
