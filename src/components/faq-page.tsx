@@ -52,7 +52,7 @@ export function FaqPage({ page }: { page: FaqPageContent }) {
           <article key={item.key} className="hero__card">
             <h2>{item.question}</h2>
             <p>{item.answer}</p>
-            <p className="results-section__confidence">{item.confidence_label}</p>
+            <span className="content-badge">{item.confidence_label}</span>
           </article>
         ))}
       </div>

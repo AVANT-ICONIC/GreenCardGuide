@@ -3,14 +3,13 @@ import { getLanguageLabel, supportedLanguages } from '@/lib/content/locale';
 
 export function LanguageEntry() {
   return (
-    <main className="app-shell">
+    <main className="landing-shell">
       <section className="hero">
         <p className="hero__eyebrow">Bilingual entry point</p>
         <h1>Select your language to start prep.</h1>
         <p className="hero__lede">
-          Consular Prep is being built with English and Spanish as first-class
-          routes from the start. Choose a language to enter the current app
-          shell.
+          Consular Prep helps families know exactly what to print, pack, and
+          bring for immigrant visa interviews. Choose a language to begin.
         </p>
 
         <div className="hero__actions">

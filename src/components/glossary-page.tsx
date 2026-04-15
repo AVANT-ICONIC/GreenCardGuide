@@ -53,9 +53,9 @@ export function GlossaryPage({ page }: { page: GlossaryPageContent }) {
             <h2>{term.term}</h2>
             <p>{term.definition}</p>
             {term.related_terms.length > 0 ? (
-              <p className="results-section__confidence">
+              <span className="content-badge">
                 {term.related_terms.join(', ')}
-              </p>
+              </span>
             ) : null}
           </article>
         ))}

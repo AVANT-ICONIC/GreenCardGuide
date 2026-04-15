@@ -5,6 +5,8 @@ import {
   isSupportedLanguage,
   supportedLanguages,
 } from '@/lib/content/locale';
+import { ClientNav } from '@/components/client-nav';
+import type { Language } from '@/lib/types/domain';
 
 const navLinks = {
   en: [
@@ -40,7 +42,7 @@ export default async function LanguageLayout({
     notFound();
   }
 
-  const links = navLinks[lang];
+  const links = navLinks[lang as keyof typeof navLinks];
 
   return (
     <main className="app-shell">
@@ -49,17 +51,7 @@ export default async function LanguageLayout({
           <Link className="locale-header__brand" href={`/${lang}`}>
             Consular Prep
           </Link>
-          <nav className="locale-header__nav" aria-label="Primary">
-            {links.map((link) => (
-              <Link
-                key={link.href || 'home'}
-                className="locale-header__nav-item"
-                href={`/${lang}${link.href}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <ClientNav links={links} lang={lang as Language} />
           <div className="locale-switcher" aria-label="Language switcher">
             {supportedLanguages.map((language) => {
               const isActive = language === lang;

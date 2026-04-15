@@ -140,7 +140,7 @@ export function ChecklistResults({
         {result.sections.map((section) => (
           <article key={section.key} className="hero__card">
             <h2>{getSectionTitle(section, language)}</h2>
-            <p className="results-section__confidence">{section.confidence_label}</p>
+            <span className="content-badge">{section.confidence_label}</span>
             {section.items.length === 0 ? (
               <p>{copy.empty}</p>
             ) : (
