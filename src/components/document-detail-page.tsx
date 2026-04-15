@@ -1,36 +1,47 @@
 import Link from 'next/link';
 import type { DocumentDetailContent } from '@/lib/content/loadDocumentDetailPage';
+import { getGuideHref } from '@/lib/content/loadGuidePage';
 
 const detailCopy = {
   en: {
     eyebrow: 'document detail',
     back: 'Back to documents overview',
+    packetGuide: 'Open packet guide',
+    checklistStart: 'Start checklist',
     reviewStatus: 'Review status',
     lastReviewed: 'Last reviewed',
     confidence: 'Confidence',
     sources: 'Sources',
     category: 'Category',
     currentCoverage: 'Current deterministic coverage',
+    nextSteps: 'Use this document in the prep flow',
     noReferences:
       'No active checklist rule references this document yet. Keep it in the shared seed set without presenting it as universally required.',
     shownWhen: 'Shown when',
     placeholderNote:
       'This surface reflects the current structured seeds and rule references only. Verify case-specific document expectations with official instructions.',
+    nextStepsBody:
+      'Return to the packet guide to see how this document fits into the current seeded packet, or restart the checklist when you need answer-driven guidance for the rest of the case.',
   },
   es: {
     eyebrow: 'detalle del documento',
     back: 'Volver al resumen de documentos',
+    packetGuide: 'Abrir guia de que llevar',
+    checklistStart: 'Empezar lista',
     reviewStatus: 'Estado de revision',
     lastReviewed: 'Ultima revision',
     confidence: 'Confianza',
     sources: 'Fuentes',
     category: 'Categoria',
     currentCoverage: 'Cobertura determinista actual',
+    nextSteps: 'Use este documento dentro del flujo de preparacion',
     noReferences:
       'Ninguna regla activa de la lista usa este documento todavia. Mantengalo en el conjunto compartido sin presentarlo como universalmente requerido.',
     shownWhen: 'Se muestra cuando',
     placeholderNote:
       'Esta superficie refleja solo las semillas estructuradas actuales y las referencias de reglas. Verifique las expectativas de documentos de su caso con instrucciones oficiales.',
+    nextStepsBody:
+      'Vuelva a la guia del paquete para ver como encaja este documento en el paquete semilla actual, o reinicie la lista cuando necesite orientacion guiada por respuestas para el resto del caso.',
   },
 } as const;
 
@@ -54,6 +65,18 @@ export function DocumentDetailPage({
         >
           {copy.back}
         </Link>
+        <Link
+          className="hero__button hero__button--secondary"
+          href={getGuideHref(content.language, 'what-to-bring')}
+        >
+          {copy.packetGuide}
+        </Link>
+        <Link
+          className="hero__button hero__button--primary"
+          href={`/${content.language}/checklist/start`}
+        >
+          {copy.checklistStart}
+        </Link>
       </div>
 
       <article className="hero__card content-meta">
@@ -76,6 +99,10 @@ export function DocumentDetailPage({
       </article>
 
       <div className="guide-sections">
+        <article className="hero__card">
+          <h2>{copy.nextSteps}</h2>
+          <p>{copy.nextStepsBody}</p>
+        </article>
         <article className="hero__card">
           <h2>{copy.currentCoverage}</h2>
           {content.references.length === 0 ? (

@@ -1,3 +1,5 @@
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { loadDocumentsOverview } from './loadDocumentsOverview';
 import { loadDocumentDetailPage } from './loadDocumentDetailPage';
 
@@ -141,6 +143,22 @@ function main() {
       englishAppointmentOverview.is_covered === false,
     `Unexpected appointment-letter overview coverage: ${JSON.stringify(englishAppointmentOverview)}`,
   );
+
+  const componentPath = resolve(process.cwd(), 'src/components/document-detail-page.tsx');
+  assert(existsSync(componentPath), 'Expected document detail component to exist');
+
+  const componentSource = readFileSync(componentPath, 'utf8');
+  for (const marker of [
+    'Back to documents overview',
+    'Open packet guide',
+    'Start checklist',
+    'Use this document in the prep flow',
+  ]) {
+    assert(
+      componentSource.includes(marker),
+      `Expected marker "${marker}" in src/components/document-detail-page.tsx`,
+    );
+  }
 
   console.log(
     JSON.stringify(

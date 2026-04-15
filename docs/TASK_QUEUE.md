@@ -67,29 +67,6 @@ Notes:
 
 ## Ready
 
-### TASK-086 — Add packet-guide wayfinding from document detail pages
-Status: Ready
-Priority: P1
-Depends on: TASK-084
-Objective:
-- Let each seeded document detail page point users back into the packet-planning flow instead of acting as an isolated leaf route.
-Deliverables:
-- document detail updates that link back into the `what-to-bring` guide and the checklist path where useful
-- any small loader or component cleanup needed to keep those hrefs shared and locale-safe
-- validation updates if the document-detail surface materially changes
-Acceptance Criteria:
-- document detail pages no longer strand users after they inspect one seeded document
-- the added wayfinding stays conservative and routes users into existing deterministic surfaces rather than new editorial claims
-- locale-aware navigation remains correct for both English and Spanish document pages
-Validation:
-- `npm run validate:documents`
-- `npm run validate:guides`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- Keep the scope on route continuity and deterministic navigation, not deeper document editorial expansion.
-
 ### TASK-087 — Add shared guide-to-guide wayfinding across prep surfaces
 Status: Ready
 Priority: P2
@@ -136,6 +113,53 @@ Validation:
 Notes:
 - Keep the scope on route continuity and broader prep navigation, not new document editorial content.
 
+### TASK-089 — Promote the Ciudad Juarez prep path from the language entry page
+Status: Ready
+Priority: P2
+Depends on: TASK-085
+Objective:
+- Make the bilingual language-entry route point more directly into the Ciudad Juarez prep path instead of acting as a generic locale chooser only.
+Deliverables:
+- language-entry updates that surface the Ciudad Juarez hub and checklist start path more explicitly
+- copy or component updates that explain the difference between starting the checklist and browsing the post hub
+- validation updates if the language-entry surface materially changes
+Acceptance Criteria:
+- users can move from `/en` or `/es` into the main Ciudad Juarez prep flow without ambiguity
+- the route stays truthful about the current single-post product scope
+- locale-aware navigation remains correct for both English and Spanish entry pages
+Validation:
+- `npm run validate:language-entry`
+- `npm run validate:ciudad-juarez`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on entry-point wayfinding, not new home-page editorial content.
+
+### TASK-088 — Add documents-overview wayfinding back into the hub and packet guide
+Status: Ready
+Priority: P1
+Depends on: TASK-085
+Objective:
+- Keep the documents overview from acting like a browse-only leaf by routing users back into the hub and packet guide when they need broader preparation context.
+Deliverables:
+- documents overview updates that link toward the Ciudad Juarez hub and the `what-to-bring` guide
+- any small copy or component cleanup needed to explain when to browse documents versus when to return to the broader prep flow
+- validation updates if the overview surface materially changes
+Acceptance Criteria:
+- the documents overview offers at least one clear route back into the broader preparation path
+- the added wayfinding stays grounded in current deterministic surfaces and does not add new guidance claims
+- locale-aware navigation remains correct for both English and Spanish overview pages
+Validation:
+- `npm run validate:documents`
+- `npm run validate:ciudad-juarez`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on route continuity and broader prep navigation, not new document editorial content.
+
 ## Blocked
 
 None currently.
@@ -143,6 +167,29 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-086 — Add packet-guide wayfinding from document detail pages
+Status: Done
+Priority: P1
+Depends on: TASK-084
+Objective:
+- Let each seeded document detail page point users back into the packet-planning flow instead of acting as an isolated leaf route.
+Deliverables:
+- document detail updates that link back into the `what-to-bring` guide and the checklist path where useful
+- any small loader or component cleanup needed to keep those hrefs shared and locale-safe
+- validation updates if the document-detail surface materially changes
+Acceptance Criteria:
+- document detail pages no longer strand users after they inspect one seeded document
+- the added wayfinding stays conservative and routes users into existing deterministic surfaces rather than new editorial claims
+- locale-aware navigation remains correct for both English and Spanish document pages
+Validation:
+- `npm run validate:documents`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-15. Document detail pages now expose direct return paths into the seeded packet guide and checklist start flow, and the documents validator locks those markers into the current route posture.
 
 ### TASK-085 — Promote the document library from the Ciudad Juarez hub
 Status: Done

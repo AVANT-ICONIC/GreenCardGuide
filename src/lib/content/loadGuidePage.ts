@@ -173,6 +173,10 @@ export function isGuideSlug(value: string): value is GuideSlug {
   return guideSlugs.includes(value as GuideSlug);
 }
 
+export function getGuideHref(language: Language, slug: GuideSlug): string {
+  return `/${language}/guides/${slug}`;
+}
+
 export function loadGuidePage(
   language: Language,
   slug: GuideSlug,

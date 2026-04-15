@@ -129,6 +129,7 @@ Current state:
 - A typed source-registry stub now supports consistent placeholder source attachment across content surfaces.
 - A bilingual documents overview route now exposes the seeded document set through the same trust-aware content layer.
 - Bilingual document detail routes now let each seeded document explain its current deterministic checklist coverage without inventing new guidance.
+- Document detail pages now route users back into the seeded packet guide and checklist start path instead of acting as isolated library leaves.
 - The documents overview now distinguishes seeded documents already covered by active checklist rules from those still uncovered.
 - The `what-to-bring` guide now links directly into seeded document detail routes so users can move from packet planning into the current document library without hitting a dead end.
 - A bilingual feedback route now defines the public feedback surface, while making its non-persistent placeholder state explicit.
@@ -158,7 +159,7 @@ Current state:
 - `npm run validate:content-inventory` now checks tracked-surface counts, bilingual inventory metadata, and key `/admin/content` inventory markers.
 - `npm run validate:content-review-metadata` now checks the shared content review-date registry across all current public surfaces in both locales.
 - `npm run validate:content-surfaces` now checks the shared content surface registry and its alignment with guide slugs plus source-mapping order.
-- `npm run validate:documents` now checks bilingual documents overview copy, seeded category grouping, review metadata, and source mapping.
+- `npm run validate:documents` now checks bilingual documents overview copy, document-detail wayfinding markers, seeded category grouping, review metadata, and source mapping.
 - `npm run validate:rules-audit-markers` now checks the `/admin/rules` component markers, read-only audit posture, question-key framing, and rule-output inventory markers without duplicating the broader rules audit validation.
 - `npm run validate:rules` now checks the admin rules audit baseline, including seeded question counts, rule counts, output-type coverage, and key `/admin/rules` markers.
 - `npm run validate:feedback` now exercises feedback validation, local persistence, and inbox ordering without touching the real local inbox file.

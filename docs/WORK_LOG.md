@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 01:34 UTC — TASK-086
+
+Summary:
+- Added direct packet-guide and checklist-start return paths to every document detail page so the seeded document library no longer ends in an isolated leaf route.
+- Added a shared guide href helper so document-detail wayfinding reuses the current guide route contract instead of hard-coding path strings in multiple places.
+- Refilled the queue back to three `Ready` tasks after this cycle so the main public prep path can keep advancing without falling back into stale frontier entries.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/document-detail-page.tsx
+- src/lib/content/loadGuidePage.ts
+- src/lib/content/validateDocumentsOverview.ts
+
+Decisions:
+- Kept the new wayfinding in the existing document-detail surface instead of adding another wrapper route, because the repo needs stronger continuity more than more route depth.
+- Reused the shared guide helper for the packet-guide link so future guide-surface navigation can stay locale-safe through one contract.
+- Extended the existing documents validator with component markers rather than creating a second document-detail-only check, so there is still one canonical structural validation path for this surface.
+
+Validation:
+- Ran `npm run validate:documents`.
+- Ran `npm run validate:guides`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the production build still prerenders bilingual `/[lang]/documents/[slug]` routes after the added packet-guide and checklist wayfinding.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-087
+
+---
+
 ### 2026-04-15 01:14 UTC — TASK-085
 
 Summary:
