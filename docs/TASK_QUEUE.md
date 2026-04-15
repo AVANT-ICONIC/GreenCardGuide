@@ -67,30 +67,6 @@ Notes:
 
 ## Ready
 
-### TASK-085 — Promote the document library from the Ciudad Juarez hub
-Status: Ready
-Priority: P1
-Depends on: TASK-081
-Objective:
-- Turn the Ciudad Juarez hub into stronger wayfinding by surfacing the document library and seeded packet-planning path alongside the existing checklist shortcuts.
-Deliverables:
-- hub updates that add or strengthen links into the documents overview and seeded packet guide
-- copy updates that explain when to use the checklist versus the document library without claiming verified editorial guidance
-- any small route or component cleanup needed to keep the hub aligned with the current deterministic product scope
-Acceptance Criteria:
-- the hub no longer acts as a mostly placeholder orientation page once the document library and packet guide exist
-- users can move from the post hub into checklist, documents, and packet-planning surfaces through explicit navigation
-- the route remains truthful about placeholder trust posture and does not invent new Ciudad Juarez process claims
-Validation:
-- `npm run validate:ciudad-juarez`
-- `npm run validate:documents`
-- `npm run validate:guides`
-- `npm run lint`
-- `npm run typecheck`
-- `npm run build`
-Notes:
-- Keep the scope on deterministic navigation and framing, not new content claims or broader hub redesign.
-
 ### TASK-086 — Add packet-guide wayfinding from document detail pages
 Status: Ready
 Priority: P1
@@ -136,6 +112,30 @@ Validation:
 Notes:
 - Keep the scope on navigation continuity and reusable structure, not new guide copy claims.
 
+### TASK-088 — Add documents-overview wayfinding back into the hub and packet guide
+Status: Ready
+Priority: P1
+Depends on: TASK-085
+Objective:
+- Keep the documents overview from acting like a browse-only leaf by routing users back into the hub and packet guide when they need broader preparation context.
+Deliverables:
+- documents overview updates that link toward the Ciudad Juarez hub and the `what-to-bring` guide
+- any small copy or component cleanup needed to explain when to browse documents versus when to return to the broader prep flow
+- validation updates if the overview surface materially changes
+Acceptance Criteria:
+- the documents overview offers at least one clear route back into the broader preparation path
+- the added wayfinding stays grounded in current deterministic surfaces and does not add new guidance claims
+- locale-aware navigation remains correct for both English and Spanish overview pages
+Validation:
+- `npm run validate:documents`
+- `npm run validate:ciudad-juarez`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Keep the scope on route continuity and broader prep navigation, not new document editorial content.
+
 ## Blocked
 
 None currently.
@@ -143,6 +143,30 @@ None currently.
 ## Done
 
 Recent completed tasks:
+
+### TASK-085 — Promote the document library from the Ciudad Juarez hub
+Status: Done
+Priority: P1
+Depends on: TASK-081
+Objective:
+- Turn the Ciudad Juarez hub into stronger wayfinding by surfacing the document library and seeded packet-planning path alongside the existing checklist shortcuts.
+Deliverables:
+- hub updates that add or strengthen links into the documents overview and seeded packet guide
+- copy updates that explain when to use the checklist versus the document library without claiming verified editorial guidance
+- any small route or component cleanup needed to keep the hub aligned with the current deterministic product scope
+Acceptance Criteria:
+- the hub no longer acts as a mostly placeholder orientation page once the document library and packet guide exist
+- users can move from the post hub into checklist, documents, and packet-planning surfaces through explicit navigation
+- the route remains truthful about placeholder trust posture and does not invent new Ciudad Juarez process claims
+Validation:
+- `npm run validate:ciudad-juarez`
+- `npm run validate:documents`
+- `npm run validate:guides`
+- `npm run lint`
+- `npm run typecheck`
+- `npm run build`
+Notes:
+- Completed 2026-04-15. The Ciudad Juarez hub now separates checklist, documents, and adjacent guide paths so users can choose answer-driven output or browse-first packet planning from the top-level orientation surface.
 
 ### TASK-084 — Turn the bring-list guide into a seeded packet guide
 Status: Done

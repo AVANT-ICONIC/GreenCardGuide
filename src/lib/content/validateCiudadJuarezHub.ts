@@ -7,6 +7,9 @@ const requiredMarkers = [
   'Review status',
   'Last reviewed',
   'Sources',
+  'Document library',
+  'Documents overview',
+  'What to bring guide',
 ] as const;
 
 function assert(condition: unknown, message: string): asserts condition {

@@ -124,7 +124,7 @@ Current state:
 - The repository now includes a runnable Next.js App Router scaffold.
 - Locale-aware routes, the first deterministic checklist flow, and a dedicated print view are now wired.
 - A repeatable content-loading scaffold now powers bilingual guide pages, and the `what-to-bring` guide now groups the seeded packet into checklist-first, core, conditional, and uncovered-library sections.
-- A post-specific Ciudad Juarez hub route now links the checklist and guide surfaces from one bilingual entry point.
+- A post-specific Ciudad Juarez hub route now separates checklist, documents, and guide paths so users can choose between answer-driven output and browse-first packet planning from one bilingual entry point.
 - FAQ and glossary route scaffolds now exist for both locales using the same placeholder-vs-verified content model.
 - A typed source-registry stub now supports consistent placeholder source attachment across content surfaces.
 - A bilingual documents overview route now exposes the seeded document set through the same trust-aware content layer.

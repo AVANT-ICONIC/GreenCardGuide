@@ -29,6 +29,42 @@ Recommended next task:
 
 ## Log
 
+### 2026-04-15 01:14 UTC — TASK-085
+
+Summary:
+- Reworked the Ciudad Juarez hub so it now separates checklist, document-library, and adjacent guide paths instead of collapsing them into one generic guide bucket.
+- Strengthened the hub copy to explain when to use answer-driven checklist output versus browse-first document and packet-planning surfaces without adding new guidance claims.
+- Extended the hub validation markers so the route now locks in the new document-library and packet-guide wayfinding posture.
+
+Files changed:
+- README.md
+- docs/TASK_QUEUE.md
+- docs/WORK_LOG.md
+- src/components/ciudad-juarez-hub.tsx
+- src/lib/content/validateCiudadJuarezHub.ts
+
+Decisions:
+- Kept the hub as an orientation surface rather than turning it into a content-heavy page, because the repo still needs truthful routing into deeper deterministic surfaces more than new prose.
+- Split documents from guides explicitly so users can tell the difference between direct library browsing and broader prep reading without needing source-backed editorial content that does not exist yet.
+- Locked the new wayfinding into the existing hub validator rather than adding a parallel check, so the repo still has one canonical structural assertion for this route.
+
+Validation:
+- Ran `npm run validate:ciudad-juarez`.
+- Ran `npm run validate:documents`.
+- Ran `npm run validate:guides`.
+- Ran `npm run lint`.
+- Ran `npm run typecheck`.
+- Ran `npm run build`.
+- Confirmed the production build still prerenders bilingual `/[lang]/ciudad-juarez` routes after the stronger checklist-versus-documents hub framing.
+
+Blockers:
+- none
+
+Recommended next task:
+- TASK-086
+
+---
+
 ### 2026-04-15 00:54 UTC — TASK-084
 
 Summary:

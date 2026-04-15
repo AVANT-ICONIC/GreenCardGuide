@@ -6,7 +6,7 @@ const hubContent = {
     eyebrow: 'Ciudad Juarez hub',
     title: 'Start your Ciudad Juarez prep from one place.',
     lede:
-      'This post hub gathers the current deterministic checklist path and bilingual guide scaffolds for family-based interview prep. It is an orientation layer, not final verified guidance.',
+      'This post hub gathers the current deterministic checklist path, seeded document library, and prep guides for family-based interview prep. It is an orientation layer, not final verified guidance.',
     statusTitle: 'Current trust status',
     reviewStatus: 'Review status',
     lastReviewed: 'Last reviewed',
@@ -17,7 +17,7 @@ const hubContent = {
     sections: [
       {
         title: 'Checklist path',
-        body: 'Start the seeded checklist flow, review grouped results, and open the print-friendly packing view.',
+        body: 'Use the checklist when you want answer-driven packet output, grouped results, and a print-friendly packing view tied to your current case facts.',
         links: [
           { label: 'Start checklist', href: '/checklist/start' },
           { label: 'View checklist results', href: '/checklist/results' },
@@ -25,10 +25,17 @@ const hubContent = {
         ],
       },
       {
-        title: 'Guide scaffolds',
-        body: 'Open the current placeholder guides for what to bring, originals vs copies, interview-week planning, and common mistakes.',
+        title: 'Document library',
+        body: 'Use the documents overview when you want to browse the seeded library directly, then open the packet guide to group those seeded detail pages into a checklist-first planning path.',
         links: [
-          { label: 'What to bring', href: '/guides/what-to-bring' },
+          { label: 'Documents overview', href: '/documents' },
+          { label: 'What to bring guide', href: '/guides/what-to-bring' },
+        ],
+      },
+      {
+        title: 'Prep guides',
+        body: 'Continue into the adjacent guide surfaces when you need format reminders, interview-week planning scaffolds, or common-mistake review after checking your packet.',
+        links: [
           { label: 'Originals vs copies', href: '/guides/originals-vs-copies' },
           { label: 'Interview week plan', href: '/guides/interview-week-plan' },
           { label: 'Common mistakes', href: '/guides/common-mistakes' },
@@ -45,7 +52,7 @@ const hubContent = {
     eyebrow: 'Centro Ciudad Juarez',
     title: 'Empiece su preparacion para Ciudad Juarez desde un solo lugar.',
     lede:
-      'Este centro del consulado reune la ruta determinista actual de la lista y las guias bilingues provisionales para la preparacion familiar. Es una capa de orientacion, no una guia final verificada.',
+      'Este centro del consulado reune la ruta determinista actual de la lista, la biblioteca semilla de documentos y las guias de preparacion para casos familiares. Es una capa de orientacion, no una guia final verificada.',
     statusTitle: 'Estado actual de confianza',
     reviewStatus: 'Estado de revision',
     lastReviewed: 'Ultima revision',
@@ -56,7 +63,7 @@ const hubContent = {
     sections: [
       {
         title: 'Ruta de la lista',
-        body: 'Empiece el flujo semilla de la lista, revise los resultados agrupados y abra la vista imprimible para el paquete de viaje.',
+        body: 'Use la lista cuando quiera una salida del paquete guiada por respuestas, resultados agrupados y una vista imprimible ligada a los datos actuales de su caso.',
         links: [
           { label: 'Empezar lista', href: '/checklist/start' },
           { label: 'Ver resultados', href: '/checklist/results' },
@@ -64,10 +71,17 @@ const hubContent = {
         ],
       },
       {
-        title: 'Guias provisionales',
-        body: 'Abra las guias provisionales actuales para que llevar, originales y copias, plan de la semana de entrevista y errores comunes.',
+        title: 'Biblioteca de documentos',
+        body: 'Use el resumen de documentos cuando quiera recorrer directamente la biblioteca semilla y luego abra la guia de que llevar para agrupar esas paginas de detalle dentro de una ruta de planificacion basada en la lista.',
         links: [
-          { label: 'Que llevar', href: '/guides/what-to-bring' },
+          { label: 'Resumen de documentos', href: '/documents' },
+          { label: 'Guia de que llevar', href: '/guides/what-to-bring' },
+        ],
+      },
+      {
+        title: 'Guias de preparacion',
+        body: 'Continue hacia las guias relacionadas cuando necesite recordatorios sobre formatos, una base para la semana de entrevista o una revision de errores comunes despues de revisar su paquete.',
+        links: [
           { label: 'Originales y copias', href: '/guides/originals-vs-copies' },
           { label: 'Plan de la semana', href: '/guides/interview-week-plan' },
           { label: 'Errores comunes', href: '/guides/common-mistakes' },
